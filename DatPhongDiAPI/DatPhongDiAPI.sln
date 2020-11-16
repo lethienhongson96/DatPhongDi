@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.API", "DatPhongDiAPI\DatPhongDi.API.csproj", "{F49CA36F-CD64-4531-9AD3-189E2B0D22AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.Domain", "DatPhongDi.Domain\DatPhongDi.Domain.csproj", "{ED987509-FB10-4E4E-8F88-177DEEED21EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.Domain", "DatPhongDi.Domain\DatPhongDi.Domain.csproj", "{ED987509-FB10-4E4E-8F88-177DEEED21EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Interface", "DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj", "{B0E82600-5BF1-41CB-92D6-296D2D68D6A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.DAL.Interface", "DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj", "{B0E82600-5BF1-41CB-92D6-296D2D68D6A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Implement", "DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj", "{D0F27A23-7E83-4AAB-A822-3FB805F02923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.DAL.Implement", "DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj", "{D0F27A23-7E83-4AAB-A822-3FB805F02923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Interface", "DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj", "{85716C67-D841-4710-948E-92C4F47B7734}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.BAL.Interface", "DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj", "{85716C67-D841-4710-948E-92C4F47B7734}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.BAL.Implement", "DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj", "{95F6324A-9585-49DF-82F0-35DD73325064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Implement", "DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj", "{95F6324A-9585-49DF-82F0-35DD73325064}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F49CA36F-CD64-4531-9AD3-189E2B0D22AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F49CA36F-CD64-4531-9AD3-189E2B0D22AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F49CA36F-CD64-4531-9AD3-189E2B0D22AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F49CA36F-CD64-4531-9AD3-189E2B0D22AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED987509-FB10-4E4E-8F88-177DEEED21EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED987509-FB10-4E4E-8F88-177DEEED21EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED987509-FB10-4E4E-8F88-177DEEED21EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
