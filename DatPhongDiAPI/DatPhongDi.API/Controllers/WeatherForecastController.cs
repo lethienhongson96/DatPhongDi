@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace DatPhongDiAPI.Controllers
+namespace DatPhongDi.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,6 +1,6 @@
 using System;
 
-namespace DatPhongDiAPI
+namespace DatPhongDi.API
 {
     public class WeatherForecast
     {

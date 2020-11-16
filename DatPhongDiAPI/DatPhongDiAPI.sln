@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Interface", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Implement", "DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj", "{95F6324A-9585-49DF-82F0-35DD73325064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.API", "DatPhongDi.API\DatPhongDi.API.csproj", "{86CA7ED4-0DF8-4656-987E-BB4496E8C950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{95F6324A-9585-49DF-82F0-35DD73325064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95F6324A-9585-49DF-82F0-35DD73325064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95F6324A-9585-49DF-82F0-35DD73325064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CA7ED4-0DF8-4656-987E-BB4496E8C950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CA7ED4-0DF8-4656-987E-BB4496E8C950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CA7ED4-0DF8-4656-987E-BB4496E8C950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CA7ED4-0DF8-4656-987E-BB4496E8C950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
