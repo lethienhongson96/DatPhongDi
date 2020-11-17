@@ -9,7 +9,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controllers\" />
+	  <ProjectReference Include="..\DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.Domain\DatPhongDi.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

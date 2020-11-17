@@ -1,3 +1,7 @@
+using DatPhongDi.BAL.Implement;
+using DatPhongDi.BAL.Interface;
+using DatPhongDi.DAL.Implement;
+using DatPhongDi.DAL.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +25,9 @@ namespace DatPhongDi.API
             services.AddControllers();
 
             services.AddSwaggerGen();
+
+            services.AddScoped<ITypeOfRoomService, TypeOfRoomService>();
+            services.AddScoped<ITypeOfRoomRepository, TypeOfRoomRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
