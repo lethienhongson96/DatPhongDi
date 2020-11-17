@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj" />
+    <ProjectReference Include="..\DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj" />
+  </ItemGroup>
+
 </Project>

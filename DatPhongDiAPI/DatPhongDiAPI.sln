@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.Domain", "DatPhongDi.Domain\DatPhongDi.Domain.csproj", "{ED987509-FB10-4E4E-8F88-177DEEED21EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Interface", "DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj", "{B0E82600-5BF1-41CB-92D6-296D2D68D6A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ED987509-FB10-4E4E-8F88-177DEEED21EA} = {ED987509-FB10-4E4E-8F88-177DEEED21EA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Implement", "DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj", "{D0F27A23-7E83-4AAB-A822-3FB805F02923}"
 EndProject
@@ -13,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Interface", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.BAL.Implement", "DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj", "{95F6324A-9585-49DF-82F0-35DD73325064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatPhongDi.API", "DatPhongDi.API\DatPhongDi.API.csproj", "{86CA7ED4-0DF8-4656-987E-BB4496E8C950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.API", "DatPhongDi.API\DatPhongDi.API.csproj", "{86CA7ED4-0DF8-4656-987E-BB4496E8C950}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
