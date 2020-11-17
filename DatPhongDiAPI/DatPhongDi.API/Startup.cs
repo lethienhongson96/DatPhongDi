@@ -26,8 +26,13 @@ namespace DatPhongDi.API
 
             services.AddSwaggerGen();
 
+            //add scope for typeOfRoom
             services.AddScoped<ITypeOfRoomService, TypeOfRoomService>();
             services.AddScoped<ITypeOfRoomRepository, TypeOfRoomRepository>();
+
+            //add scope for Room
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
