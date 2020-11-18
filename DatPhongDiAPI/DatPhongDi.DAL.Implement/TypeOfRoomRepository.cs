@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.GetAllTypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System;
 using System.Data;
@@ -41,6 +42,13 @@ namespace DatPhongDi.DAL.Implement
                                                         sql: "sp_GetTypeOfRoom",
                                                         dynamicParameters,
                                                         commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<TypeOfRoomView> Gets()
+        {
+            return await SqlMapper.QueryFirstOrDefaultAsync<TypeOfRoomView>(cnn: connection,
+                                                   sql: "sp_GetAllTypeOfRoom",
+                                                   commandType: CommandType.StoredProcedure);
         }
 
         public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)

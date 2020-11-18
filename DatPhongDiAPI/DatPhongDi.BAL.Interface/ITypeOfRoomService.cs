@@ -1,4 +1,5 @@
 ﻿using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.GetAllTypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System.Threading.Tasks;
 
@@ -9,5 +10,6 @@ namespace DatPhongDi.BAL.Interface
         Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request);
         Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq request);
         Task<TypeOfRoomView> Get(int TypeOfRoomId);
+        Task<TypeOfRoomView> Gets();
     }
 }

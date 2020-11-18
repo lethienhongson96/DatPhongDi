@@ -1,10 +1,9 @@
 ﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.GetAllTypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.BAL.Implement
@@ -26,6 +25,11 @@ namespace DatPhongDi.BAL.Implement
         public Task<TypeOfRoomView> Get(int TypeOfRoomId)
         {
             return typeOfRoomRepository.Get(TypeOfRoomId);
+        }
+
+        public async Task<TypeOfRoomView> Gets()
+        {
+            return await typeOfRoomRepository.Gets();
         }
 
         public Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request)
