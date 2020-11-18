@@ -1,5 +1,4 @@
 ﻿using DatPhongDi.Domain.Request.TypeOfRoom;
-using DatPhongDi.Domain.Response.GetAllTypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System.Threading.Tasks;
 
