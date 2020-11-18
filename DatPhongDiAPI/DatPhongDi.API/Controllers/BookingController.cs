@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {
-    [ApiController]
-    public class BookingController : ControllerBase
+    public class BookingController : Controller
     {
         private readonly IBookingService bookingService;
 
@@ -14,6 +13,13 @@ namespace DatPhongDi.API.Controllers
         {
             this.bookingService = bookingService;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet("api/Booking/gets")]
+        public async Task<OkObjectResult> Get()
 
         [HttpPost, HttpPatch]
         [Route("api/booking/save")]
