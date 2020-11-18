@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DatPhongDi.Domain.Response.GetAllTypeOfRoom
+namespace DatPhongDi.Domain.Response.TypeOfRoom
 {
     public class SaveTypeOfRoomRes: ResResult
     {
