@@ -1,7 +1,7 @@
 ﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.DAL.Interface;
-using DatPhongDi.Domain.Reponse.Room;
 using DatPhongDi.Domain.Request.Room;
+using DatPhongDi.Domain.Response.Room;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.BAL.Implement

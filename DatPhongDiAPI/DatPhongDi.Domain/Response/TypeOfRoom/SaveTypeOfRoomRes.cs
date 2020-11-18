@@ -1,4 +1,4 @@
-﻿namespace DatPhongDi.Domain.Reponse
+﻿namespace DatPhongDi.Domain.Response
 {
     public class SaveTypeOfRoomRes
     {

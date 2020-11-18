@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
-using DatPhongDi.Domain.Reponse.Customer;
+using DatPhongDi.Domain.Response.Customer;
 using System.Data;
 using System.Threading.Tasks;
 

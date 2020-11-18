@@ -1,4 +1,4 @@
-﻿using DatPhongDi.Domain.Reponse.Customer;
+﻿using DatPhongDi.Domain.Response.Customer;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Interface

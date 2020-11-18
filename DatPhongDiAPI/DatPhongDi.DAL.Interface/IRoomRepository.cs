@@ -1,5 +1,5 @@
-﻿using DatPhongDi.Domain.Reponse.Room;
-using DatPhongDi.Domain.Request.Room;
+﻿using DatPhongDi.Domain.Request.Room;
+using DatPhongDi.Domain.Response.Room;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Interface

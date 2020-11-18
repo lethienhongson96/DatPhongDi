@@ -1,5 +1,5 @@
-﻿using DatPhongDi.Domain.Reponse;
-using DatPhongDi.Domain.Request;
+﻿using DatPhongDi.Domain.Request;
+using DatPhongDi.Domain.Response;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Interface

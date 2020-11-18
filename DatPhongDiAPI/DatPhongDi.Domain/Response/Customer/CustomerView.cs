@@ -1,5 +1,5 @@
 ﻿
-namespace DatPhongDi.Domain.Reponse.Customer
+namespace DatPhongDi.Domain.Response.Customer
 {
     public class CustomerView
     {

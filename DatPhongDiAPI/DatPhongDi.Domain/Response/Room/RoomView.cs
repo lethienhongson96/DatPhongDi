@@ -1,4 +1,4 @@
-﻿namespace DatPhongDi.Domain.Reponse.Room
+﻿namespace DatPhongDi.Domain.Response.Room
 {
     public  class RoomView
     {

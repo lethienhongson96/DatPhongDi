@@ -1,6 +1,6 @@
 ﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.DAL.Interface;
-using DatPhongDi.Domain.Reponse.Customer;
+using DatPhongDi.Domain.Response.Customer;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.BAL.Implement

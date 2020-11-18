@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
-using DatPhongDi.Domain.Reponse.Room;
 using DatPhongDi.Domain.Request.Room;
+using DatPhongDi.Domain.Response.Room;
 using System;
 using System.Data;
 using System.Threading.Tasks;
