@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.GetAllTypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System;
 using System.Data;

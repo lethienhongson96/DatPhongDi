@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatPhongDi.API.Controllers
 {
-    [ApiController]
-    public class RoomController : ControllerBase
+    public class RoomController : Controller
     {
         private readonly IRoomService roomService;
 
@@ -22,6 +21,13 @@ namespace DatPhongDi.API.Controllers
         [HttpPost,HttpPatch]
         [Route("api/room/save")]
         public async Task<OkObjectResult> SaveRoom(SaveRoomReq request)
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet("api/Room/gets")]
+        public async Task<OkObjectResult> Get()
         {
             var result = await roomService.Save(request);
             return Ok(result);

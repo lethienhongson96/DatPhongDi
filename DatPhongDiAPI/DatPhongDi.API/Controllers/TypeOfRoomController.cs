@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {
-    [ApiController]
-    public class TypeOfRoomController : ControllerBase
+    public class TypeOfRoomController : Controller
     {
         private readonly ITypeOfRoomService typeOfRoomService;
 
@@ -17,7 +16,7 @@ namespace DatPhongDi.API.Controllers
 
         [HttpPost,HttpPatch]
         [Route("api/typeofroom/Save")]
-        public async Task<OkObjectResult> SaveTypeOfRoom(SaveTypeOfRoomReq request)
+        public async Task<OkObjectResult> SavePlan(SaveTypeOfRoomReq request)
         {
             var result = await typeOfRoomService.Save(request);
             return Ok(result);
@@ -38,6 +37,12 @@ namespace DatPhongDi.API.Controllers
             var result = await typeOfRoomService.Get(Id);
             return Ok(result);
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
 
         [HttpGet("api/TypeOfRoom/gets")]
         public async Task<OkObjectResult> Gets()
