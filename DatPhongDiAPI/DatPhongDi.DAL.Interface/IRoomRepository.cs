@@ -11,5 +11,7 @@ namespace DatPhongDi.DAL.Interface
     {
         Task<SaveRoomRes> Save(SaveRoomReq saveRoomReq);
         Task<RoomView> Get(int RoomId);
+        Task<IEnumerable<RoomView>> Gets();
+        Task<IEnumerable<RoomView>> getavailables();
     }
 }

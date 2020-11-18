@@ -27,5 +27,15 @@ namespace DatPhongDi.BAL.Implement
         {
             return roomRepository.Save(request);
         }
+
+        public async Task<IEnumerable<RoomView>> getavailables()
+        {
+            return await roomRepository.getavailables();
+        }
+
+        public async Task<IEnumerable<RoomView>> Gets()
+        {
+            return await roomRepository.Gets();
+        }
     }
 }

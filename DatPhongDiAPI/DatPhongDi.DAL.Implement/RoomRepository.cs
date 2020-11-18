@@ -23,6 +23,20 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<IEnumerable<RoomView>> getavailables()
+        {
+            return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
+                                                        sql: "sp_GetRoom",
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<IEnumerable<RoomView>> Gets()
+        {
+            return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
+                                                       sql: "sp_GetAllRoom",
+                                                       commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<SaveRoomRes> Save(SaveRoomReq saveRoomReq)
         {
             SaveRoomRes Result = new SaveRoomRes();

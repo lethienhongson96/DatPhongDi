@@ -22,5 +22,21 @@ namespace DatPhongDi.API.Controllers
             var result = await bookingService.Save(request);
             return Ok(result);
         }
+
+        [HttpGet("api/Booking/gets")]
+        public async Task<OkObjectResult> Get()
+        {
+            var result = await bookingService.Gets();
+            return Ok(result);
+        }
+
+
+
+        [HttpGet("api/Booking/get/{id}")]
+        public async Task<OkObjectResult> Get(int id)
+        {
+            var result = await bookingService.Get(id);
+            return Ok(result);
+        }
     }
 }
