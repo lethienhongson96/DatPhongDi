@@ -1,3 +1,7 @@
+using DatPhongDi.BAL.Implement;
+using DatPhongDi.BAL.Interface;
+using DatPhongDi.DAL.Implement;
+using DatPhongDi.DAL.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,8 +23,15 @@ namespace DatPhongDi.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen();
+            services.AddScoped<ITypeOfRoomService, TypeOfRoomService>();
+            services.AddScoped<ITypeOfRoomRepository, TypeOfRoomRepository>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<ICustomerService,    CustomerService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

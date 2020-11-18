@@ -8,4 +8,11 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj" />
+	</ItemGroup>
+
 </Project>

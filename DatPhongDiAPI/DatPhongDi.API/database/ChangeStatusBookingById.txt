@@ -1,0 +1,28 @@
+﻿USE [DatPhongDiDb]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_ChangeStatusBookingById]    Script Date: 18/11/2020 14:07:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_ChangeStatusBookingById]
+@ID int,@Status int
+AS
+	BEGIN
+	DECLARE @Message NVARCHAR(200) = 'Đã xảy ra lỗi. Vui lòng thử lại!'
+	IF(NOT EXISTS(SELECT [Id] FROM [dbo].[Room] WHERE [Id]=@ID))
+	BEGIN
+	SET @Message = 'Phòng không được tìm thấy!'		
+	END
+	ELSE
+	begin
+		UPDATE [dbo].[Room]
+		   SET
+			  [Status] = @Status
+			  ,[ModifiedDate] = Getdate()
+		 WHERE [Id] = @ID
+		 SET @Message = 'Phòng đã được thay đổi trạng thái thành thành công'
+ END
+		SELECT @ID AS Id, @Message AS [Message]
+END
