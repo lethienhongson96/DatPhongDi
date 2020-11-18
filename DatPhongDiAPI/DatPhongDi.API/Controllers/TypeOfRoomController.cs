@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatPhongDi.API.Controllers
 {
-    public class TypeOfRoomController : Controller
+    [ApiController]
+    public class TypeOfRoomController : ControllerBase
     {
         private readonly ITypeOfRoomService typeOfRoom;
 
@@ -15,12 +16,7 @@ namespace DatPhongDi.API.Controllers
         {
             this.typeOfRoom = typeOfRoom;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-
+     
         [HttpGet("api/TypeOfRoom/gets")]
         public async Task<OkObjectResult> Get()
         {

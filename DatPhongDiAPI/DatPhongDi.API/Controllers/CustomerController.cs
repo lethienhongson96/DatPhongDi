@@ -7,17 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatPhongDi.API.Controllers
 {
-    public class CustomerController : Controller
+    [ApiController]
+    public class CustomerController : ControllerBase
     {
         private readonly ICustomerService service;
 
         public CustomerController(ICustomerService service)
         {
             this.service = service;
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [HttpGet("api/Customer/gets")]

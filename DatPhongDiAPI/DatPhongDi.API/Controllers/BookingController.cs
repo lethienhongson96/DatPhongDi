@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatPhongDi.API.Controllers
 {
-    public class BookingController : Controller
+    [ApiController]
+    public class BookingController : ControllerBase
     {
         private readonly IBookingService service;
 
@@ -15,10 +16,7 @@ namespace DatPhongDi.API.Controllers
         {
             this.service = service;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
 
         [HttpGet("api/Booking/gets")]
         public async Task<OkObjectResult> Get()
