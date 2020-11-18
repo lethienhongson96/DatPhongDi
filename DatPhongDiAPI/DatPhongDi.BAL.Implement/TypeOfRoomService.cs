@@ -15,12 +15,12 @@ namespace DatPhongDi.BAL.Implement
             this.typeRoomRepository = typeRoomRepository;
         }
 
-        public Task<UpdateTypeOfRoom> Get(int id)
+        public Task<TypeOfRoomView> Get(int id)
         {
             return typeRoomRepository.Get(id);
         }
 
-        public Task<UpdateTypeOfRoomRes> Update(UpdateTypeOfRoomReq request)
+        public Task<SaveTypeOfRoomRes> Update(SaveTypeOfRoomReq request)
         {
             return typeRoomRepository.Update(request);
         }

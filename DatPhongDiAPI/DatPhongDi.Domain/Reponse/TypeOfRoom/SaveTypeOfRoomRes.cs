@@ -1,6 +1,6 @@
-﻿namespace DatPhongDi.Domain.Reponse.Customer
+﻿namespace DatPhongDi.Domain.Reponse
 {
-    public class CustomerRes
+    public class SaveTypeOfRoomRes
     {
         public int Id { get; set; }
         public string Message { get; set; }

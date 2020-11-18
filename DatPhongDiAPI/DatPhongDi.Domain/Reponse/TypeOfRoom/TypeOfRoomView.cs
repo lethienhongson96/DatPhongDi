@@ -1,6 +1,6 @@
 ﻿namespace DatPhongDi.Domain.Reponse
 {
-    public class UpdateTypeOfRoom
+    public class TypeOfRoomView
     {
         public int Id { get; set; }
         public string Name { get; set; }

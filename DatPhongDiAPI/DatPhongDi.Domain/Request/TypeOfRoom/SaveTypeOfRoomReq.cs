@@ -1,6 +1,6 @@
 ﻿namespace DatPhongDi.Domain.Request
 {
-    public class UpdateTypeOfRoomReq
+    public class SaveTypeOfRoomReq
     {
         public int Id { get; set; }
         public string Name { get; set; }

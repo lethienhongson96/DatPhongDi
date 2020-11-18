@@ -10,20 +10,20 @@ namespace DatPhongDi.DAL.Implement
 {
     public class RoomRepository : BaseRepository, IRoomRepository
     {
-        public async Task<UpdateRoomRes> ChangeStatus(int id, int status)
+        public async Task<SaveRoomRes> ChangeStatus(int id, int status)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@Id", id);
             parameters.Add("@Status", status);
-            return await SqlMapper.QueryFirstOrDefaultAsync<UpdateRoomRes>(cnn: connection,
+            return await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
                                                         sql: "sp_ChangeStatusRoom",
                                                         param: parameters,
                                                         commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<UpdateRoomRes> Update(UpdateRoomReq request)
+        public async Task<SaveRoomRes> Update(SaveRoomReq request)
         {
-            var result = new UpdateRoomRes()
+            var result = new SaveRoomRes()
             {
                 Id = 0,
                 Message = "Đã xảy ra lỗi, vui lòng thử lại sau !!!"
@@ -39,7 +39,7 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Status", request.Status);
                 parameters.Add("@TypeOfRoomId", request.TypeOfRoomId);
 
-                result = await SqlMapper.QueryFirstOrDefaultAsync<UpdateRoomRes>(cnn: connection,
+                result = await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
                                                                     sql: "sp_UpdateRoom",
                                                                     param: parameters,
                                                                     commandType: CommandType.StoredProcedure);

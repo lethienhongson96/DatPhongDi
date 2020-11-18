@@ -15,12 +15,12 @@ namespace DatPhongDi.BAL.Implement
             this.roomRepository = roomRepository;
         }
 
-        public async Task<UpdateRoomRes> ChangeStatus(int id, int status)
+        public async Task<SaveRoomRes> ChangeStatus(int id, int status)
         {
             return await roomRepository.ChangeStatus(id,status);
         }
 
-        public async Task<UpdateRoomRes> Update(UpdateRoomReq request)
+        public async Task<SaveRoomRes> Update(SaveRoomReq request)
         {
             return await roomRepository.Update(request);
         }

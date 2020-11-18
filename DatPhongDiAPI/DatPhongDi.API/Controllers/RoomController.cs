@@ -17,7 +17,7 @@ namespace DatPhongDi.API.Controllers
 
         [HttpPost, HttpPatch]
         [Route("api/room/update")]
-        public async Task<OkObjectResult> Update(UpdateRoomReq request)
+        public async Task<OkObjectResult> Update(SaveRoomReq request)
         {
             var result = await roomService.Update(request);
             return Ok(result);
