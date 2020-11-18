@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DatPhongDi.Domain.Response.TypeOfRoom
+namespace DatPhongDi.Domain.Response.GetAllTypeOfRoom
 {
-    public class SaveTypeOfRoomRes
+    public class SaveTypeOfRoomRes: ResResult
     {
         public int Id { get; set; }
-        public string Message { get; set; }
     }
 }

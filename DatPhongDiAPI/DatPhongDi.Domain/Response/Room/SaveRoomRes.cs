@@ -4,9 +4,8 @@ using System.Text;
 
 namespace DatPhongDi.Domain.Response.Room
 {
-    public class SaveRoomRes
+    public class SaveRoomRes: ResResult
     {
         public int Id { get; set; }
-        public string Message { get; set; }
     }
 }
