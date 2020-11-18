@@ -11,6 +11,16 @@ namespace DatPhongDi.DAL.Implement
 {
     public class TypeOfRoomRepository : BaseRepository, ITypeOfRoomRepository
     {
+        public async Task<UpdateTypeOfRoom> Get(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            return await SqlMapper.QueryFirstAsync<UpdateTypeOfRoom>(cnn: connection,
+                                                        sql: "sp_GetTypeOfRoomById",
+                                                        param: parameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<UpdateTypeOfRoomRes> Update(UpdateTypeOfRoomReq request)
         {
             var result = new UpdateTypeOfRoomRes()

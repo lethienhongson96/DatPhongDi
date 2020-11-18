@@ -26,6 +26,10 @@ namespace DatPhongDi.API
             services.AddSwaggerGen();
             services.AddScoped<ITypeOfRoomRepository, TypeOfRoomRepository>();
             services.AddScoped<ITypeOfRoomService, TypeOfRoomService>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
         }
 
         
