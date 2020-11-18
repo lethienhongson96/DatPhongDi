@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDi.BAL.Interface;
+﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.Booking;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {

@@ -16,4 +16,8 @@
 	  <ProjectReference Include="..\DatPhongDi.Domain\DatPhongDi.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Database\" />
+	</ItemGroup>
+
 </Project>
