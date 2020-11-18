@@ -1,31 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDi.BAL.Interface;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DatPhongDi.API.Controllers
-{
-    [ApiController]
-    public class TypeOfRoomController : ControllerBase
-    {
-        private readonly ITypeOfRoomService typeOfRoom;
-
-        public TypeOfRoomController(ITypeOfRoomService typeOfRoom )
-        {
-            this.typeOfRoom = typeOfRoom;
-        }
-     
-        [HttpGet("api/TypeOfRoom/gets")]
-        public async Task<OkObjectResult> Get()
-        {
-            var courses = await typeOfRoom.Gets();
-            return Ok(courses);
-        }
-    }
-}
-using DatPhongDi.BAL.Interface;
+﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -64,6 +37,13 @@ namespace DatPhongDi.API.Controllers
         {
             var result = await typeOfRoomService.Get(Id);
             return Ok(result);
+        }
+
+        [HttpGet("api/TypeOfRoom/gets")]
+        public async Task<OkObjectResult> Gets()
+        {
+            var courses = await typeOfRoomService.Gets();
+            return Ok(courses);
         }
     }
 }
