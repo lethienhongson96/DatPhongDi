@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {
-    public class TypeOfRoomController : Controller
+    [ApiController]
+    public class TypeOfRoomController : ControllerBase
     {
         private readonly ITypeOfRoomService typeOfRoomService;
 
@@ -37,12 +38,6 @@ namespace DatPhongDi.API.Controllers
             var result = await typeOfRoomService.Get(Id);
             return Ok(result);
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-
 
         [HttpGet("api/TypeOfRoom/gets")]
         public async Task<OkObjectResult> Gets()
