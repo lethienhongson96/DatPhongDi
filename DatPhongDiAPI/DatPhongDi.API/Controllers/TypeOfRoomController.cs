@@ -16,7 +16,7 @@ namespace DatPhongDi.API.Controllers
 
         [HttpPost,HttpPatch]
         [Route("api/typeofroom/Save")]
-        public async Task<OkObjectResult> SaveTypeOfRoom(SaveTypeOfRoomReq request)
+        public async Task<OkObjectResult> SavePlan(SaveTypeOfRoomReq request)
         {
             var result = await typeOfRoomService.Save(request);
             return Ok(result);
