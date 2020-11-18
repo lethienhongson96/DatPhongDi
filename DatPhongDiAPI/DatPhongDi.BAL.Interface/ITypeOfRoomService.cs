@@ -6,6 +6,8 @@ namespace DatPhongDi.BAL.Interface
 {
     public interface ITypeOfRoomService
     {
-        Task<CreateTypeOfRoomRes> Create(CreateTypeOfRoomReq request);
+        Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request);
+        Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq request);
+        Task<TypeOfRoomView> Get(int TypeOfRoomId);
     }
 }

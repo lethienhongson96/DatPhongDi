@@ -10,18 +10,52 @@ namespace DatPhongDi.DAL.Implement
 {
     public class TypeOfRoomRepository : BaseRepository,ITypeOfRoomRepository
     {
-        public async Task<CreateTypeOfRoomRes> Create(CreateTypeOfRoomReq createTypeOfRoomReq)
+        public async Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq changeStatusTypeOfRoomReq)
         {
-            CreateTypeOfRoomRes Result = new CreateTypeOfRoomRes();
+            ChangeStatusTypeOfRoomRes Result = new ChangeStatusTypeOfRoomRes();
 
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Name", createTypeOfRoomReq.Name);
-                parameters.Add("@Status", createTypeOfRoomReq.Status);
+                parameters.Add("@Status", changeStatusTypeOfRoomReq.Status);
+                parameters.Add("@Id", changeStatusTypeOfRoomReq.Id);
 
-                Result = await SqlMapper.QueryFirstOrDefaultAsync<CreateTypeOfRoomRes>(cnn: connection,
-                                                                    sql: "sp_CreateTypeOfRoom",
+                Result = await SqlMapper.QueryFirstOrDefaultAsync<ChangeStatusTypeOfRoomRes>(cnn: connection,
+                                                                    sql: "sp_ChangeTypeOfRoomStatus",
+                                                                    param: parameters,
+                                                                    commandType: CommandType.StoredProcedure);
+                return Result;
+            }
+            catch (Exception)
+            {
+                return Result;
+            }
+        }
+
+        public async Task<TypeOfRoomView> Get(int TypeOfRoomId)
+        {
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("@Id", TypeOfRoomId);
+
+            return await SqlMapper.QueryFirstOrDefaultAsync<TypeOfRoomView>(cnn: connection,
+                                                        sql: "sp_GetTypeOfRoom",
+                                                        dynamicParameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)
+        {
+            SaveTypeOfRoomRes Result = new SaveTypeOfRoomRes();
+
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Name", saveTypeOfRoomReq.Name);
+                parameters.Add("@Id", saveTypeOfRoomReq.Id);
+                parameters.Add("@Status", saveTypeOfRoomReq.Status);
+
+                Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomRes>(cnn: connection,
+                                                                    sql: "sp_SaveTypeOfRoom",
                                                                     param: parameters,
                                                                     commandType: CommandType.StoredProcedure);
                 return Result;

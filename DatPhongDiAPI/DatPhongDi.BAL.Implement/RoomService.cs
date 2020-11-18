@@ -17,6 +17,12 @@ namespace DatPhongDi.BAL.Implement
         {
             this.roomRepository = roomRepository;
         }
+
+        public Task<RoomView> Get(int RoomId)
+        {
+            return roomRepository.Get(RoomId);
+        }
+
         public Task<SaveRoomRes> Save(SaveRoomReq request)
         {
             return roomRepository.Save(request);

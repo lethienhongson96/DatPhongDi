@@ -9,6 +9,8 @@ namespace DatPhongDi.DAL.Interface
 {
     public interface ITypeOfRoomRepository
     {
-        Task<CreateTypeOfRoomRes> Create(CreateTypeOfRoomReq createPlanReq);
+        Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq createPlanReq);
+        Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq changeStatusTypeOfRoomReq);
+        Task<TypeOfRoomView> Get(int TypeOfRoomId);
     }
 }

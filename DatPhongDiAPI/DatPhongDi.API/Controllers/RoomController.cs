@@ -26,5 +26,13 @@ namespace DatPhongDi.API.Controllers
             var result = await roomService.Save(request);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("api/room/get/{Id}")]
+        public async Task<OkObjectResult> Get(int Id)
+        {
+            var result = await roomService.Get(Id);
+            return Ok(result);
+        }
     }
 }

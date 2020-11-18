@@ -12,6 +12,17 @@ namespace DatPhongDi.DAL.Implement
 {
     public class RoomRepository : BaseRepository,IRoomRepository
     {
+        public async Task<RoomView> Get(int RoomId)
+        {
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("@Id", RoomId);
+
+            return await SqlMapper.QueryFirstOrDefaultAsync<RoomView>(cnn: connection,
+                                                        sql: "sp_GetRoom",
+                                                        dynamicParameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<SaveRoomRes> Save(SaveRoomReq saveRoomReq)
         {
             SaveRoomRes Result = new SaveRoomRes();

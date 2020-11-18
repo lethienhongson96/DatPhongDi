@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DatPhongDi.Domain.Response.TypeOfRoom
 {
-    public class CreateTypeOfRoomRes
+    public class ChangeStatusTypeOfRoomRes
     {
-        public int TypeOfRoomId { get; set; }
+        public int Id { get; set; }
         public string Message { get; set; }
     }
 }

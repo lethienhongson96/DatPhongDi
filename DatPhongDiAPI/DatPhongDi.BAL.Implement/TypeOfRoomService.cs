@@ -17,9 +17,20 @@ namespace DatPhongDi.BAL.Implement
         {
             this.typeOfRoomRepository = typeOfRoomRepository;
         }
-        public Task<CreateTypeOfRoomRes> Create(CreateTypeOfRoomReq request)
+
+        public Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq request)
         {
-            return typeOfRoomRepository.Create(request);
+            return typeOfRoomRepository.ChangeStatus(request);
+        }
+
+        public Task<TypeOfRoomView> Get(int TypeOfRoomId)
+        {
+            return typeOfRoomRepository.Get(TypeOfRoomId);
+        }
+
+        public Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request)
+        {
+            return typeOfRoomRepository.Save(request);
         }
     }
 }

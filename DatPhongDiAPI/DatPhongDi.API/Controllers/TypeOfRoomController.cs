@@ -15,11 +15,27 @@ namespace DatPhongDi.API.Controllers
             this.typeOfRoomService = typeOfRoomService;
         }
 
-        [HttpPost]
-        [Route("api/typeofroom/create")]
-        public async Task<OkObjectResult> SavePlan(CreateTypeOfRoomReq request)
+        [HttpPost,HttpPatch]
+        [Route("api/typeofroom/Save")]
+        public async Task<OkObjectResult> SavePlan(SaveTypeOfRoomReq request)
         {
-            var result = await typeOfRoomService.Create(request);
+            var result = await typeOfRoomService.Save(request);
+            return Ok(result);
+        }
+
+        [HttpPatch]
+        [Route("api/typeofroom/ChangeStatus")]
+        public async Task<OkObjectResult> ChangeStatus(ChangeStatusTypeOfRoomReq request)
+        {
+            var result = await typeOfRoomService.ChangeStatus(request);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("api/typeofroom/get/{Id}")]
+        public async Task<OkObjectResult> Get(int Id)
+        {
+            var result = await typeOfRoomService.Get(Id);
             return Ok(result);
         }
     }

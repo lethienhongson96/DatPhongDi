@@ -10,5 +10,6 @@ namespace DatPhongDi.DAL.Interface
     public interface IRoomRepository
     {
         Task<SaveRoomRes> Save(SaveRoomReq saveRoomReq);
+        Task<RoomView> Get(int RoomId);
     }
 }
