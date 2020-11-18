@@ -5,7 +5,6 @@ using DatPhongDi.Domain.Response.Room;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Implement
@@ -63,5 +62,18 @@ namespace DatPhongDi.DAL.Implement
                 return Result;
             }
         }
+
+        public async Task<SaveRoomRes> ChangeStatus(int id, int status)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            parameters.Add("@Status", status);
+            return await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
+                                                        sql: "sp_ChangeStatusRoom",
+                                                        param: parameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
     }
 }
+
+

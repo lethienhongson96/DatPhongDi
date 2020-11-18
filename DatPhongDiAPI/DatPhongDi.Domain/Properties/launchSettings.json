@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DatPhongDi.Domain": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\vui\\Desktop\\DatPhongDi\\DatPhongDiAPI",
+      "environmentVariables": {
+        "Key": "Value"
+      }
+    }
+  }
+}
