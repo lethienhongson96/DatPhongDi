@@ -4,8 +4,23 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Database\**" />
+    <Content Remove="Database\**" />
+    <EmbeddedResource Remove="Database\**" />
+    <None Remove="Database\**" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DatPhongDi.BAL.Implement\DatPhongDi.BAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.BAL.Interface\DatPhongDi.BAL.Interface.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj" />
+	  <ProjectReference Include="..\DatPhongDi.Domain\DatPhongDi.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
