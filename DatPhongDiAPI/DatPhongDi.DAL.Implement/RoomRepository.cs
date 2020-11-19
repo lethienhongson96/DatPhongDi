@@ -25,7 +25,7 @@ namespace DatPhongDi.DAL.Implement
         public async Task<IEnumerable<RoomView>> getavailables()
         {
             return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
-                                                        sql: "sp_GetRoom",
+                                                        sql: "sp_GetAvailableRoom",
                                                         commandType: CommandType.StoredProcedure);
         }
 
