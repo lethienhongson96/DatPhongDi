@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDi.BAL.Interface;
+﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.Room;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {
@@ -34,5 +30,29 @@ namespace DatPhongDi.API.Controllers
             var result = await roomService.Get(Id);
             return Ok(result);
         }
+
+        [HttpGet("api/Room/gets")]
+        public async Task<OkObjectResult> Gets()
+        {
+            var result = await roomService.Gets();
+            return Ok(result);
+        }
+
+        [HttpGet("api/Room/getavailables")]
+        public async Task<OkObjectResult> Getavailables()
+        {
+            var result = await roomService.Getavailables();
+            return Ok(result);
+        }
+
+        [HttpPatch]
+        [Route("api/room/changeStatus/{id}/{status}")]
+        public async Task<OkObjectResult> ChangeStatus(int id, int status)
+        {
+            var result = await roomService.ChangeStatus(id, status);
+
+            return Ok(result);
+        }
     }
 }
+

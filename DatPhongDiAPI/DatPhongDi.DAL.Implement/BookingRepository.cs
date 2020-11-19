@@ -3,6 +3,7 @@ using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.Booking;
 using DatPhongDi.Domain.Response.Booking;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -35,6 +36,23 @@ namespace DatPhongDi.DAL.Implement
             {
                 return Result;
             }
+        }
+
+        public async Task<BookingView> Get(int Id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", Id);
+            return await SqlMapper.QueryFirstOrDefaultAsync<BookingView>(cnn: connection,
+                                                        sql: "sp_GetBookingById",
+                                                        param: parameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<IEnumerable<BookingView>> Gets()
+        {
+            return await SqlMapper.QueryAsync<BookingView>(cnn: connection,
+                                                      sql: "sp_GetBookings",
+                                                      commandType: CommandType.StoredProcedure);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿USE [DatPhongDiDb]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_GetBookingById]    Script Date: 18/11/2020 14:10:44 ******/
+/****** Object:  StoredProcedure [dbo].[sp_GetBooking]    Script Date: 19/11/2020 08:52:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9,11 +9,10 @@ GO
 
 -- =============================================
 -- Author:		Minh Tan
--- Create date: 18/11/2020
--- Description:	Get Booking by Id
+-- Create date: 17/11/2020
+-- Description:	Get all Booking
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetBookingById]
-@Id int
+ALTER PROCEDURE [dbo].[sp_GetBooking]
 AS
 BEGIN
 	SELECT c.[Id]
@@ -28,6 +27,6 @@ BEGIN
 		  ,c.[Status]
 		 ,(SELECT TOP(1) StatusName FROM [dbo].[Status] WHERE TableId = 3 AND [Status] = c.[Status] AND IsDelete = 0) AS 'StatusName'
 	  FROM [dbo].[Booking] AS c
-	WHERE [Status] in (1,2,3) and c.Id=@id
+	WHERE [Status] in (1,2,3)
 
 END

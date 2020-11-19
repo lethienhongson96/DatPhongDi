@@ -12,8 +12,19 @@ namespace DatPhongDi.DAL.Implement
         public async Task<IEnumerable<CustomerView>> Gets()
         {
             return await SqlMapper.QueryAsync<CustomerView>(cnn: connection,
-                                                     sql: "sp_GetCustomer",
+                                                     sql: "sp_GetCustomers",
                                                      commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<CustomerView> Get(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            return await SqlMapper.QueryFirstAsync<CustomerView>(cnn: connection,
+                                                        sql: "sp_GetCustomerById",
+                                                        param: parameters,
+                                                        commandType: CommandType.StoredProcedure);
         }
     }
 }
+

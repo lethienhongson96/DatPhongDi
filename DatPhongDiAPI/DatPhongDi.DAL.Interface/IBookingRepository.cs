@@ -10,5 +10,7 @@ namespace DatPhongDi.DAL.Interface
     public interface IBookingRepository
     {
         Task<SaveBookingRes> Save(SaveBookingReq saveBookingReq);
+        Task<IEnumerable<BookingView>> Gets();
+        Task<BookingView> Get(int Id);
     }
 }

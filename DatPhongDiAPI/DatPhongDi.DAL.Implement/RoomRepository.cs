@@ -5,7 +5,6 @@ using DatPhongDi.Domain.Response.Room;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Implement
@@ -21,6 +20,20 @@ namespace DatPhongDi.DAL.Implement
                                                         sql: "sp_GetRoom",
                                                         dynamicParameters,
                                                         commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<IEnumerable<RoomView>> Getavailables()
+        {
+            return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
+                                                        sql: "sp_GetAvailableRoom",
+                                                        commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<IEnumerable<RoomView>> Gets()
+        {
+            return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
+                                                       sql: "sp_GetAllRoom",
+                                                       commandType: CommandType.StoredProcedure);
         }
 
         public async Task<SaveRoomRes> Save(SaveRoomReq saveRoomReq)
@@ -49,5 +62,18 @@ namespace DatPhongDi.DAL.Implement
                 return Result;
             }
         }
+
+        public async Task<SaveRoomRes> ChangeStatus(int id, int status)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            parameters.Add("@Status", status);
+            return await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
+                                                        sql: "sp_ChangeStatusRoom",
+                                                        param: parameters,
+                                                        commandType: CommandType.StoredProcedure);
+        }
     }
 }
+
+

@@ -19,5 +19,10 @@ namespace DatPhongDi.BAL.Implement
         {
             return await repository.Gets();
         }
+
+        public async Task<CustomerView> Get(int id)
+        {
+            return await repository.Get(id);
+        }
     }
 }

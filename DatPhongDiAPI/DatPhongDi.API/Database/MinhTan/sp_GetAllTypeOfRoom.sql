@@ -1,6 +1,6 @@
 ﻿USE [DatPhongDiDb]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_GetAllTypeOfRoom]    Script Date: 18/11/2020 14:10:25 ******/
+/****** Object:  StoredProcedure [dbo].[sp_GetAllTypeOfRoom]    Script Date: 19/11/2020 08:50:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
