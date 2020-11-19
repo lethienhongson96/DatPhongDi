@@ -39,9 +39,9 @@ namespace DatPhongDi.API.Controllers
         }
 
         [HttpGet("api/Room/getavailables")]
-        public async Task<OkObjectResult> getavailables()
+        public async Task<OkObjectResult> Getavailables()
         {
-            var result = await roomService.getavailables();
+            var result = await roomService.Getavailables();
             return Ok(result);
         }
 
