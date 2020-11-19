@@ -1,5 +1,4 @@
-﻿using DatPhongDi.Domain.Response.Booking;
-using DatPhongDi.Domain.Response.Customer;
+﻿using DatPhongDi.Domain.Response.Customer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
