@@ -8,7 +8,7 @@ namespace DatPhongDi.DAL.Implement
         protected IDbConnection connection;
         public BaseRepository()
         {
-            connection = new SqlConnection(@"Data Source=hongson\sqlexpress;Initial Catalog=DatPhongDiDb;Integrated Security=True");
+            connection = new SqlConnection(@"Data Source=DESKTOP-EP3RDSG\SQLEXPRESS;Initial Catalog=DatPhongDiDb;Integrated Security=True");
         }
     }
 }
