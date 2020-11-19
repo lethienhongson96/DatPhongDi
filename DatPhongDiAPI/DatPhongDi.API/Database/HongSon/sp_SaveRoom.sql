@@ -21,7 +21,7 @@ CREATE PROCEDURE [dbo].[sp_SaveRoom]
 	   @TypeOfRoomId int
 AS
 BEGIN
-	DECLARE @Message NVARCHAR(100) = N'đả xảy ra lỗi, vui lòng thử lại sau!'
+	DECLARE @Message NVARCHAR(100) = N'đã xảy ra lỗi, vui lòng thử lại sau!'
 	BEGIN TRY
 		-- Create
 		--IF(@CourseId IS NULL OR @CourseId = 0)
@@ -52,7 +52,7 @@ BEGIN
 									   ,null)
 
 
-							SET @Message = N'Phòng đả được tạo thành công'
+							SET @Message = N'Phòng đã được tạo thành công'
 							SET @Id = SCOPE_IDENTITY()
 						END
 						ELSE
@@ -62,7 +62,7 @@ BEGIN
 					END
 				ELSE
 					BEGIN
-						SET @Message = N'Tên phòng đả tồn tại'
+						SET @Message = N'Tên phòng đã tồn tại'
 					END
 			END
 
@@ -71,7 +71,7 @@ BEGIN
 		BEGIN
 			IF(NOT EXISTS(SELECT * FROM [dbo].[Room] WHERE [Id] = @Id))
 			BEGIN
-				SET @Message = N'không tìm thấy phòng này'
+				SET @Message = N'Không tìm thấy phòng này'
 			END
 			ELSE
 			BEGIN
@@ -92,17 +92,17 @@ BEGIN
 							  ,[ModifiedDate]=GETDATE()
 						 WHERE [Id]=@Id
 
-					 SET @Message = N'phòng đả được cập nhật thành công'
+					 SET @Message = N'phòng đã được cập nhật thành công'
 						
 					END
 					ELSE
 					BEGIN
-						SET @Message = N'IStatus không hợp lệ'
+						SET @Message = N'Status không hợp lệ'
 					END
 				END
 				ELSE
 				BEGIN
-					SET @Message = N'Tên phòng đả tồn tại'
+					SET @Message = N'Tên phòng đã tồn tại'
 				END
 			END
 		END

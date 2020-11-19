@@ -12,7 +12,7 @@ namespace DatPhongDi.DAL.Implement
         public async Task<IEnumerable<CustomerView>> Gets()
         {
             return await SqlMapper.QueryAsync<CustomerView>(cnn: connection,
-                                                     sql: "sp_GetCustomer",
+                                                     sql: "sp_GetCustomers",
                                                      commandType: CommandType.StoredProcedure);
         }
 

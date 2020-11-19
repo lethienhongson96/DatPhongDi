@@ -26,16 +26,14 @@ namespace DatPhongDi.BAL.Implement
             return typeOfRoomRepository.Get(TypeOfRoomId);
         }
 
-     
+        public async Task<IEnumerable<TypeOfRoomView>> Gets()
+        {
+            return await typeOfRoomRepository.Gets();
+        }
 
         public Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request)
         {
             return typeOfRoomRepository.Save(request);
-        }
-
-        public async Task<IEnumerable<TypeOfRoomView>> Gets()
-        {
-            return await typeOfRoomRepository.Gets();
         }
     }
 }
