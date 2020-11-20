@@ -12,6 +12,14 @@ namespace DatPhongDi.DAL.Implement
 {
     public class ServiceRepository : BaseRepository, IServiceRepository
     {
+        public async Task<IEnumerable<ServiceView>> Gets()
+        {
+                var result = await SqlMapper.QueryAsync<ServiceView>(cnn: connection,
+                                                                     sql: "sp_GetsService",
+                                                                     commandType: CommandType.StoredProcedure);
+                return result;
+        }
+
         public async Task<SaveServiceRes> Save(SaveServiceReq req)
         {
             var result = new SaveServiceRes()
@@ -25,6 +33,7 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Id", req.Id);
                 parameters.Add("@Name", req.Name);
                 parameters.Add("@Icon", req.Icon);
+                parameters.Add("@Status", req.Status);
                 result = await SqlMapper.QueryFirstOrDefaultAsync<SaveServiceRes>(cnn: connection,
                                                                                   sql: "sp_SaveService",
                                                                                   param: parameters,
@@ -36,5 +45,6 @@ namespace DatPhongDi.DAL.Implement
                 return result;
             }
         }
+
     }
 }

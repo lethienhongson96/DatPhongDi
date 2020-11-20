@@ -10,5 +10,6 @@ namespace DatPhongDi.BAL.Interface
     public interface IServiceService
     {
         Task<SaveServiceRes> Save(SaveServiceReq req);
+        Task<IEnumerable<ServiceView>> Gets();
     }
 }
