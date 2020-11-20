@@ -38,7 +38,7 @@ namespace DatPhongDi.DAL.Implement
             dynamicParameters.Add("@Id", TypeOfRoomId);
 
             return await SqlMapper.QueryFirstOrDefaultAsync<TypeOfRoomView>(cnn: connection,
-                                                        sql: "sp_GetTypeOfRoom",
+                                                        sql: "sp_GetTypeOfRoomById",
                                                         dynamicParameters,
                                                         commandType: CommandType.StoredProcedure);
         }
