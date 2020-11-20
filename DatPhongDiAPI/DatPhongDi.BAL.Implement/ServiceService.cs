@@ -18,6 +18,11 @@ namespace DatPhongDi.BAL.Implement
             this.serviceRepository = serviceRepository;
         }
 
+        public async Task<SaveServiceRes> ChangeStatusService(ChangeStatusServiceReq req)
+        {
+            return await serviceRepository.ChangeStatusService(req);
+        }
+
         public async Task<ServiceView> Get(int id)
         {
             return await serviceRepository.Get(id);

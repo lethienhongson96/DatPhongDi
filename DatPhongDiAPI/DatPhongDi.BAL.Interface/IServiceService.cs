@@ -12,5 +12,6 @@ namespace DatPhongDi.BAL.Interface
         Task<SaveServiceRes> Save(SaveServiceReq req);
         Task<IEnumerable<ServiceView>> Gets();
         Task<ServiceView> Get(int id);
+        Task<SaveServiceRes> ChangeStatusService(ChangeStatusServiceReq req);
     }
 }

@@ -12,6 +12,30 @@ namespace DatPhongDi.DAL.Implement
 {
     public class ServiceRepository : BaseRepository, IServiceRepository
     {
+        public async Task<SaveServiceRes> ChangeStatusService(ChangeStatusServiceReq req)
+        {
+            var result = new SaveServiceRes()
+            {
+                Id = 0,
+                Message = "Có gì đó sai, vui lòng thử lại sau!"
+            };
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Id", req.Id);
+                parameters.Add("@Status", req.Status);
+                result = await SqlMapper.QueryFirstOrDefaultAsync<SaveServiceRes>(cnn: connection,
+                                                                                  sql: "sp_ChangeStatusService",
+                                                                                  param: parameters,
+                                                                                  commandType: CommandType.StoredProcedure);
+                return result;
+            }
+            catch (Exception)
+            {
+                return result;
+            }
+        }
+
         public async Task<ServiceView> Get(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
