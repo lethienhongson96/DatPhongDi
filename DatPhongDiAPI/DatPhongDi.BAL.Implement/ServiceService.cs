@@ -17,6 +17,12 @@ namespace DatPhongDi.BAL.Implement
         {
             this.serviceRepository = serviceRepository;
         }
+
+        public async Task<IEnumerable<ServiceView>> Gets()
+        {
+            return await serviceRepository.Gets();
+        }
+
         public async Task<SaveServiceRes> Save(SaveServiceReq req)
         {
             return await serviceRepository.Save(req);

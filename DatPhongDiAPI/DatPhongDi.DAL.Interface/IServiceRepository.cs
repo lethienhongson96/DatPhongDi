@@ -10,5 +10,6 @@ namespace DatPhongDi.DAL.Interface
     public interface IServiceRepository 
     {
         Task<SaveServiceRes> Save(SaveServiceReq req);
+        Task<IEnumerable<ServiceView>> Gets();
     }
 }
