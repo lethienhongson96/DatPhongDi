@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DatPhongDi.Domain.Response.Service
 {
-    public class ServiceView
+    public class ServiceView : ResResult
     {
         public int Id { get; set; }
         public string Name { get; set; }
