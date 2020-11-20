@@ -51,7 +51,7 @@ namespace DatPhongDi.DAL.Implement
         public async Task<IEnumerable<BookingView>> Gets()
         {
             return await SqlMapper.QueryAsync<BookingView>(cnn: connection,
-                                                      sql: "sp_GetBooking",
+                                                      sql: "sp_GetBookings",
                                                       commandType: CommandType.StoredProcedure);
         }
     }
