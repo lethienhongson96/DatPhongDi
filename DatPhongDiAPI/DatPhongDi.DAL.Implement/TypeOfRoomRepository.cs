@@ -3,6 +3,7 @@ using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -43,9 +44,9 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<TypeOfRoomView> Gets()
+        public async Task<IEnumerable<TypeOfRoomView>> Gets()
         {
-            return await SqlMapper.QueryFirstOrDefaultAsync<TypeOfRoomView>(cnn: connection,
+            return await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
                                                    sql: "sp_GetAllTypeOfRoom",
                                                    commandType: CommandType.StoredProcedure);
         }

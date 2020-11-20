@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DatPhongDi.Domain.Response.TypeOfRoom
+﻿namespace DatPhongDi.Domain.Response.TypeOfRoom
 {
     public class TypeOfRoomView
     {
