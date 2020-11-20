@@ -1,17 +1,20 @@
-﻿USE [DatPhongDiDb]
+USE [DatPhongDiDb]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_GetRoom]    Script Date: 19/11/2020 08:55:20 ******/
+
+/****** Object:  StoredProcedure [dbo].[sp_GetAvailableRoom]    Script Date: 20/11/2020 09:10:40 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
+
 -- =============================================
--- Author:		Minh Tan
--- Create date: 17/11/2020
--- Description:	Get Room
+-- Author:		Phuc Vui
+-- Create date: 20/11/2020
+-- Description:	Get Available Room 
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetAvailableRoom]
+Create PROCEDURE [dbo].[sp_GetAvailableRoom]
 AS
 BEGIN
 		SELECT[Id]
@@ -30,3 +33,5 @@ BEGIN
 	WHERE [Status] =1
 
 END
+GO
+
