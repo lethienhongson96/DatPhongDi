@@ -33,7 +33,7 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
         [HttpGet]
-        [Route("api/service/get")]
+        [Route("api/service/get/{id}")]
         public async Task<OkObjectResult> Get(int id)
         {
             var result = await serviceService.Get(id);
