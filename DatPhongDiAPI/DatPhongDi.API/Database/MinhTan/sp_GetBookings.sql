@@ -12,7 +12,7 @@ GO
 -- Create date: 17/11/2020
 -- Description:	Get all Booking
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetBooking]
+ALTER PROCEDURE [dbo].[sp_GetBookings]
 AS
 BEGIN
 	SELECT c.[Id]
