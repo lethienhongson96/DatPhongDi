@@ -11,5 +11,6 @@ namespace DatPhongDi.DAL.Interface
     {
         Task<SaveServiceRes> Save(SaveServiceReq req);
         Task<IEnumerable<ServiceView>> Gets();
+        Task<ServiceView> Get(int id);
     }
 }

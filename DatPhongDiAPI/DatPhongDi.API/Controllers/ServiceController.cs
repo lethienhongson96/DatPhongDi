@@ -32,5 +32,12 @@ namespace DatPhongDi.API.Controllers
             var result = await serviceService.Gets();
             return Ok(result);
         }
+        [HttpGet]
+        [Route("api/service/get")]
+        public async Task<OkObjectResult> Get(int id)
+        {
+            var result = await serviceService.Get(id);
+            return Ok(result);
+        }
     }
 }

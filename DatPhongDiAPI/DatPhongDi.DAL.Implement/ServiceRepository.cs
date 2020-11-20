@@ -12,6 +12,17 @@ namespace DatPhongDi.DAL.Implement
 {
     public class ServiceRepository : BaseRepository, IServiceRepository
     {
+        public async Task<ServiceView> Get(int id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", id);
+            var result = await SqlMapper.QueryFirstOrDefaultAsync<ServiceView>(cnn: connection,
+                                                                                sql: "sp_GetServiceById",
+                                                                                param: parameters,
+                                                                                commandType: CommandType.StoredProcedure);
+            return result;
+        }
+
         public async Task<IEnumerable<ServiceView>> Gets()
         {
                 var result = await SqlMapper.QueryAsync<ServiceView>(cnn: connection,
