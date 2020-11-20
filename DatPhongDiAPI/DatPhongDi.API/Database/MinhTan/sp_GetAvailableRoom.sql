@@ -9,9 +9,9 @@ GO
 -- =============================================
 -- Author:		Minh Tan
 -- Create date: 17/11/2020
--- Description:	Get Room
+-- Description:	Get Available Room
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetRoom]
+ALTER PROCEDURE [dbo].[sp_GetAvailableRoom]
 AS
 BEGIN
 		SELECT[Id]
