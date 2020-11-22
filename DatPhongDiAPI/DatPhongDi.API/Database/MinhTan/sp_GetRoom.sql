@@ -11,7 +11,7 @@ GO
 -- Create date: 17/11/2020
 -- Description:	Get Room
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetRoom]
+ALTER PROCEDURE [dbo].[sp_GetAvailableRoom]
 AS
 BEGIN
 		SELECT[Id]

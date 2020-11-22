@@ -7,6 +7,6 @@ namespace DatPhongDi.BAL.Interface
     public interface ICustomerService
     {
         Task<IEnumerable<CustomerView>> Gets();
-        Task<CustomerView> Get(int id);
+        Task<CustomerView> Get(int id); 
     }
 }
