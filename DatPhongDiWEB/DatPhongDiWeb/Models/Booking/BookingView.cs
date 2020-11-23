@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DatPhongDi.Domain.Response.Booking
+namespace DatPhongDiWeb.Models.Booking
 {
-    public class BookingView : ResResult
+    public class BookingView
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
