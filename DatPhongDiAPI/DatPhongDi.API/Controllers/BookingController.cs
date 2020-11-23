@@ -23,6 +23,14 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
+        [HttpPost,HttpPatch]
+        [Route("api/booking/changestatusbooking/{id}/{status}")]
+        public async Task<OkObjectResult> ChangeStatusBooking(int id, int status)
+        {
+            var result = await bookingService.ChangeStatusBooking(id, status);
+            return Ok(result);
+        }
+
         [HttpGet("api/Booking/gets")]
         public async Task<OkObjectResult> Get()
         {
