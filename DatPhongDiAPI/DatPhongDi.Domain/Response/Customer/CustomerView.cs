@@ -1,6 +1,6 @@
 ﻿namespace DatPhongDi.Domain.Response.Customer
 {
-    public class CustomerView
+    public class CustomerView : ResResult
     {
         public int Id { get; set; }
         public string Name { get; set; }
