@@ -2,7 +2,7 @@
 
 namespace DatPhongDi.Domain.Response.Booking
 {
-    public class BookingView
+    public class BookingView : ResResult
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
