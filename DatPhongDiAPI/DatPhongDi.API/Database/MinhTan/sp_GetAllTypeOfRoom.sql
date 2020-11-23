@@ -12,7 +12,7 @@ GO
 -- Create date: 17/11/2020
 -- Description:	Get all Type Of Room
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetAllTypeOfRoom]
+CREATE PROCEDURE [dbo].[sp_GetAllTypeOfRoom]
 AS
 BEGIN
 	SELECT c.[Id]
