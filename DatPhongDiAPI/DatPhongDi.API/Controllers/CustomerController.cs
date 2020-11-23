@@ -27,8 +27,8 @@ namespace DatPhongDi.API.Controllers
         [HttpGet("api/Customer/gets")]
         public async Task<OkObjectResult> Get()
         {
-            var result = await customerService.Gets();
-            return Ok(result);
+            var courses = await customerService.Gets();
+            return Ok(courses);
         }
     }
 }
