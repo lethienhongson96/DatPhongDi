@@ -262,7 +262,7 @@ Author URL: http://w3layouts.com
             <!-- content -->
             <div class="container-fluid content-top-gap">
 
-                <nav aria-label="breadcrumb">
+                @*<nav aria-label="breadcrumb">
                     <ol class="breadcrumb my-breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -271,7 +271,7 @@ Author URL: http://w3layouts.com
                 <div class="welcome-msg pt-3 pb-4">
                     <h1>Hi <span class="text-primary">John</span>, Welcome back</h1>
                     <p>Very detailed & featured admin.</p>
-                </div>
+                </div>*@
 
                 <!-- statistics data -->
                 <!-- //statistics data -->
@@ -309,7 +309,7 @@ Author URL: http://w3layouts.com
     <button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
         <span class="fa fa-angle-up"></span>
     </button>
-    
+
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {
@@ -377,7 +377,7 @@ Author URL: http://w3layouts.com
     <!--// loading-gif Js -->
     <!-- Bootstrap Core JavaScript -->
     <script src="~/collective-admin-panel-starter/starter/assets/js/bootstrap.min.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

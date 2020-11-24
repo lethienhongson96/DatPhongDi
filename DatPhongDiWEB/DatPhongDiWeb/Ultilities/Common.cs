@@ -11,10 +11,10 @@ namespace DatPhongDiWeb.Ultilities
 
         public enum Table
         {
-            Course = 1,
-            Module = 2,
-            Teacher = 3,
-            Student = 4
+            TypeOfRoom = 1,
+            Room = 2,
+            Booking = 3,
+            Service = 4
         }
     }
 }
