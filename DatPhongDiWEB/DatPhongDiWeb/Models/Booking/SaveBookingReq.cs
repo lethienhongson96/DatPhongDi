@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DatPhongDi.Domain.Request.Booking
+namespace DatPhongDiWeb.Models.Booking
 {
     public class SaveBookingReq
     {

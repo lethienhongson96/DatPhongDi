@@ -31,6 +31,12 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-        
+        [HttpPost]
+        [Route("/Booking/save")]
+        public JsonResult Save([FromBody] SaveBookingReq request)
+        {
+            var result = ApiHelper<ResResult>.HttpPostAsync($"booking/save", "POST", request);
+            return Json(new { data = result });
+        }
     }
 }

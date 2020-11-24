@@ -1,5 +1,6 @@
 ﻿var booking = {} || booking;
 
+//show data vẽ lên table
 booking.showData = function () {
     $.ajax({
         url: '/booking/gets',
@@ -19,7 +20,7 @@ booking.showData = function () {
                         <td>${v.statusName}</td>
                         <td>
                             <button class="btn btn-info"
-                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.amountNight},${v.status},'${v.roomName}','${v.customerName}')">
+                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.amountNight},${v.status},'${v.roomName}','${v.customerName}','${v.checkInStr}','${v.checkOutStr}')">
                             Edit</button>
                             <a href="javascript:void(0)" onclick="booking.delete(${v.id})"
                                 class="btn btn-danger"> Delete
@@ -32,17 +33,56 @@ booking.showData = function () {
     });
 }
 
-booking.edit = function (id, roomId, customerId, amountNight, status, roomName, customerName) {
+//khi bấm vào nút edit thì đưa dữ liệu vào các thẻ thành phần ở trong form edit
+booking.edit = function (id, roomId, customerId, amountNight, status, roomName, customerName, checkInStr, checkOutStr) {
     $("#id").val(id);
-    $("#roomId").val(roomName);
-    $("#customerId").val(customerName);
+    $("#roomName").val(roomName);
+    $("#customerName").val(customerName);
     $("#amountNight").val(amountNight);
     $("#Status").val(status);
+    $("#roomId").val(roomId);
+    $("#customerId").val(customerId);
+    
+    document.getElementById("checkin").defaultValue = checkInStr;
+    document.getElementById("checkout").defaultValue = checkOutStr;
+
     booking.initStatus(status);
-    console.log(status);
+    booking.initroom(roomId);
     booking.openModal();
 }
 
+//lưu tất cả thay đổi ở trong form và gửi yêu cầu lên server để update dử liệu
+booking.save = function () {
+    if ($('#frmAddEditBooking').valid()) {
+        var saveObj = {};
+        saveObj.Id = parseInt($('#id').val());
+        saveObj.RoomId = parseInt($('#roomId').val());
+        saveObj.CustomerId = parseInt($('#customerId').val());
+        saveObj.AmountNight = parseInt($('#amountNight').val());
+        saveObj.Status = parseInt($('#Status').val());
+        saveObj.CheckIn = $('#checkin').val();
+        saveObj.CheckOut = $('#checkout').val();
+
+        $.ajax({
+            url: '/Booking/save',
+            method: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json',
+            data: JSON.stringify(saveObj),
+            success: function (response) {
+                $('#addEditBookingModal').modal('hide');
+                bootbox.alert({
+                    message: response.data.message,
+                    callback: function () {
+                        window.location.href = "/Booking/Index/";
+                    }
+                })
+            }
+        });
+    }
+}
+
+//lấy dử liệu status của booking,với tableId=3 và đổ dử liệu vào dropdown status
 booking.initStatus = function (defaultStatus) {
     $.ajax({
         url: '/status/getstatusbytableid/'+3,
@@ -60,10 +100,30 @@ booking.initStatus = function (defaultStatus) {
     });
 }
 
+//lấy những phòng có trạng thái đang hoạt động, và đổ dử liệu vào dropdown room
+booking.initroom = function (defaultroom) {
+    $.ajax({
+        url: '/room/gets/',
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            $('#room').empty();
+            $.each(response.data, function (i, v) {
+                $('#room').append(
+                    `<option value=${v.id}>${v.name}</option>`
+                );
+                $('#room').val(defaultroom);
+            });
+        }
+    });
+}
+
+//mở form edit lên
 booking.openModal = function () {
     $('#addEditBookingModal').modal('show');
 }
 
+//xóa booking là chuyển booking đó sang trạng thái đả hủy
 booking.delete = function (id) {
     bootbox.confirm({
         message: "Delete <span class='text-danger'>"+"Bạn có chắc"+"</span> ?",
@@ -106,6 +166,7 @@ booking.delete = function (id) {
 booking.init = function () {
     booking.showData();
     booking.initStatus();
+    booking.initroom();
 }
 
 $(document).ready(function () {
