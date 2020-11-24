@@ -19,7 +19,7 @@ namespace DatPhongDi.API.Controllers
             this.statusService = statusService;
         }
         [HttpGet]
-        [Route("api/status/gets")]
+        [Route("api/status/{tableId}")]
         public async Task<OkObjectResult> Gets(int tableId)
         {
             var result = await statusService.GetStatus(tableId);

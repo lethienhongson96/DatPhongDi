@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DatPhongDiWeb.Models.TypeOfRoom
 {
-    public class SaveTypeOfRoom
+    public class SaveTypeOfRoomRes
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Message { get; set; }
     }
 }
