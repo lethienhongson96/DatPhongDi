@@ -15,7 +15,7 @@ service.showData = function () {
                         <td>${v.icon}</td>
                         <td>${v.statusName}</td>
                         <td><a href="javascript:void(0);" class="btn btn-success"
-                        onclick="service.Update(${v.id},'${v.name}',${v.icon},'${v.statusName}')">Chỉnh sửa</a>
+                        onclick="service.Update(${v.id},'${v.name}','${v.icon}','${v.statusName}')">Chỉnh sửa</a>
                         <a href="javascript:void(0);" class="btn btn-warning"
                         onclick="service.Delete(${v.id},'${v.name}')">Xóa</a></td>
                     </tr>`
@@ -70,11 +70,10 @@ service.save = function () {
             data: JSON.stringify(saveObj),
             success: function (response) {
                 bootbox.alert(response.data.message);
-                if (response.data.moduleId > 0) {
+                if (response.data.Id > 0) {
                     $('#addEditServiceModal').modal('hide');
                     $('#formAddEditService').trigger('reset');
                     service.showData();
-
                 }
             }
         });
@@ -112,7 +111,7 @@ service.Delete = function (id, name) {
         callback: function (result) {
             if (result) {
                 service.showData();
-                //window.location.href = "Module/Delete?id=" + id;
+                window.location.href = "Service/Delete?id=" + id;
                 bootbox.alert("Xóa thành công ");
             }
         }
