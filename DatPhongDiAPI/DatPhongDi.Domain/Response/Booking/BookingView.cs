@@ -19,5 +19,7 @@ namespace DatPhongDi.Domain.Response.Booking
         public string ModifiedBy { get; set; }
         public int Status { get; set; }
         public string StatusName { get; set; }
+        public string CustomerName { get; set; }
+        public string RoomName { get; set; }
     }
 }

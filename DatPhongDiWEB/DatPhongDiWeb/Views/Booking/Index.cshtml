@@ -22,4 +22,70 @@
     </table>
 </div>
 
+<div class="modal" id="addEditBookingModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chỉnh Sửa Booking</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="frmAddEditBooking">
+                    <input hidden name="id" id="id" value="0" />
+                    <div class="row form-group">
+                        <label for="ModuleName" class="col-3">Phòng:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control"
+                                   id="roomId" name="roomId"
+                                   data-rule-required="true"
+                                   data-msg-required="Module name is required">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Duration" class="col-3">customerId:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control"
+                                   id="customerId" name="customerId"
+                                   data-rule-required="true"
+                                   data-msg-required="Duration is required"
+                                   data-rule-range="2,8"
+                                   data-msg-range="Duration between 2 and 8.">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Duration" class="col-3">amountNight:</label>
+                        <div class="col-9">
+                            <input type="number" class="form-control"
+                                   id="amountNight" name="amountNight"
+                                   data-rule-required="true"
+                                   data-msg-required="Duration is required"
+                                   data-rule-range="2,8"
+                                   data-msg-range="Duration between 2 and 8.">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Status" class="col-3">Status:</label>
+                        <div class="col-9">
+                            <select class="form-control" id="Status" name="Status">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-success" onclick="module.save()">Save</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeButton">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="~/js/booking.js"></script>

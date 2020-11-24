@@ -20,6 +20,7 @@ namespace DatPhongDi.DAL.Implement
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@Id", saveBookingReq.Id);
                 parameters.Add("@RoomId", saveBookingReq.RoomId);
+
                 parameters.Add("@CustomerId", saveBookingReq.CustomerId);
                 parameters.Add("@AmountNight", saveBookingReq.AmountNight);
                 parameters.Add("@Checkin", saveBookingReq.Checkin);

@@ -30,5 +30,7 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<ResResult>.HttpPostAsync($"booking/changestatusbooking/{id}/4", "POST", new object());
             return Json(new { data = result });
         }
+
+        
     }
 }

@@ -10,8 +10,8 @@ booking.showData = function () {
             $.each(response.data, function (i, v) {
                 $('#tbBooking>tbody').append(
                     `<tr>
-                        <td>${v.roomId}</td>
-                        <td>${v.customerId}</td>
+                        <td>${v.roomName}</td>
+                        <td>${v.customerName}</td>
                         <td>${v.amountNight}</td>
                         <td>${v.checkInStr}</td>
                         <td>${v.checkOutStr}</td>
@@ -19,7 +19,8 @@ booking.showData = function () {
                         <td>${v.statusName}</td>
                         <td>
                             <button class="btn btn-info"
-                            onclick="booking.edit()">Edit</button>
+                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.amountNight},${v.status},'${v.roomName}','${v.customerName}')">
+                            Edit</button>
                             <a href="javascript:void(0)" onclick="booking.delete(${v.id})"
                                 class="btn btn-danger"> Delete
                             </a>
@@ -31,12 +32,36 @@ booking.showData = function () {
     });
 }
 
-booking.edit = function (moduleId, moduleName, duration, status) {
-    $("#ModuleName").val(moduleName);
-    $("#Duration").val(duration);
-    $("#ModuleId").val(moduleId);
-    module.initStatus(status);
-    module.openModal();
+booking.edit = function (id, roomId, customerId, amountNight, status, roomName, customerName) {
+    $("#id").val(id);
+    $("#roomId").val(roomName);
+    $("#customerId").val(customerName);
+    $("#amountNight").val(amountNight);
+    $("#Status").val(status);
+    booking.initStatus(status);
+    console.log(status);
+    booking.openModal();
+}
+
+booking.initStatus = function (defaultStatus) {
+    $.ajax({
+        url: '/status/getstatusbytableid/'+3,
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            $('#Status').empty();
+            $.each(response.data, function (i, v) {
+                $('#Status').append(
+                    `<option value=${v.id}>${v.name}</option>`
+                );
+                $('#Status').val(defaultStatus);
+            });
+        }
+    });
+}
+
+booking.openModal = function () {
+    $('#addEditBookingModal').modal('show');
 }
 
 booking.delete = function (id) {
@@ -66,7 +91,7 @@ booking.delete = function (id) {
                             bootbox.alert({
                                 message: "Something wrong",
                                 callback: function () {
-                                    window.location.href = "/module/Index/";
+                                    window.location.href = "/Booking/Index/";
                                 }
                             })
                         }
@@ -80,7 +105,7 @@ booking.delete = function (id) {
 
 booking.init = function () {
     booking.showData();
-    //booking.initStatus();
+    booking.initStatus();
 }
 
 $(document).ready(function () {
