@@ -9,6 +9,7 @@ namespace DatPhongDi.DAL.Implement
         public BaseRepository()
         {
             connection = new SqlConnection(@"Data Source=admin\sqlexpress;Initial Catalog=DatPhongDiDb;Integrated Security=True");
+
         }
     }
 }
