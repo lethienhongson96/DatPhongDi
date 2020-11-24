@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace DatPhongDiWeb.Ultilities
 {
@@ -53,4 +50,6 @@ namespace DatPhongDiWeb.Ultilities
             return JsonConvert.DeserializeObject<T>(result);
         }
     }
+
 }
+
