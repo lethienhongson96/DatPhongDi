@@ -54,7 +54,7 @@ typeOfRoom.save = function () {
 
 typeOfRoom.delete = function (id, status) {
     bootbox.confirm({
-        message: "Bạn có chắc chắn muốn xóa loại phòng này không <span class='text-danger'>" + v.name + "</span> ?",
+        message: "Bạn có chắc chắn muốn xóa loại phòng này không <span class='text-danger'></span> ?",
         buttons: {
             confirm: {
                 label: 'Có',
