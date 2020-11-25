@@ -14,7 +14,7 @@ Author URL: http://w3layouts.com
 
     <!-- Template CSS -->
     <link href="~/collective-admin-panel-starter/starter/assets/css/style-starter.css" rel="stylesheet" />
-
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
 </head>
@@ -68,7 +68,7 @@ Author URL: http://w3layouts.com
                             <span>Phòng<i class="lnr lnr-chevron-right"></i></span>
                         </a>
                         <ul class="sub-menu-list">
-                            <li><a href="carousels.html">Carousels</a> </li>
+                            <li><a asp-controller="Room" asp-action="Index">Trang chủ</a> </li>
                             <li><a href="cards.html">Default cards</a> </li>
                             <li><a href="people.html">People cards</a></li>
                         </ul>
@@ -251,67 +251,26 @@ Author URL: http://w3layouts.com
         <!-- //header-ends -->
         <!-- main content start -->
         <div class="main-content">
-
             <!-- content -->
             <div class="container-fluid content-top-gap">
-
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb my-breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                    </ol>
-                </nav>
+                @*<nav aria-label="breadcrumb">
+                        <ol class="breadcrumb my-breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        </ol>
+                    </nav>*@
                 <div class="welcome-msg pt-3 pb-4">
-                    <h1>Hi <span class="text-primary">John</span>, Welcome back</h1>
-                    <p>Very detailed & featured admin.</p>
+                    <h1>Hi <span class="text-primary">Tân</span>, Welcome back</h1>
+                    @*<p>Very detailed & featured admin.</p>*@
                 </div>
-
                 <!-- statistics data -->
                 <!-- //statistics data -->
                 <!-- charts -->
-                <div class="chart">
-                    <div class="row">
-                        <div class="col-lg-6 pr-lg-2 chart-grid">
-                            <div class="card text-center card_border">
-                                <div class="card-header chart-grid__header">
-                                    Bar Chart
-                                </div>
-                                <div class="card-body">
-                                    <!-- bar chart -->
-                                    <div id="container">
-                                        <canvas id="barchart"></canvas>
-                                    </div>
-                                    <!-- //bar chart -->
-                                </div>
-                                <div class="card-footer text-muted chart-grid__footer">
-                                    Updated 2 hours ago
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 pl-lg-2 chart-grid">
-                            <div class="card text-center card_border">
-                                <div class="card-header chart-grid__header">
-                                    Line Chart
-                                </div>
-                                <div class="card-body">
-                                    <!-- line chart -->
-                                    <div id="container">
-                                        <canvas id="linechart"></canvas>
-                                    </div>
-                                    <!-- //line chart -->
-                                </div>
-                                <div class="card-footer text-muted chart-grid__footer">
-                                    Updated just now
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- //charts -->
                 <!-- chatting -->
                 <div class="data-tables">
-                    <div class="row">
-
+                    <div>
+                        @RenderBody()
                     </div>
                 </div>
                 <!-- //chatting -->
@@ -319,89 +278,8 @@ Author URL: http://w3layouts.com
                 <!-- //accordions -->
                 <!-- modals -->
                 <section class="template-cards">
-                    <div class="card card_border">
-                        <div class="cards__heading">
-                            <h3>Modals - <span>2 different types of bootstrap modals</span></h3>
-                        </div>
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-lg-6 pr-lg-2 chart-grid">
-                                    <div class="card text-center card_border">
-                                        <div class="card-header chart-grid__header">
-                                            Demo modal
-                                        </div>
-                                        <div class="card-body">
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary btn-style" data-toggle="modal"
-                                                    data-target="#exampleModal">
-                                                Launch demo
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-success">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 chart-grid">
-                                    <div class="card text-center card_border">
-                                        <div class="card-header chart-grid__header">
-                                            Vertical centered
-                                        </div>
-                                        <div class="card-body">
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary btn-style" data-toggle="modal"
-                                                    data-target="#exampleModalCenter">
-                                                Launch demo
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-success">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </section>
                 <!-- //modals -->
-
             </div>
             <!-- //content -->
         </div>
@@ -421,7 +299,7 @@ Author URL: http://w3layouts.com
         <span class="fa fa-angle-up"></span>
     </button>
     <script>
-    // When the user scrolls down 20px from the top of the document, show the button
+        // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {
             scrollFunction()
         };
@@ -460,7 +338,7 @@ Author URL: http://w3layouts.com
 
     <!-- close script -->
     <script>
-    var closebtns = document.getElementsByClassName("close-grid");
+        var closebtns = document.getElementsByClassName("close-grid");
         var i;
 
         for (i = 0; i < closebtns.length; i++) {
@@ -471,7 +349,7 @@ Author URL: http://w3layouts.com
     <!-- //close script -->
     <!-- disable body scroll when navbar is in active -->
     <script>
-    $(function () {
+        $(function () {
             $('.sidebar-menu-collapsed').click(function () {
                 $('body').toggleClass('noscroll');
             })
@@ -480,14 +358,18 @@ Author URL: http://w3layouts.com
     <!-- loading-gif Js -->
     <script src="~/collective-admin-panel-starter/starter/assets/js/modernizr.js"></script>
     <script>
-    $(window).load(function () {
+        $(window).load(function () {
             // Animate loader off screen
             $(".se-pre-con").fadeOut("slow");;
         });</script>
     <!--// loading-gif Js -->
     <!-- Bootstrap Core JavaScript -->
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
     <script src="~/collective-admin-panel-starter/starter/assets/js/bootstrap.min.js"></script>
-
+    <script src="~/font-awesome/js/all.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

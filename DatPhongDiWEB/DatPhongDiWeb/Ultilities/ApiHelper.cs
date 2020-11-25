@@ -5,7 +5,7 @@ using System.Net;
 
 namespace DatPhongDiWeb.Ultilities
 {
-    public class ApiHelper <T> where T : class
+    public static class ApiHelper <T> where T : class
     {
         public static T HttpGetAsync(string apiName)
         {
