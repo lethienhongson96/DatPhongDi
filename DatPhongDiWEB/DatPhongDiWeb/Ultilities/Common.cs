@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace DatPhongDiWeb.Ultilities
 {
-    public static class Common
+    public class Common
     {
-        public static string apiUrl = @"https://localhost:44362/api";
+        public static string apiUrl = @"https://localhost:5001/api";
 
-        public enum Table
+        public enum Information
         {
             TypeOfRoom = 1,
             Room = 2,
