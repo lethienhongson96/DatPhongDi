@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDiWeb.Models.Status;
+﻿using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DatPhongDiWeb.Controllers
 {
@@ -28,7 +25,7 @@ namespace DatPhongDiWeb.Controllers
         [Route("/TypeOfRoom/status/gets")]
         public JsonResult GetStatus()
         {
-            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"status/{(int)Common.Table.TypeOfRoom}");
+            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"status/{(int)Common.Status.TypeOfRoom}");
             return Json(new { data = status });
         }
     }

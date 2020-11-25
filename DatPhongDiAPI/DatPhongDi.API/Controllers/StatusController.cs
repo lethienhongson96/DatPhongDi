@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDi.BAL.Implement;
-using DatPhongDi.BAL.Interface;
-using Microsoft.AspNetCore.Http;
+﻿using DatPhongDi.BAL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {

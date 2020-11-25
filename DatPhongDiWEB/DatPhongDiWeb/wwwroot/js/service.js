@@ -17,7 +17,7 @@ service.showData = function () {
                         <td><a href="javascript:void(0);" class="btn btn-success"
                         onclick="service.Update(${v.id},'${v.name}','${v.icon}','${v.statusName}')">Chỉnh sửa</a>
                         <a href="javascript:void(0);" class="btn btn-warning"
-                        onclick="service.Delete(${v.id},'${v.name}')">Xóa</a></td>
+                        onclick="service.Delete(${v.id})">Xóa</a></td>
                     </tr>`
                 );
             });
@@ -48,7 +48,7 @@ service.initStatus = function () {
             $('#Status').empty();
             $.each(response.data, function (i, v) {
                 $('#Status').append(
-                    `<option value=${v.id}>${v.name}</option>`
+                    `<option value=${v.status}>${v.statusName}</option>`
                 );
             });
         }
@@ -60,8 +60,8 @@ service.save = function () {
         var saveObj = {};
         saveObj.id = parseInt($('#Id').val());
         saveObj.name = $('#Name').val();
-        saveObj.icon = parseInt($('#Icon').val());
-        saveObj.statusName = parseInt($('#Status').val());
+        saveObj.icon = $('#Icon').val();
+        saveObj.status = parseInt($('#Status').val());
         $.ajax({
             url: '/service/save',
             method: 'POST',
@@ -70,7 +70,7 @@ service.save = function () {
             data: JSON.stringify(saveObj),
             success: function (response) {
                 bootbox.alert(response.data.message);
-                if (response.data.Id > 0) {
+                if (response.data.id > 0) {
                     $('#addEditServiceModal').modal('hide');
                     $('#formAddEditService').trigger('reset');
                     service.showData();
@@ -95,9 +95,9 @@ $(document).ready(function () {
     service.init();
 });
 
-service.Delete = function (id, name) {
+service.Delete = function (id) {
     bootbox.confirm({
-        message: "Bạn có chắc chắn muốn xóa ? <span class='text-danger'>" + name + "</span>",
+        message: "Bạn có chắc chắn muốn xóa ?" + "<span class='text-danger'></span>",
         buttons: {
             cancel: {
                 label: 'No',
@@ -110,9 +110,21 @@ service.Delete = function (id, name) {
         },
         callback: function (result) {
             if (result) {
-                service.showData();
-                window.location.href = "Service/Delete?id=" + id;
-                bootbox.alert("Xóa thành công ");
+                $.ajax({
+                    url: `/service/Delete/${id}`,
+                    method: 'PATCH',
+                    dataType: 'JSON',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        if (response.data.id > 0) {
+                            $('#addEditServiceModal').modal('hide');
+                            $('#formAddEditService').trigger('reset');
+                            bootbox.alert(response.data.message, function () {
+                                window.location.href = `/service/index`;
+                            });
+                        }
+                    }
+                });
             }
         }
     });
