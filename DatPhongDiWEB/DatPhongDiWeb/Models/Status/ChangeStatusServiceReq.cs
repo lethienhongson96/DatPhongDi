@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace DatPhongDiWeb.Models.Status
 {
-    public class StatusView
+    public class ChangeStatusServiceReq
     {
+        public int Id { get; set; }
         public int Status { get; set; }
-        public string StatusName { get; set; }
-
     }
 }
