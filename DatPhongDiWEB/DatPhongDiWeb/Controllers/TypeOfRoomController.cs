@@ -28,5 +28,21 @@ namespace DatPhongDiWeb.Controllers
             var status = ApiHelper<List<StatusView>>.HttpGetAsync($"status/{(int)Common.Status.TypeOfRoom}");
             return Json(new { data = status });
         }
+
+        [HttpPatch]
+        [Route("/typeofroom/Save")]
+        public JsonResult Save([FromBody] SaveTypeOfRoom request)
+        {
+            var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/Save", "PATCH", request);
+            return Json(new { data = result });
+        }
+        [HttpPatch]
+        [Route("/typeofroom/delete")]
+        public JsonResult Deleted([FromBody] ChangeStatusTypeOfRoomReq req)
+        {
+            var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
+            return Json(new { data = result });
+            
+        }
     }
 }
