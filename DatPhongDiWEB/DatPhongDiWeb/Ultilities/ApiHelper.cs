@@ -28,7 +28,7 @@ namespace DatPhongDiWeb.Ultilities
                 {
                     ((IDisposable)responseStream).Dispose();
                 }
-                return JsonConvert.DeserializeObject<T>(responseData)
+                return JsonConvert.DeserializeObject<T>(responseData);
             }
         }
         public static T HttpPatchAsync(string apiName)
@@ -79,9 +79,6 @@ namespace DatPhongDiWeb.Ultilities
             }
         }
 
-            }
-        }
-
 
         public static T HttpPostAsync(string apiName, string method, object model)
         {
@@ -103,3 +100,4 @@ namespace DatPhongDiWeb.Ultilities
             return JsonConvert.DeserializeObject<T>(result);
         }
     }
+}

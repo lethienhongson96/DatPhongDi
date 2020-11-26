@@ -25,7 +25,7 @@ namespace DatPhongDiWeb.Controllers
         [Route("/service/status/gets")]
         public JsonResult GetStatus()
         {
-            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"status/{(int)Common.Status.Service}");
+            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"status/{(int)Common.Table.Service}");
             return Json(new { data = status });
         }
 
