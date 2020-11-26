@@ -54,5 +54,17 @@ namespace DatPhongDi.DAL.Implement
                                                       sql: "sp_GetBookings",
                                                       commandType: CommandType.StoredProcedure);
         }
+
+        public async Task<SaveBookingRes> ChangeStatusBooking(int Id, int Status)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", Id);
+            parameters.Add("@Status", Status);
+
+            return await SqlMapper.QueryFirstOrDefaultAsync<SaveBookingRes>(cnn: connection,
+                                                      sql: "sp_ChangeStatusBooking",
+                                                      param: parameters,
+                                                      commandType: CommandType.StoredProcedure);
+        }
     }
 }

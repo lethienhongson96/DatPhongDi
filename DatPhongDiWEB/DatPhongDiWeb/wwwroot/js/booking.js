@@ -56,7 +56,7 @@ booking.save = function () {
     if ($('#frmAddEditBooking').valid()) {
         var saveObj = {};
         saveObj.Id = parseInt($('#id').val());
-        saveObj.RoomId = parseInt($('#roomId').val());
+        saveObj.RoomId = parseInt($('#room').val());
         saveObj.CustomerId = parseInt($('#customerId').val());
         saveObj.AmountNight = parseInt($('#amountNight').val());
         saveObj.Status = parseInt($('#Status').val());
@@ -85,7 +85,7 @@ booking.save = function () {
 //lấy dử liệu status của booking,với tableId=3 và đổ dử liệu vào dropdown status
 booking.initStatus = function (defaultStatus) {
     $.ajax({
-        url: '/status/getstatusbytableid/' + 3,
+        url: '/Booking/Status/Gets',
         method: 'GET',
         dataType: 'JSON',
         success: function (response) {
