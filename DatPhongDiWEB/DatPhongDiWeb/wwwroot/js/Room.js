@@ -82,12 +82,15 @@ room.save = function () {
             contentType: 'application/json',
             data: JSON.stringify(saveObj),
             success: function (response) {
-                bootbox.alert(response.data.message);
-                if (response.data.roomId > 0) {
-                    $('#addEditRoomModal').modal('hide');
-
-                }
-                room.showData();
+                $('#frmAddEditRoom').trigger('reset');
+                $('#addEditRoomModal').modal('hide');
+                bootbox.alert({
+                    message: response.data.message,
+                    callback: function () {
+                        room.showData();
+                    }
+                })
+                
             }
         });
     }
@@ -113,7 +116,10 @@ room.TypeOfRoom = function (TypeOfRoomId) {
     });
 }
 
-
+$('#Close').on('click', function () {
+    $('#addEditRoomModal').modal('hide');
+    $('#frmAddEditRoom').trigger('reset');
+})
 
 room.initStatus = function (status) {
     $.ajax({
