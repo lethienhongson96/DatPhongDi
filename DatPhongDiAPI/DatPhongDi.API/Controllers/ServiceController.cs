@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatPhongDi.BAL.Interface;
+﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
 {
@@ -18,6 +14,7 @@ namespace DatPhongDi.API.Controllers
         {
             this.serviceService = serviceService;
         }
+
         [HttpPost]
         [Route("api/service/save")]
         public async Task<OkObjectResult> Save(SaveServiceReq req)

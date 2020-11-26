@@ -13,12 +13,12 @@ namespace DatPhongDi.API.Controllers
         {
             this.statusService = statusService;
         }
-        [HttpGet]
-        [Route("api/status/{tableId}")]
-        public async Task<OkObjectResult> Gets(int tableId)
+
+
+        [HttpGet("api/Status/statusView/{id}")]
+        public async Task<OkObjectResult> GetStatus(int id)
         {
-            var result = await statusService.GetStatus(tableId);
-            return Ok(result);
+            return Ok(await statusService.GetStatus(id));
         }
     }
 }

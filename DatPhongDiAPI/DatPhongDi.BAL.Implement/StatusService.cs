@@ -16,6 +16,7 @@ namespace DatPhongDi.BAL.Implement
         {
             this.statusRepository = statusRepository;
         }
+
         public async Task<IEnumerable<StatusView>> GetStatus(int tableId)
         {
             return await statusRepository.GetStatus(tableId);
