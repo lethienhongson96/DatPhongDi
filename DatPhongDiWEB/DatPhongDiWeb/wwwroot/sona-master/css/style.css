@@ -270,7 +270,8 @@ ul, ol {
 	box-shadow: 0px 12px 15px rgba(36, 11, 12, 0.05);
 }
 .top-nav {
-	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: -2px;
+	border-bottom: 0px solid #e5e5e5;
 }
 .top-nav .tn-left li {
 	list-style: none;
@@ -286,7 +287,7 @@ ul, ol {
 	position: absolute;
 	right: -32px;
 	top: 0;
-	width: 1px;
+	
 	height: 100%;
 	background: #e5e5e5;
 	content: "";
@@ -717,6 +718,7 @@ ul, ol {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+	height: 160px
 }
 /*------------------------
   Home Page Room Section 

@@ -9,7 +9,7 @@ namespace DatPhongDiWeb.Ultilities
     {
         public static string apiUrl = @"https://localhost:5001/api";
 
-        public enum Information
+        public enum Table
         {
             TypeOfRoom = 1,
             Room = 2,
