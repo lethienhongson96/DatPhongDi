@@ -22,7 +22,7 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@RoomId", saveBookingReq.RoomId);
                 parameters.Add("@CustomerId", saveBookingReq.CustomerId);
                 parameters.Add("@AmountNight", saveBookingReq.AmountNight);
-                parameters.Add("@Checkin", saveBookingReq.Checkin);
+                parameters.Add("@CheckIn", saveBookingReq.Checkin);
                 parameters.Add("@CheckOut", saveBookingReq.CheckOut);
                 parameters.Add("@Status", saveBookingReq.Status);
 

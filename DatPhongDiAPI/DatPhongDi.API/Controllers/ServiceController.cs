@@ -39,6 +39,7 @@ namespace DatPhongDi.API.Controllers
             var result = await serviceService.Get(id);
             return Ok(result);
         }
+
         [HttpPatch]
         [Route("api/service/changeStatus")]
         public async Task<OkObjectResult> ChangeStatusService(ChangeStatusServiceReq req)
