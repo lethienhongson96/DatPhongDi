@@ -21,7 +21,6 @@ room.showData = function () {
                         <td>${v.createDateStr}</td>
                         <td>${v.modifiedDateStr}</td>
                         <td>
-
                             <a href="javascript:void(0);" title="Edit Room"
                                 onclick="room.Edit(${v.id},'${v.name}',${v.pricePerNight},'${v.amountAdult}',
                             '${v.amountChild}','${v.status}', '${v.typeOfRoomId}')">
@@ -97,7 +96,7 @@ room.save = function () {
 
 room.TypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
-        url: '/room/Typeofroom/GetTypeoffRooom',
+        url: '/room/GetTypeofrooms',
         method: 'GET',
         dataType: 'JSON',
         success: function (response) {

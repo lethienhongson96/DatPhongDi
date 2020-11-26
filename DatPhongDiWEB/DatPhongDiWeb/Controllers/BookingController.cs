@@ -38,5 +38,13 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<ResResult>.HttpPostAsync($"booking/save", "POST", request);
             return Json(new { data = result });
         }
+
+        //[HttpGet]
+        //[Route("/Booking/Status/Gets")]
+        //public JsonResult GetStatus()
+        //{
+        //    var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Room}");
+        //    return Json(new { data = status });
+        //}
     }
 }
