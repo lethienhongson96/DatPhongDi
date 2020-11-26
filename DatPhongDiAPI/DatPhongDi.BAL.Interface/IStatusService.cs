@@ -8,6 +8,8 @@ namespace DatPhongDi.BAL.Interface
 {
     public interface IStatusService
     {
+
         Task<IEnumerable<StatusView>> GetStatus(int tableId);
+
     }
 }

@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,7 @@ namespace DatPhongDiWeb.Ultilities
     public class Common
     {
         public static string apiUrl = @"https://localhost:5001/api";
-
-        public enum Status
+        public enum Table
         {
             TypeOfRoom = 1,
             Room = 2,
