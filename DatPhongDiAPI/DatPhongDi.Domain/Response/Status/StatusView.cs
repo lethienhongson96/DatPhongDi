@@ -1,3 +1,4 @@
+
 ﻿namespace DatPhongDi.Domain.Response.Status
 {
     public class StatusView

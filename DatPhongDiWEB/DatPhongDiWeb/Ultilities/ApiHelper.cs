@@ -5,7 +5,9 @@ using System.Net;
 
 namespace DatPhongDiWeb.Ultilities
 {
-    public static class ApiHelper <T> where T : class
+
+    public static class ApiHelper<T> where T : class
+
     {
         public static T HttpGetAsync(string apiName)
         {
@@ -26,8 +28,7 @@ namespace DatPhongDiWeb.Ultilities
                 {
                     ((IDisposable)responseStream).Dispose();
                 }
-                return JsonConvert.DeserializeObject<T>(responseData);
-
+                return JsonConvert.DeserializeObject<T>(responseData)
             }
         }
         public static T HttpPatchAsync(string apiName)
@@ -77,6 +78,11 @@ namespace DatPhongDiWeb.Ultilities
 
             }
         }
+
+            }
+        }
+
+
         public static T HttpPostAsync(string apiName, string method, object model)
         {
             string result = string.Empty;
@@ -97,4 +103,3 @@ namespace DatPhongDiWeb.Ultilities
             return JsonConvert.DeserializeObject<T>(result);
         }
     }
-}

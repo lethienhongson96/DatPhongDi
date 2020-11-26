@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DatPhongDi.Domain.Response.Room
 {
-    public class RoomView
+    public class RoomView : ResResult
     {
         public int Id { get; set; }
         public string Name{ get; set; }

@@ -1,0 +1,77 @@
+﻿@{    
+    Layout = "_LayoutAdmin";
+}
+<div class="row">
+    <a href="javascript:void(0);" class="btn btn-info" onclick="service.openModal()">Tạo dịch vụ</a>
+
+    <table id="tbService" class="table table-bordered mt-2">
+        <thead class="thead-dark" style="text-align:center">
+            <tr>
+                <th>Id</th>
+                <th>Tên dịch vụ</th>
+                <th>Hình ảnh</th>
+                <th>Trạng thái</th>
+                <th>Xử lý</th>
+            </tr>
+        </thead>
+        <tbody style="text-align:center">
+        </tbody>
+    </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="addEditServiceModal">
+    <div class="modal-dialog modal-footer">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Tạo dịch vụ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="formAddEditService">
+                    <input hidden name="Id" id="Id" value="0" />
+                    <div class="row form-group">
+                        <label for="Name" class="col-3">Tên dịch vụ:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Tên dịch vụ"
+                                   id="Name" name="Name"
+                                   data-rule-required="true"
+                                   data-msg-required="Đây là trường bắt buộc">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Icon" class="col-3">Hình ảnh:</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Hình ảnh"
+                                   id="Icon" name="Icon"
+                                   data-rule-required="true"
+                                   data-msg-required="Đây là trường bắt buộc">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Status" class="col-3">Trạng thái:</label>
+                        <div class="col-9">
+                            <select class="form-control" id="Status" name="Status">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-success" onclick="service.save()">Lưu lại</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="Close">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/service.js" asp-append-version="true"></script>
+}
+

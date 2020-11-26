@@ -23,7 +23,7 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch]
+        [HttpPatch,HttpPost]
         [Route("api/typeofroom/ChangeStatus")]
         public async Task<OkObjectResult> ChangeStatus(ChangeStatusTypeOfRoomReq request)
         {
