@@ -49,14 +49,5 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<SaveRoomRes>.HttpPostAsync($"room/save", "POST", request);
             return Json(new { data = result });
         }
-
-        //Get the type off room of the room
-        [HttpGet]
-        [Route("/room/GetTypeofrooms")]
-        public JsonResult GetTypeOfRoooms()
-        {
-            var TypeofRoomViews = ApiHelper<List<TypeofRoomView>>.HttpGetAsync("TypeOfRoom/gets");
-            return Json(new { data = TypeofRoomViews });
-        }
     }
 }
