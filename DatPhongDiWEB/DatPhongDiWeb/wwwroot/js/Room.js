@@ -47,8 +47,7 @@ room.Edit = function (id, name, pricePerNight, amountAdult, amountChild,
     $('#AmountChild').val(amountChild);
     room.initStatus(statusName);
     room.TypeOfRoom(typeOfRoomName);
-    room.openModal();
-    console.log(name, amountAdult);
+    room.openModal();    
 }
 
 
@@ -139,7 +138,6 @@ room.initStatus = function (status) {
         }
     });
 }
-
 
 room.Delete = function (id) {
     bootbox.confirm({
