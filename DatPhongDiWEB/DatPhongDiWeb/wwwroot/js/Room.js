@@ -86,14 +86,17 @@ room.save = function () {
                 bootbox.alert(response.data.message);
                 if (response.data.roomId > 0) {
                     $('#addEditRoomModal').modal('hide');
-
+                    $('#frmAddEditRoom').trigger('reset');
+                    room.showData();
                 }
-                room.showData();
             }
         });
     }
 }
-
+$('#Close').on('click', function () {
+    $('#addEditRoomModal').modal('hide');
+    $('#frmAddEditRoom').trigger('reset');
+})
 
 room.TypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
