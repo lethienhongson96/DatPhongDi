@@ -1,5 +1,6 @@
 ﻿using DatPhongDiWeb.Models.Room;
 using DatPhongDiWeb.Models.Status;
+using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -15,8 +16,6 @@ namespace DatPhongDiWeb.Controllers
             return View();
         }
 
-
-
         [HttpGet]
         [Route("/room/gets")]
         public JsonResult Gets()
@@ -25,7 +24,6 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = Rooms });
         }
 
-
         //Delete room by Id
         [Route("/Room/delete/{id}")]
         public JsonResult Delete(int id)
@@ -33,7 +31,6 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<SaveRoomRes>.HttpPostAsync($"Room/changeStatus/{id}/3", "POST", new object());
             return Json(new { data = result });
         }
-
 
         //Get the status of the room
         [HttpGet]
@@ -44,7 +41,6 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = status });
         }
 
-
         //Create and Edit room
         [HttpPost]
         [Route("/room/saveroom")]
@@ -54,14 +50,13 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-
         //Get the type off room of the room
         [HttpGet]
-        [Route("/room/Typeofroom/GetTypeoffRooom")]
-        public JsonResult GetTypeoffRooom()
+        [Route("/room/GetTypeofrooms")]
+        public JsonResult GetTypeOfRoooms()
         {
-            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"TypeOfRoom/gets");
-            return Json(new { data = status });
+            var TypeofRoomViews = ApiHelper<List<TypeofRoomView>>.HttpGetAsync("TypeOfRoom/gets");
+            return Json(new { data = TypeofRoomViews });
         }
     }
 }

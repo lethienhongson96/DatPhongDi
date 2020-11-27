@@ -15,10 +15,12 @@ namespace DatPhongDi.DAL.Implement
     {
         public async Task<IEnumerable<StatusView>> GetStatus(int tableId)
         {
+            //rename sp getstatus to sp_GetStatusByTableId
+
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@TableId", tableId);
             return await SqlMapper.QueryAsync<StatusView>(cnn: connection,
-                                                          sql: "sp_GetStatus",
+                                                          sql: "sp_GetStatusByTableId",
                                                           param: parameters,
                                                           commandType: CommandType.StoredProcedure);
         }

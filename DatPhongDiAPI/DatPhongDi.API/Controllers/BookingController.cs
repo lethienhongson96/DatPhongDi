@@ -31,7 +31,6 @@ namespace DatPhongDi.API.Controllers
         }
 
 
-
         [HttpGet("api/Booking/get/{id}")]
         public async Task<OkObjectResult> Get(int id)
         {

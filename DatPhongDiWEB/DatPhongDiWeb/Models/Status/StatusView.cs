@@ -7,8 +7,8 @@ namespace DatPhongDiWeb.Models.Status
 {
     public class StatusView
     {
-        public int Status { get; set; }
-        public string StatusName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
     }
 }
