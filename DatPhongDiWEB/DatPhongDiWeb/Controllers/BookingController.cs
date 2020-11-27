@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DatPhongDiWeb.Models;
 using DatPhongDiWeb.Models.Booking;
+using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,12 +40,12 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-        //[HttpGet]
-        //[Route("/Booking/Status/Gets")]
-        //public JsonResult GetStatus()
-        //{
-        //    var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Room}");
-        //    return Json(new { data = status });
-        //}
+        [HttpGet]
+        [Route("/Booking/Status/Gets")]
+        public JsonResult GetStatus()
+        {
+            var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Booking}");
+            return Json(new { data = status });
+        }
     }
 }
