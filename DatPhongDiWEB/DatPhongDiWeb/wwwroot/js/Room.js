@@ -50,7 +50,6 @@ room.Edit = function (id, name, pricePerNight, amountAdult, amountChild, statusN
     console.log(name, amountAdult);
 }
 
-
 room.openModal = function () {
     $('#addEditRoomModal').modal('show');
 }
@@ -60,6 +59,7 @@ room.init = function () {
     room.initStatus();
     room.initTypeOfRoom();
 }
+
 $(document).ready(function () {
     room.init();
 });
@@ -94,7 +94,6 @@ room.save = function () {
         });
     }
 }
-
 
 room.initTypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
