@@ -19,6 +19,11 @@ namespace DatPhongDiWeb.Controllers
             return View();
         }
 
+        public IActionResult ViewRoomByRoomTypeId()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
