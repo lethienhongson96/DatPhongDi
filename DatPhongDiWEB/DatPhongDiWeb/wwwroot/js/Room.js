@@ -48,7 +48,7 @@ room.Edit = function (id, name, pricePerNight, amountAdult, amountChild,
     room.initStatus(statusName);
     room.TypeOfRoom(typeOfRoomName);
     room.openModal();
-    console.log(name, amountAdult);
+    
 }
 
 
@@ -82,15 +82,15 @@ room.save = function () {
             contentType: 'application/json',
             data: JSON.stringify(saveObj),
             success: function (response) {
-                $('#frmAddEditRoom').trigger('reset');
                 $('#addEditRoomModal').modal('hide');
+                $('#frmAddEditRoom').trigger('reset');               
                 bootbox.alert({
                     message: response.data.message,
                     callback: function () {
                         room.showData();
                     }
                 })
-                
+
             }
         });
     }
@@ -143,7 +143,7 @@ room.initStatus = function (status) {
 
 room.Delete = function (id) {
     bootbox.confirm({
-        message: "Delete <span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
+        message: "<span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
         buttons: {
             confirm: {
                 label: 'Yes',
@@ -178,3 +178,58 @@ room.Delete = function (id) {
         }
     });
 }
+
+
+//datatable
+
+$(document).ready(function () {
+    $("#tbRoom").dataTable(
+        {
+            "language": {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            }/*,
+            "columnDefs": [
+                {
+                    "targets": 1,
+                    "orderable": false
+                },
+                {
+                    "targets": 2,
+                    "orderable": false
+                },
+                {
+                    "targets": 3,
+                    "orderable": false
+                },
+                {
+                    "targets": 4,
+                    "orderable": false
+                },
+                {
+                    "targets": 5,
+                    "orderable": false,
+                    "searchable": false
+                },
+                {
+                    "targets": 6,
+                    "orderable": false,
+                    "searchable": false
+                }
+            ]*/
+        }
+    );
+});
