@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DatPhongDi.Domain.Response.Booking
+namespace DatPhongDiWeb.Models.Booking
 {
     public class BookingView
     {

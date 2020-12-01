@@ -12,5 +12,6 @@ namespace DatPhongDi.BAL.Interface
         Task<SaveBookingRes> Save(SaveBookingReq request);
         Task<IEnumerable<BookingView>> Gets();
         Task<BookingView> Get(int Id);
+        Task<SaveBookingRes> ChangeStatusBooking(int Id, int Status);
     }
 }

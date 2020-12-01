@@ -48,7 +48,7 @@ service.initStatus = function () {
             $('#Status').empty();
             $.each(response.data, function (i, v) {
                 $('#Status').append(
-                    `<option value=${v.status}>${v.statusName}</option>`
+                    `<option value=${v.id}>${v.name}</option>`
                 );
             });
         }

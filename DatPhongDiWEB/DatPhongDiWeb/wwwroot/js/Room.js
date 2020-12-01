@@ -21,7 +21,6 @@ room.showData = function () {
                         <td>${v.createDateStr}</td>
                         <td>${v.modifiedDateStr}</td>
                         <td>
-
                             <a href="javascript:void(0);" title="Edit Room"
                                 onclick="room.Edit(${v.id},'${v.name}',${v.pricePerNight},'${v.amountAdult}',
                             '${v.amountChild}','${v.status}', '${v.typeOfRoomId}')">
@@ -83,12 +82,15 @@ room.save = function () {
             contentType: 'application/json',
             data: JSON.stringify(saveObj),
             success: function (response) {
-                bootbox.alert(response.data.message);
-                if (response.data.roomId > 0) {
-                    $('#addEditRoomModal').modal('hide');
-                    $('#frmAddEditRoom').trigger('reset');
-                    room.showData();
-                }
+                $('#frmAddEditRoom').trigger('reset');
+                $('#addEditRoomModal').modal('hide');
+                bootbox.alert({
+                    message: response.data.message,
+                    callback: function () {
+                        room.showData();
+                    }
+                })
+                
             }
         });
     }
@@ -100,7 +102,7 @@ $('#Close').on('click', function () {
 
 room.TypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
-        url: '/room/Typeofroom/GetTypeoffRooom',
+        url: '/room/GetTypeofrooms',
         method: 'GET',
         dataType: 'JSON',
         success: function (response) {
