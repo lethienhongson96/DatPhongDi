@@ -83,13 +83,11 @@ room.save = function () {
                     callback: function () {
                         room.showData();
                     }
-                })
-
+                }
             }
         });
     }
 }
-
 
 room.TypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
