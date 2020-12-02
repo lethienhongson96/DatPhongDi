@@ -22,13 +22,6 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<IEnumerable<RoomView>> Getavailables()
-        {
-            return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
-                                                        sql: "sp_GetAvailableRoom",
-                                                        commandType: CommandType.StoredProcedure);
-        }
-
         public async Task<IEnumerable<RoomView>> Gets()
         {
             return await SqlMapper.QueryAsync<RoomView>(cnn: connection,
