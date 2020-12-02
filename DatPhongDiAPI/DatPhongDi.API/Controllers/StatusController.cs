@@ -14,7 +14,6 @@ namespace DatPhongDi.API.Controllers
             this.statusService = statusService;
         }
 
-
         [HttpGet("api/Status/statusView/{id}")]
         public async Task<OkObjectResult> GetStatus(int id)
         {

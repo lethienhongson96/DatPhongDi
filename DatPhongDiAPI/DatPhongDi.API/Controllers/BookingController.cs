@@ -30,7 +30,6 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
-
         [HttpGet("api/Booking/get/{id}")]
         public async Task<OkObjectResult> Get(int id)
         {
