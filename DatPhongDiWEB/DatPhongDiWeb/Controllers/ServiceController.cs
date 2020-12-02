@@ -17,8 +17,8 @@ namespace DatPhongDiWeb.Controllers
         [Route("/service/gets")]
         public JsonResult Gets()
         {
-            var modules = ApiHelper<List<ServiceView>>.HttpGetAsync("service/gets");
-            return Json(new { data = modules });
+            var result = ApiHelper<List<ServiceView>>.HttpGetAsync("service/gets");
+            return Json(new { data = result });
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace DatPhongDiWeb.Controllers
         {
             req.Id = id;
             req.Status = 2;
-            var result = ApiHelper<SaveServiceRes>.HttpPostAsync($"service/changeStatus", "Patch", req);
+            var result = ApiHelper<SaveServiceRes>.HttpPostAsync($"service/changeStatus", "PATCH", req);
             return Json(new { data = result });
         }
     }

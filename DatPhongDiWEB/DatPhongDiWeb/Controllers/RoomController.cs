@@ -28,7 +28,7 @@ namespace DatPhongDiWeb.Controllers
         [Route("/Room/delete/{id}")]
         public JsonResult Delete(int id)
         {
-            var result = ApiHelper<SaveRoomRes>.HttpPostAsync($"Room/changeStatus/{id}/3", "POST", new object());
+            var result = ApiHelper<SaveRoomRes>.HttpPostAsync($"room/changeStatus/{id}/3", "POST", new object());
             return Json(new { data = result });
         }
 
