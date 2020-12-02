@@ -23,7 +23,6 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
-
         [HttpGet("api/Customer/gets")]
         public async Task<OkObjectResult> Get()
         {
