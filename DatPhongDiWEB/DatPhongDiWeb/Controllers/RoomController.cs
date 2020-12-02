@@ -38,7 +38,6 @@ namespace DatPhongDiWeb.Controllers
             var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Room}");
             return Json(new { data = status });
         }
-
         
         [HttpPost]
         [Route("/room/saveroom")]
@@ -47,7 +46,6 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<SaveRoomRes>.HttpPostAsync($"room/save", "POST", request);
             return Json(new { data = result });
         }
-
         
         [HttpGet]
         [Route("/room/GetTypeofrooms")]

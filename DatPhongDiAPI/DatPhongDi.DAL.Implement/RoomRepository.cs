@@ -50,6 +50,7 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Description", saveRoomReq.Description);
                 parameters.Add("@Size", saveRoomReq.Size);
 
+
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveRoom",
                                                                     param: parameters,
