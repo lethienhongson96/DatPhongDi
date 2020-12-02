@@ -12,10 +12,14 @@ typeOfRoom.showData = function () {
                     `<tr>
                         <td>${v.id}</td>
                         <td>${v.name}</td>
+                        <td>${v.amountAdults}</td>
+                        <td>${v.amountChild}</td>
+                        <td>${v.pricePerNight}</td>
                         <td>${v.statusName}</td>
                         <td>
                             <button class="btn btn-info"
-                            onclick="typeOfRoom.edit(${v.id},'${v.name}',${v.status})">Chỉnh sửa</button>
+                            onclick="typeOfRoom.edit(${v.id},'${v.name}',${v.amountAdults},
+                            ${v.amountChild},${v.pricePerNight},${v.status})">Chỉnh sửa</button>
                             <a href="javascript:void(0)" onclick="typeOfRoom.delete(${v.id},${v.status})"
                                 class="btn btn-danger"> Xóa
                             </a>
@@ -32,6 +36,9 @@ typeOfRoom.save = function () {
         var saveObj = {};
         saveObj.id = parseInt($('#Id').val());
         saveObj.name = $('#Name').val();
+        saveObj.amountAdults = parseInt($('#AmountAdults').val());
+        saveObj.amountChild = parseInt($('#AmountChild').val());
+        saveObj.pricePerNight = parseInt($('#PricePerNight').val());
         saveObj.status = parseInt($('#Status').val());
         console.log(status);
         $.ajax({
@@ -52,7 +59,7 @@ typeOfRoom.save = function () {
     }
 }
 
-typeOfRoom.delete = function (id, status) {
+typeOfRoom.delete = function (id) {
     bootbox.confirm({
         message: "Bạn có chắc chắn muốn xóa loại phòng này không <span class='text-danger'></span> ?",
         buttons: {
@@ -91,14 +98,17 @@ typeOfRoom.delete = function (id, status) {
     });
 }
 
-typeOfRoom.edit = function (id, name, status) {
-    $("#Id").val(id);
-    $("#Name").val(name);
+typeOfRoom.edit = function (id, name, amountAdults, amountChild, pricePerNight, status) {
+    $("#Id").val(id);              
+    $("#Name").val(name);                   
+    $("#AmountAdults").val(amountAdults);
+    $("#AmountChild").val(amountChild);
+    $("#PricePerNight").val(pricePerNight);
     $("#Status").val(status);
     typeOfRoom.initStatus(status);
     typeOfRoom.openModal();
     //document.getElementById('st').style.display = 'none';
-    $("#st").hide();
+    //$("#st").hide();
 }
 
 typeOfRoom.initStatus = function (defaultStatus) {
@@ -120,7 +130,7 @@ typeOfRoom.initStatus = function (defaultStatus) {
 
 typeOfRoom.openModal = function () {
     $('#addEditTypeOfRoomModal').modal('show');
-    $("#st").show();
+    //$("#st").show();
 }
 
 $('#closeButton').on('click', function () {
