@@ -19,7 +19,6 @@
 	<ItemGroup>
 	  <Folder Include="Database\AnhKhoa\" />
 	  <Folder Include="Database\SchemaAndData\" />
-	  <Folder Include="Database\PhucVui\" />
 	</ItemGroup>
 
 </Project>
