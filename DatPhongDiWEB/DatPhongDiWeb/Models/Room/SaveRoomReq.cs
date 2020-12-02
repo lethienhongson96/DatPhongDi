@@ -8,7 +8,7 @@ namespace DatPhongDiWeb.Models.Room
         public int Id { get; set; }
         [Required]
         [Display(Name = "Tên phòng")]
-        public string Name { get; set; }
+        public int Name { get; set; }
 
         [Required]
         [Display(Name = "Giá phòng")]

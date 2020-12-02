@@ -44,12 +44,11 @@ namespace DatPhongDi.DAL.Implement
             {
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@Id", saveRoomReq.Id);
-                parameters.Add("@Name", saveRoomReq.Name);
-                parameters.Add("@PricePerNight", saveRoomReq.PricePerNight);
-                parameters.Add("@AmountAdult", saveRoomReq.AmountAdult);
-                parameters.Add("@AmountChild", saveRoomReq.AmountChild);
+                parameters.Add("@Name", saveRoomReq.Name);              
                 parameters.Add("@Status", saveRoomReq.Status);
                 parameters.Add("@TypeOfRoomId", saveRoomReq.TypeOfRoomId);
+                parameters.Add("@Description", saveRoomReq.Description);
+                parameters.Add("@Size", saveRoomReq.Size);
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveRoom",

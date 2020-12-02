@@ -9,8 +9,6 @@ namespace DatPhongDiWeb.Controllers
 {
     public class RoomController : Controller
     {
-
-        //Show all rooms
         public IActionResult Index()
         {
             return View();
@@ -24,7 +22,7 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = Rooms });
         }
 
-        //Delete room by Id
+       
         [Route("/Room/delete/{id}")]
         public JsonResult Delete(int id)
         {
@@ -32,7 +30,7 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-        //Get the status of the room
+        
         [HttpGet]
         [Route("/room/Status/Gets")]
         public JsonResult GetStatus()
@@ -41,7 +39,7 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = status });
         }
 
-        //Create and Edit room
+        
         [HttpPost]
         [Route("/room/saveroom")]
         public JsonResult SaveRoom([FromBody] SaveRoomReq request)
@@ -50,7 +48,7 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-        //Get the type off room of the room
+        
         [HttpGet]
         [Route("/room/GetTypeofrooms")]
         public JsonResult GetTypeOfRoooms()

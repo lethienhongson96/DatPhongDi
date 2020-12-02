@@ -12,18 +12,17 @@ room.showData = function () {
                 $('#tbRoom>tbody').append(
                     `<tr>
                         <td>${v.id}</td>
-                        <td>${v.name}</td>
-                        <td>${v.pricePerNight}</td>
-                        <td>${v.amountAdult}</td>
-                        <td>${v.amountChild}</td>
+                        <td>${v.name}</td>                     
                         <td>${v.statusName}</td>
                         <td>${v.typeOfRoomName}</td>
+                        <td>${v.description}</td>
+                        <td>${v.size}</td>
                         <td>${v.createDateStr}</td>
                         <td>${v.modifiedDateStr}</td>
                         <td>
                             <a href="javascript:void(0);" title="Edit Room"
-                                onclick="room.Edit(${v.id},'${v.name}',${v.pricePerNight},'${v.amountAdult}',
-                            '${v.amountChild}','${v.status}', '${v.typeOfRoomId}')">
+                                onclick="room.Edit(${v.id},${v.name},'${v.status}','${v.typeOfRoomId}',
+                                '${v.description}',${v.size})">
                                 <i class="far fa-eye"></i>
                             </a>||
                             <a onclick="room.Delete(${v.id})"
@@ -38,18 +37,15 @@ room.showData = function () {
     });
 }
 
-room.Edit = function (id, name, pricePerNight, amountAdult, amountChild,
-    statusName, typeOfRoomName) {
+room.Edit = function (id, name, statusName, typeOfRoomName, description, size) {
     $('#RoomId').val(id);
     $('#Name').val(name);
-    $('#PricePerNight').val(pricePerNight);
-    $('#AmountAdult').val(amountAdult);
-    $('#AmountChild').val(amountChild);
     room.initStatus(statusName);
     room.TypeOfRoom(typeOfRoomName);
-    room.openModal();    
+    $('#Description').val(description);
+    $('#Size').val(size);
+    room.openModal();
 }
-
 
 room.openModal = function () {
     $('#addEditRoomModal').modal('show');
@@ -68,12 +64,11 @@ room.save = function () {
     if ($('#frmAddEditRoom').valid()) {
         var saveObj = {};
         saveObj.id = parseInt($('#RoomId').val());
-        saveObj.name = $('#Name').val();
-        saveObj.pricePerNight = parseInt($('#PricePerNight').val());
-        saveObj.amountAdult = parseInt($('#AmountAdult').val());
-        saveObj.amountChild = parseInt($('#AmountChild').val());
+        saveObj.name = parseInt($('#Name').val());
         saveObj.status = parseInt($('#Status').val());
         saveObj.TypeOfRoomId = parseInt($('#TypeOfRoomId').val());
+        saveObj.description = $('#Description').val();
+        saveObj.size = parseInt($('#Size').val());
         $.ajax({
             url: '/room/saveroom',
             method: 'POST',
@@ -89,7 +84,7 @@ room.save = function () {
                         room.showData();
                     }
                 })
-                
+
             }
         });
     }
