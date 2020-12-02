@@ -22,8 +22,8 @@ room.showData = function () {
                         <td>${v.modifiedDateStr}</td>
                         <td>
                             <a href="javascript:void(0);" title="Edit Room"
-                                onclick="room.Edit(${v.id},'${v.name}',${v.pricePerNight},'${v.amountAdult}',
-                            '${v.amountChild}','${v.status}', '${v.typeOfRoomId}')">
+                                onclick="room.Edit(${v.id},'${v.name}',${v.pricePerNight},${v.amountAdult},
+                            ${v.amountChild},'${v.status}',${v.typeOfRoomId})">
                                 <i class="far fa-eye"></i>
                             </a>||
                             <a onclick="room.Delete(${v.id})"
@@ -38,19 +38,17 @@ room.showData = function () {
     });
 }
 
-room.Edit = function (id, name, pricePerNight, amountAdult, amountChild,
-    statusName, typeOfRoomName) {
+room.Edit = function (id, name, pricePerNight, amountAdult, amountChild, statusName, typeOfRoomId) {
     $('#RoomId').val(id);
     $('#Name').val(name);
     $('#PricePerNight').val(pricePerNight);
     $('#AmountAdult').val(amountAdult);
     $('#AmountChild').val(amountChild);
     room.initStatus(statusName);
-    room.TypeOfRoom(typeOfRoomName);
+    room.initTypeOfRoom(typeOfRoomId);
     room.openModal();
     console.log(name, amountAdult);
 }
-
 
 room.openModal = function () {
     $('#addEditRoomModal').modal('show');
@@ -59,8 +57,9 @@ room.openModal = function () {
 room.init = function () {
     room.showData();
     room.initStatus();
-    room.TypeOfRoom();
+    room.initTypeOfRoom();
 }
+
 $(document).ready(function () {
     room.init();
 });
@@ -90,16 +89,15 @@ room.save = function () {
                         room.showData();
                     }
                 })
-                
+
             }
         });
     }
 }
 
-
-room.TypeOfRoom = function (TypeOfRoomId) {
+room.initTypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
-        url: '/room/GetTypeofrooms',
+        url: '/TypeOfRoom/gets',
         method: 'GET',
         dataType: 'JSON',
         success: function (response) {
@@ -108,9 +106,7 @@ room.TypeOfRoom = function (TypeOfRoomId) {
                 $('#TypeOfRoomId').append(
                     `<option value=${v.id}>${v.name}</option>`
                 );
-                if (TypeOfRoomId != null) {
-                    $('#TypeOfRoomId').val(TypeOfRoomId);
-                }
+                $('#TypeOfRoomId').val(TypeOfRoomId);
             });
         }
     });

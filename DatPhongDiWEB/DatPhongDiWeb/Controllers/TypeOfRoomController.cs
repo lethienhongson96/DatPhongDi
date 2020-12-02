@@ -36,6 +36,7 @@ namespace DatPhongDiWeb.Controllers
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/Save", "PATCH", request);
             return Json(new { data = result });
         }
+
         [HttpPatch]
         [Route("/typeofroom/delete")]
         public JsonResult Deleted([FromBody] ChangeStatusTypeOfRoomReq req)

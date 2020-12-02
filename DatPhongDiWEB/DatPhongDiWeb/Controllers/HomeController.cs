@@ -19,6 +19,11 @@ namespace DatPhongDiWeb.Controllers
             return View();
         }
 
+        public IActionResult ViewRoomByRoomTypeId()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -29,7 +34,5 @@ namespace DatPhongDiWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
     }
 }

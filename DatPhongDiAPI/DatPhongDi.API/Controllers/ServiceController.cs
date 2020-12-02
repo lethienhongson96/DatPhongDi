@@ -22,6 +22,7 @@ namespace DatPhongDi.API.Controllers
             var result = await serviceService.Save(req);
             return Ok(result);
         }
+
         [HttpGet]
         [Route("api/service/gets")]
         public async Task<OkObjectResult> Gets()
@@ -29,6 +30,7 @@ namespace DatPhongDi.API.Controllers
             var result = await serviceService.Gets();
             return Ok(result);
         }
+
         [HttpGet]
         [Route("api/service/get/{id}")]
         public async Task<OkObjectResult> Get(int id)
