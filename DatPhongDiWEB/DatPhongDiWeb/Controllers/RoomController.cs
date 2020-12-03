@@ -18,7 +18,7 @@ namespace DatPhongDiWeb.Controllers
         [Route("/room/gets")]
         public JsonResult Gets()
         {
-            var Rooms = ApiHelper<List<RoomView>>.HttpGetAsync("room/gets");
+            var Rooms = ApiHelper<List<RoomView>>.HttpGetAsync("Room/gets");
             return Json(new { data = Rooms });
         }
 

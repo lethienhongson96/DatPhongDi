@@ -46,12 +46,13 @@ namespace DatPhongDi.DAL.Implement
             return result;
         }
 
+     
+
         public async Task<IEnumerable<ServiceView>> Gets()
         {
-                var result = await SqlMapper.QueryAsync<ServiceView>(cnn: connection,
-                                                                     sql: "sp_GetsService",
-                                                                     commandType: CommandType.StoredProcedure);
-                return result;
+            return await SqlMapper.QueryAsync<ServiceView>(cnn: connection,
+                                                       sql: "sp_GetsService",
+                                                       commandType: CommandType.StoredProcedure);
         }
 
         public async Task<SaveServiceRes> Save(SaveServiceReq req)
