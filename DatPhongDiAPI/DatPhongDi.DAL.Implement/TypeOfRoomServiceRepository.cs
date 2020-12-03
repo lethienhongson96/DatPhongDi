@@ -3,6 +3,7 @@ using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoomService;
 using DatPhongDi.Domain.Response.TypeOfRoomService;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -21,7 +22,12 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
-        
+        public async Task<IEnumerable<TypeOfRoomServiceView>> Gets()
+        {
+            return await SqlMapper.QueryAsync<TypeOfRoomServiceView>(cnn: connection,
+                                                  sql: "sp_GetsAllTypeOfRoomService",
+                                                  commandType: CommandType.StoredProcedure);
+        }
 
         public async Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq createPlanReq)
         {

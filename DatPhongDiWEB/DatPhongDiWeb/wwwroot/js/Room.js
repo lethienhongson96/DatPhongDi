@@ -56,6 +56,7 @@ room.init = function () {
     room.initStatus();
     room.TypeOfRoom();
 }
+
 $(document).ready(function () {
     room.init();
 });
@@ -88,6 +89,7 @@ room.save = function () {
         });
     }
 }
+
 $('#Close').on('click', function () {
     $('#addEditRoomModal').modal('hide');
     $('#frmAddEditRoom').trigger('reset');
@@ -111,8 +113,6 @@ room.TypeOfRoom = function (TypeOfRoomId) {
         }
     });
 }
-
-
 
 room.initStatus = function (status) {
     $.ajax({

@@ -33,5 +33,12 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("api/TypeOfRoomService/gets")]
+        public async Task<OkObjectResult> Gets()
+        {
+            var result = await typeOfRoomServiceService.Gets();
+            return Ok(result);
+        }
+
     }
 }
