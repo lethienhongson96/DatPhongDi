@@ -42,8 +42,7 @@ namespace DatPhongDiWeb.Controllers
         public JsonResult Deleted([FromBody] ChangeStatusTypeOfRoomReq req)
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
-            return Json(new { data = result });
-            
+            return Json(new { data = result });           
         }
     }
 }

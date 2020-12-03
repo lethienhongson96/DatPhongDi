@@ -32,7 +32,8 @@ namespace DatPhongDiWeb.Controllers
         [HttpPost]
         [Route("/Booking/save")]
         public JsonResult Save([FromBody] SaveBookingReq request)
-        {
+        {   //Tính số đêm bằng cách lấy ngày checkout trừ ngày checkin
+            request.AmountNight = (int)request.CheckOut.Subtract(request.CheckIn).TotalDays;
             var result = ApiHelper<ResResult>.HttpPostAsync($"booking/save", "POST", request);
             return Json(new { data = result });
         }
