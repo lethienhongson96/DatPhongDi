@@ -11,11 +11,10 @@
             <tr>
                 <th>Số phòng</th>
                 <th>Tên phòng</th>
-                <th>Giá phòng	</th>
-                <th>Số người lớn	</th>
-                <th>Số trẻ em</th>
                 <th>Trạng thái</th>
                 <th>Loại phòng</th>
+                <th>Mô tả</th>
+                <th>Diện tích (m2)</th>
                 <th>Ngày tạo</th>
                 <th>Ngày sửa đổi</th>
                 <th>Thao tác</th>
@@ -43,45 +42,12 @@
                     <div class="row form-group">
                         <label for="Name" class="col-3"><strong>Tên phòng:</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Tên phòng"
+                            <input type="number" class="form-control" placeholder="Tên phòng"
                                    id="Name" name="Name"
                                    data-rule-required="true"
-                                   data-msg-required="Room name is required">
+                                   data-msg-required="Tên phòng là trường bắt buộc">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <label for="PricePerNight" class="col-3"><strong>Giá phòng:</strong></label>
-                        <div class="col-9">
-                            <input type="number" class="form-control" placeholder="Giá phòng"
-                                   id="PricePerNight" name="PricePerNight"
-                                   data-rule-required="true"
-                                   data-msg-required="Giá phòng là bắt buộc">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-6">
-                            <label for="AmountAdult" class="col-12"><strong>Số người lớn:</strong></label>
-                            <div class="col-12">
-                                <input type="number" class="form-control" placeholder="Số người lớn"
-                                       id="AmountAdult" name="AmountAdult"
-                                       data-rule-required="true"
-                                       data-msg-required="Số lượng là bắt buộc"
-                                      min="1" max="5">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label for="AmountChild" class="col-12"><strong>Số trẻ em:</strong></label>
-                            <div class="col-12">
-                                <input type="number" class="form-control" placeholder="Sô trẻ em"
-                                       id="AmountChild" name="AmountChild"
-                                       data-rule-required="true"
-                                       data-msg-required="Số lượng là bắt buộc"
-                                       min="1" max="5">
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="row form-group">
                         <label for="Status" class="col-3"><strong>Trạng thái:</strong></label>
                         <div class="col-9">
@@ -90,7 +56,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="row form-group">
                         <label for="TypeOfRoomId" class="col-3"><strong>Loại phòng:</strong></label>
                         <div class="col-9">
@@ -99,7 +64,24 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="row form-group">
+                        <label for="Description" class="col-3"><strong>Mô tả:</strong></label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Mô tả"
+                                   id="Description" name="Description"
+                                   data-rule-required="true"
+                                   data-msg-required="Mô tả là trường bắt buộc">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="Size" class="col-3"><strong>Kích thước:</strong></label>
+                        <div class="col-9">
+                            <input type="number" class="form-control" placeholder="Kích thước"
+                                   id="Size" name="Size"
+                                   data-rule-required="true"
+                                   data-msg-required="Kích thước là trường bắt buộc">
+                        </div>
+                    </div>
                 </form>
             </div>
 
@@ -108,7 +90,6 @@
                 <a href="javascript:;" class="btn btn-success" onclick="room.save()">Save</a>
                 <button id="Close" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-
         </div>
     </div>
 </div>

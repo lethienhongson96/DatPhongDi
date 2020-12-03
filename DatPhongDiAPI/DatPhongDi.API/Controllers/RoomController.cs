@@ -38,13 +38,6 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("api/Room/getavailables")]
-        public async Task<OkObjectResult> Getavailables()
-        {
-            var result = await roomService.Getavailables();
-            return Ok(result);
-        }
-
         [HttpPost]
         [Route("api/room/changeStatus/{id}/{status}")]
         public async Task<OkObjectResult> ChangeStatus(int id, int status)
