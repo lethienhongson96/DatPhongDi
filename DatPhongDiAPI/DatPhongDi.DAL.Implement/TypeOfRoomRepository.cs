@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Implement
 {
-    public class TypeOfRoomRepository : BaseRepository,ITypeOfRoomRepository
+    public class TypeOfRoomRepository : BaseRepository, ITypeOfRoomRepository
     {
         public async Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq changeStatusTypeOfRoomReq)
         {
