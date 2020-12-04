@@ -45,5 +45,9 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
             
         }
+        public IActionResult Detail()
+        {
+            return View();
+        }
     }
 }
