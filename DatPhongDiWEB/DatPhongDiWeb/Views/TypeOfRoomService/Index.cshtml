@@ -3,7 +3,8 @@
     Layout = "_LayoutAdmin";
 }
 <div class=" row text-center">
-    <a href="javascript:void(0);" class="btn btn-info" onclick="typeOfRoomService.openModal()">Thêm dịch vụ phòng</a>
+    <a href="javascript:void(0);" class="btn btn-info" 
+       onclick="typeOfRoomService.openModal()">Thêm dịch vụ phòng</a>
 
     <table id="tbTypeOfRoomService" class="table table-bordered mt-2">
         <thead class="thead-dark">
@@ -35,26 +36,19 @@
                     <input hidden name="Id" id="Id" value="0" />
 
                     <div class="row form-group">
-                        <label for="ServiceId" class="col-3"><strong>Tên dịch vụ:</strong></label>
+                        <label for="ServiceId" class="col-3"><strong>Dịch vụ:</strong></label>
                         <div class="col-9">
-                            <input type="number" class="form-control" placeholder="Tên dịch vụ"
-                                   id="ServiceId" name="ServiceId"
-                                   data-rule-required="true"
-                                   data-msg-required="Tên phòng là trường bắt buộc">
+                            <p id="ServiceId"></p>
                         </div>
                     </div>
 
                     <div class="row form-group">
-                        <label for="TypeOfRoomId" class="col-3"><strong>Tên loại phòng:</strong></label>
+                        <label for="TypeOfRoomId" class="col-3"><strong>Loại phòng:</strong></label>
                         <div class="col-9">
-                            <input type="number" class="form-control" placeholder="Tên loại phòng"
-                                   id="TypeOfRoomId" name="TypeOfRoomId"
-                                   data-rule-required="true"
-                                   data-msg-required="Tên phòng là trường bắt buộc">
+                            <select class="form-control" id="TypeOfRoomId" name="TypeOfRoomId">
+                            </select>
                         </div>
                     </div>
-
-
                 </form>
             </div>
 

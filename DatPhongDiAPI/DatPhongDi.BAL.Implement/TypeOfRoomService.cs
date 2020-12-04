@@ -31,6 +31,11 @@ namespace DatPhongDi.BAL.Implement
             return await typeOfRoomRepository.Gets();
         }
 
+        public async Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId)
+        {
+            return await typeOfRoomRepository.GetServiceByRoomTypeId(TypeOfRoomId);
+        }
+
         public Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq request)
         {
             return typeOfRoomRepository.Save(request);

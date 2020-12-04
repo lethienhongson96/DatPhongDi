@@ -17,6 +17,11 @@ namespace DatPhongDi.BAL.Implement
             this.typeOfRoomServiceRepository = typeOfRoomServiceRepository;
         }
 
+        public async Task<SaveTypeOfRoomServiceRes> Delete(int id)
+        {
+            return await typeOfRoomServiceRepository.Delete(id);
+        }
+
         public async Task<TypeOfRoomServiceView> Get(int Id)
         {
             return await typeOfRoomServiceRepository.Get(Id);
@@ -27,9 +32,9 @@ namespace DatPhongDi.BAL.Implement
             return await typeOfRoomServiceRepository.Gets();
         }
 
-        public async Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq createPlanReq)
+        public async Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq saveType)
         {
-            return await typeOfRoomServiceRepository.Save(createPlanReq);
+            return await typeOfRoomServiceRepository.Save(saveType);
         }
     }
 }

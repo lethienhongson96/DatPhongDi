@@ -51,6 +51,17 @@ namespace DatPhongDi.DAL.Implement
                                                    commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", TypeOfRoomId);
+
+            return await SqlMapper.QueryAsync<ViewServiceByRoomTypeId>(cnn: connection,
+                                                   sql: "sp_GetServiceByTypeOfRoomId",
+                                                   param: parameters,
+                                                   commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)
         {
             SaveTypeOfRoomRes Result = new SaveTypeOfRoomRes();

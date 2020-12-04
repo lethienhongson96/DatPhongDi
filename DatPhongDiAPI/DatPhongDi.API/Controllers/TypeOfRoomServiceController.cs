@@ -20,9 +20,9 @@ namespace DatPhongDi.API.Controllers
 
         [HttpPost, HttpPatch]
         [Route("api/TypeOfRoomService/save")]
-        public async Task<OkObjectResult> Save(SaveTypeOfRoomServiceReq request)
+        public async Task<OkObjectResult> Save([FromBody] SaveTypeOfRoomServiceReq saveTypeOfRoomServiceReq)
         {
-            var result = await typeOfRoomServiceService.Save(request);
+            var result = await typeOfRoomServiceService.Save(saveTypeOfRoomServiceReq);
             return Ok(result);
         }
 
@@ -39,6 +39,15 @@ namespace DatPhongDi.API.Controllers
             var result = await typeOfRoomServiceService.Gets();
             return Ok(result);
         }
+
+        [HttpPatch]
+        [Route("api/TypeOfRoomService/delete/{id}")]
+        public async Task<OkObjectResult> Delete(int id)
+        {
+            var result = await typeOfRoomServiceService.Delete(id);
+            return Ok(result);
+        }
+
 
     }
 }

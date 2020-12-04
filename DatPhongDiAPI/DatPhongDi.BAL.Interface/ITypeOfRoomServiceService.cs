@@ -9,6 +9,7 @@ namespace DatPhongDi.BAL.Interface
     {
         Task<TypeOfRoomServiceView> Get(int Id);
         Task<IEnumerable<TypeOfRoomServiceView>> Gets();
-        Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq createPlanReq);
+        Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq saveType);
+        Task<SaveTypeOfRoomServiceRes> Delete(int id);
     }
 }

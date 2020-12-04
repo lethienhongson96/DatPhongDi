@@ -11,6 +11,31 @@ namespace DatPhongDi.DAL.Implement
 {
     public class TypeOfRoomServiceRepository : BaseRepository, ITypeOfRoomServiceRepository
     {
+        public async Task<SaveTypeOfRoomServiceRes> Delete(int id)
+        {
+            var result = new SaveTypeOfRoomServiceRes()
+            {
+                Id = 0,
+                Message = "Đã xảy ra sự cố, vui lòng liên hệ với quản trị viên."
+            };
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Id", id);
+
+                result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomServiceRes>(cnn: connection,
+                                                                    sql: "sp_DeleteTypeOfRoomService",
+                                                                    param: parameters,
+                                                                    commandType: CommandType.StoredProcedure);
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return result;
+            }
+        }
+
         public async Task<TypeOfRoomServiceView> Get(int Id)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
@@ -29,16 +54,16 @@ namespace DatPhongDi.DAL.Implement
                                                   commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq createPlanReq)
+        public async Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq saveType)
         {
             SaveTypeOfRoomServiceRes Result = new SaveTypeOfRoomServiceRes();
 
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Id", createPlanReq.Id);
-                parameters.Add("@ServiceId", createPlanReq.ServiceId);
-                parameters.Add("@TypeOfRoomId", createPlanReq.TypeOfRoomId);
+                parameters.Add("@Id", saveType.Id);
+                parameters.Add("@ServiceId", saveType.ServiceId);
+                parameters.Add("@TypeOfRoomId", saveType.TypeOfRoomId);
                 
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomServiceRes>(cnn: connection,

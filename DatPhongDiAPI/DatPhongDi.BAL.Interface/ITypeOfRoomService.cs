@@ -11,5 +11,6 @@ namespace DatPhongDi.BAL.Interface
         Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq request);
         Task<TypeOfRoomView> Get(int TypeOfRoomId);
         Task<IEnumerable<TypeOfRoomView>> Gets();
+        Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId);
     }
 }
