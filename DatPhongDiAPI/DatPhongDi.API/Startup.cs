@@ -53,6 +53,10 @@ namespace DatPhongDi.API
             //add scope for Image
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IImageService, ImageService>();
+
+            //add scope for TypeOfRoomService
+            services.AddScoped<ITypeOfRoomServiceRepository, TypeOfRoomServiceRepository>();
+            services.AddScoped<ITypeOfRoomServiceService, TypeOfRoomServiceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
