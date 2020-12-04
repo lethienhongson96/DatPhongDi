@@ -17,14 +17,15 @@ typeOfRoom.showData = function () {
                         <td>${v.pricePerNight}</td>
                         <td>${v.statusName}</td>
                         <td align="center">
+                            <a href="javascript:void(0)" class="btn btn-warning"
+                                onclick="typeOfRoom.ModalManagementImage(${v.id})">
+                                    Quản lí ảnh
+                            </a>
                             <button class="btn btn-info"
                             onclick="typeOfRoom.edit(${v.id},'${v.name}',${v.amountAdults},
                             ${v.amountChild},${v.pricePerNight},${v.status})">Chỉnh sửa</button>
                             <a href="javascript:void(0)" onclick="typeOfRoom.delete(${v.id},${v.status})"
                                 class="btn btn-danger"> Xóa
-                            </a>
-                            <a href="javascript:void(0)" class="btn btn-info" onclick="typeOfRoom.ModalManagementImage(${v.id})">
-                                Quản lí ảnh
                             </a>
                         </td>
                     </tr>`
@@ -44,13 +45,13 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId) {
         success: function (response) {
             console.log(response.data);
             for (var i = 0; i < response.data.length; i++) {
-                var img = document.createElement("img");
-                img.src = 'images/' + response.data[i].imagePath;
-                img.width = 200;
-                img.height = 200;
-                $("#filelist").append(img);
-            }
-            $("#filelist").children("img").css("margin-right", "10px");
+                var imgdiv = `<div class="imgdiv" style="display: inline-block;width:215;height:215" >`
+                imgdiv += `<img src=images/${response.data[i].imagePath} width=200 height=200 />`;
+                imgdiv += `<span class="close" style="cursor:pointer">x</span>`;
+                imgdiv += `</div>`;
+                $("#filelist").append(imgdiv);
+            };
+            $("#filelist").children("div").css("margin-right", "10px");
             typeOfRoom.openModalManagementImage();
         }
     });
@@ -63,12 +64,8 @@ typeOfRoom.UploadImages = function () {
     for (var i = 0; i < typeOfRoom.ImageArr.length; i++) {
         form_data.append('Files', typeOfRoom.ImageArr[i]);
     }
-    form_data.append('TypeOfRoomId', $("#typeOfRoomId").val());
-    //console.log(form_data);
-    //var SaveImageObjectReq = {};
-    //SaveImageObjectReq.Files = form_data;
-    //SaveImageObjectReq.TypeOfRoomId = $("#typeOfRoomId").val();
-    //console.log(SaveImageObjectReq);
+    var RoomTypeId = $("#typeOfRoomId").val();
+    form_data.append('TypeOfRoomId', RoomTypeId);
     $.ajax({
         type: 'POST',
         url: "/typeofroom/UploadImages",
@@ -77,8 +74,14 @@ typeOfRoom.UploadImages = function () {
         dataType: 'json',
         processData: false,
         cache: false,
-        success: function (data) {
-            console.log(data);
+        success: function (response) {
+            console.log(response.data);
+            bootbox.alert('Đả upload ' + response.data + ' ảnh thành công!');
+            /*$("#ManagementImage").modal("hide");*/
+            //Reset Values
+            $("#UploadFile").trigger("reset");
+            $("img").remove();
+            typeOfRoom.ModalManagementImage(RoomTypeId);
         }
     });
 }
@@ -100,7 +103,7 @@ typeOfRoom.loadFile = function (event) {
         img.height = 200;
         $("#newImages").append(img);
     }
-    $("#newImages").children("img").css("margin-right", "10px");
+    $("#newImages").children("div").css("margin-right", "10px");
 };
 
 $('.closeManagementImage').on('click', function () {
@@ -108,7 +111,7 @@ $('.closeManagementImage').on('click', function () {
     $("#ManagementImage").modal("hide");
     //Reset Values
     $("#UploadFile").trigger("reset");
-    $("img").remove();
+    $(".imgdiv").remove();
 });
 
 typeOfRoom.save = function () {

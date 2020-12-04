@@ -1,4 +1,5 @@
-﻿using DatPhongDiWeb.Models.Status;
+﻿using DatPhongDiWeb.Models;
+using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +42,7 @@ namespace DatPhongDiWeb.Controllers
 
         [HttpGet]
         [Route("/TypeOfRoom/getImagesByTypeOfRoomId/{id}")]
-        public JsonResult getImagesByTypeOfRoomId(int id)
+        public JsonResult GetImagesByTypeOfRoomId(int id)
         {
             var images = ApiHelper<List<ImageView>>.HttpGetAsync($"image/getImagesByTypeOfRoomId/{id}");
             return Json(new { data = images });
@@ -61,14 +62,29 @@ namespace DatPhongDiWeb.Controllers
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
             return Json(new { data = result });
-            
+
         }
 
         [HttpPost]
         [Route("/typeofroom/UploadImages")]
-        public JsonResult TestUploadImages(List<IFormFile> Files,int TypeOfRoomId)
+        public JsonResult TestUploadImages(List<IFormFile> Files, int TypeOfRoomId)
         {
-            return Json(new { data = 1 });
+            int CountUploadSuccess = 0;
+            foreach (var item in Files)
+            {
+                string pathstr = UploadedFile(item);
+                ImageView imageView = new ImageView()
+                {
+                    ImageId = 0,
+                    ImagePath = pathstr,
+                    TypeOfRoomId = TypeOfRoomId
+                };
+                SaveImageRes result = ApiHelper<SaveImageRes>.HttpPostAsync($"image/save", "POST", imageView);
+
+                if (result.ImageId > 0)
+                    CountUploadSuccess++;
+            }
+            return Json(new { data = CountUploadSuccess });
         }
 
         private string UploadedFile(IFormFile iformfile_path)
