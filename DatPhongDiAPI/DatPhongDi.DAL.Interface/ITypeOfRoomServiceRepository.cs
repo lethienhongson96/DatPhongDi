@@ -9,7 +9,8 @@ namespace DatPhongDi.DAL.Interface
     {
        
         Task<TypeOfRoomServiceView> Get(int Id);
-        Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq createPlanReq);
+        Task<SaveTypeOfRoomServiceRes> Save(SaveTypeOfRoomServiceReq saveType);
         Task<IEnumerable<TypeOfRoomServiceView>> Gets();
+        Task<SaveTypeOfRoomServiceRes> Delete(int id);
     }
 }
