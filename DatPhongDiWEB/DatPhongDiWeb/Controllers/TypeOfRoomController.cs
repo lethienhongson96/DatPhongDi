@@ -49,5 +49,11 @@ namespace DatPhongDiWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult CheckAvailable([FromBody] CheckAvailable req)
+        {
+            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            return View(data);
+        }
     }
 }
