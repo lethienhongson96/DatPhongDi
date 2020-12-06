@@ -18,7 +18,7 @@ typeOfRoom.showData = function () {
                         <td>${v.statusName}</td>
                         <td align="center">
                             <a href="javascript:void(0)" class="btn btn-warning"
-                                onclick="typeOfRoom.ModalManagementImage(${v.id})">
+                                onclick="typeOfRoom.ModalManagementImage(${v.id},'${v.name}')">
                                     Quản lí ảnh
                             </a>
                             <button class="btn btn-info"
@@ -35,8 +35,9 @@ typeOfRoom.showData = function () {
     });
 }
 
-typeOfRoom.ModalManagementImage = function (typeOfRoomId) {
+typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
     $("#typeOfRoomId").val(typeOfRoomId);
+    document.getElementById("TitleManagementImage").innerHTML = "Quản lí ảnh cho loại phòng " + roomtypename;
     $.ajax({
         url: `/TypeOfRoom/getImagesByTypeOfRoomId/${typeOfRoomId}`,
         method: 'GET',
@@ -47,7 +48,8 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId) {
             for (var i = 0; i < response.data.length; i++) {
                 var imgdiv = `<div class="imgdiv" style="display: inline-block;width:215;height:215" >`
                 imgdiv += `<img src=images/${response.data[i].imagePath} width=200 height=200 />`;
-                imgdiv += `<span class="close" style="cursor:pointer">x</span>`;
+                imgdiv += `<span class="close" style="cursor:pointer"
+                        onclick=typeOfRoom.deleteimg(${response.data[i].imageId},${typeOfRoomId})>x</span>`;
                 imgdiv += `</div>`;
                 $("#filelist").append(imgdiv);
             };
@@ -55,6 +57,89 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId) {
             typeOfRoom.openModalManagementImage();
         }
     });
+}
+
+typeOfRoom.deleteimg = function (imgid, typeofroomid) {
+    bootbox.confirm({
+        message: "Bạn có chắc chắn muốn xóa loại phòng này không <span class='text-danger'></span> ?",
+        buttons: {
+            confirm: {
+                label: 'Có',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'Không',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            
+            if (result) {
+                $.ajax({
+                    url: `/TypeOfRoom/DeleteImages/${imgid}`,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/json',
+                    success: function (response) {
+                        if (response.data.imageId > 0) {
+                            bootbox.alert(`<h4 class="alert alert-danger">Xóa thành công !!!</h4>`);
+                            $("#filelist").empty();
+                            typeOfRoom.ModalManagementImage(typeofroomid);
+                        };
+                    }
+                });
+            }
+        }
+    });
+};
+
+
+typeOfRoom.loadFile = function (event) {
+    for (var i = 0; i < document.getElementById('images').files.length; i++) {
+        imgdiv = document.createElement("div");
+        imgdiv.style.display = "inline-block";
+        imgdiv.setAttribute("id", document.getElementById('images').files[i].name);
+
+        var img = document.createElement("img");
+        img.src = URL.createObjectURL(event.target.files[i]);
+        img.width = 200;
+        img.height = 200;
+
+        var closebtn = document.createElement("span");
+        closebtn.innerHTML = "x";
+        closebtn.className = "close";
+        closebtn.style.cursor = "pointer";
+
+        var input = document.createElement("input");
+        input.type = "text";
+        input.value = document.getElementById('images').files[i].name;
+        input.setAttribute("type", "hidden");
+
+        imgdiv.append(img);
+        imgdiv.append(closebtn);
+        imgdiv.append(input);
+        $("#newImages").append(imgdiv);
+
+        closebtn.addEventListener("click", function () {
+            typeOfRoom.removeImage(this.parentNode.id);
+            this.parentElement.remove();
+        });
+    }
+    $("#newImages").children("div").css("margin-right", "10px");
+};
+
+typeOfRoom.removeImage = function (filename) {
+    var delindex = -1;
+    for (var i = 0; i < typeOfRoom.ImageArr.length; i++) {
+        if (typeOfRoom.ImageArr[i].name == filename) {
+            delindex = i;
+            break;
+        }
+    }
+    if (delindex != -1) {
+        typeOfRoom.ImageArr.splice(delindex, 1);
+    }
+    console.log(typeOfRoom.ImageArr);
 }
 
 typeOfRoom.ImageArr = [];
@@ -80,7 +165,7 @@ typeOfRoom.UploadImages = function () {
             /*$("#ManagementImage").modal("hide");*/
             //Reset Values
             $("#UploadFile").trigger("reset");
-            $("img").remove();
+            $("#newImages").empty();
             typeOfRoom.ModalManagementImage(RoomTypeId);
         }
     });
@@ -95,23 +180,13 @@ $(".selectImage").change(function () {
     console.log(typeOfRoom.ImageArr);
 });
 
-typeOfRoom.loadFile = function (event) {
-    for (var i = 0; i < document.getElementById('images').files.length; i++) {
-        var img = document.createElement("img");
-        img.src = URL.createObjectURL(event.target.files[i]);
-        img.width = 200;
-        img.height = 200;
-        $("#newImages").append(img);
-    }
-    $("#newImages").children("div").css("margin-right", "10px");
-};
-
 $('.closeManagementImage').on('click', function () {
     //Close Modal
     $("#ManagementImage").modal("hide");
     //Reset Values
     $("#UploadFile").trigger("reset");
     $(".imgdiv").remove();
+    typeOfRoom.ImageArr = [];
 });
 
 typeOfRoom.save = function () {
@@ -214,12 +289,10 @@ typeOfRoom.initStatus = function (defaultStatus) {
 
 typeOfRoom.openModal = function () {
     $('#addEditTypeOfRoomModal').modal('show');
-    //$("#st").show();
 }
 
 typeOfRoom.openModalManagementImage = function () {
     $('#ManagementImage').modal('show');
-    //$("#st").show();
 }
 
 $('#closeButton').on('click', function () {

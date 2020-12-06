@@ -62,12 +62,19 @@ namespace DatPhongDiWeb.Controllers
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
             return Json(new { data = result });
+        }
 
+        [HttpGet]
+        [Route("/TypeOfRoom/DeleteImages/{imageId}")]
+        public JsonResult DeleteImages(int imageId)
+        {
+            var result = ApiHelper<DeleteImageRes>.HttpPostAsync($"image/delete/{imageId}", "POST", new object { });
+            return Json(new { data = result });
         }
 
         [HttpPost]
         [Route("/typeofroom/UploadImages")]
-        public JsonResult TestUploadImages(List<IFormFile> Files, int TypeOfRoomId)
+        public JsonResult UploadImages(List<IFormFile> Files, int TypeOfRoomId)
         {
             int CountUploadSuccess = 0;
             foreach (var item in Files)
