@@ -35,9 +35,11 @@ typeOfRoom.showData = function () {
     });
 }
 
+
 typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
     $("#typeOfRoomId").val(typeOfRoomId);
-    document.getElementById("TitleManagementImage").innerHTML = "Quản lí ảnh cho loại phòng " + roomtypename;
+    $("#TypeofroomName").val(roomtypename);
+    document.getElementById("TitleManagementImage").innerHTML = "Quản lí ảnh cho loại " + roomtypename;
     $.ajax({
         url: `/TypeOfRoom/getImagesByTypeOfRoomId/${typeOfRoomId}`,
         method: 'GET',
@@ -49,7 +51,7 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
                 var imgdiv = `<div class="imgdiv" style="display: inline-block;width:215;height:215" >`
                 imgdiv += `<img src=images/${response.data[i].imagePath} width=200 height=200 />`;
                 imgdiv += `<span class="close" style="cursor:pointer"
-                        onclick=typeOfRoom.deleteimg(${response.data[i].imageId},${typeOfRoomId})>x</span>`;
+                        onclick=typeOfRoom.deleteimg(${response.data[i].imageId},${typeOfRoomId},'${response.data[i].imagePath}')>x</span>`;
                 imgdiv += `</div>`;
                 $("#filelist").append(imgdiv);
             };
@@ -59,9 +61,9 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
     });
 }
 
-typeOfRoom.deleteimg = function (imgid, typeofroomid) {
+typeOfRoom.deleteimg = function (imgid, typeofroomid, imgpath) {
     bootbox.confirm({
-        message: "Bạn có chắc chắn muốn xóa loại phòng này không <span class='text-danger'></span> ?",
+        message: "<span class='text-danger'>Xóa ảnh này ?</span>",
         buttons: {
             confirm: {
                 label: 'Có',
@@ -73,18 +75,16 @@ typeOfRoom.deleteimg = function (imgid, typeofroomid) {
             }
         },
         callback: function (result) {
-            
             if (result) {
                 $.ajax({
-                    url: `/TypeOfRoom/DeleteImages/${imgid}`,
+                    url: `/TypeOfRoom/DeleteImages/${imgid}/${imgpath}`,
                     method: 'GET',
                     dataType: 'JSON',
                     contentType: 'application/json',
                     success: function (response) {
                         if (response.data.imageId > 0) {
-                            bootbox.alert(`<h4 class="alert alert-danger">Xóa thành công !!!</h4>`);
                             $("#filelist").empty();
-                            typeOfRoom.ModalManagementImage(typeofroomid);
+                            typeOfRoom.ModalManagementImage(typeofroomid, $("#TypeofroomName").val());
                         };
                     }
                 });
@@ -92,7 +92,6 @@ typeOfRoom.deleteimg = function (imgid, typeofroomid) {
         }
     });
 };
-
 
 typeOfRoom.loadFile = function (event) {
     for (var i = 0; i < document.getElementById('images').files.length; i++) {
@@ -166,7 +165,7 @@ typeOfRoom.UploadImages = function () {
             //Reset Values
             $("#UploadFile").trigger("reset");
             $("#newImages").empty();
-            typeOfRoom.ModalManagementImage(RoomTypeId);
+            typeOfRoom.ModalManagementImage(RoomTypeId, $("#TypeofroomName").val());
         }
     });
 }

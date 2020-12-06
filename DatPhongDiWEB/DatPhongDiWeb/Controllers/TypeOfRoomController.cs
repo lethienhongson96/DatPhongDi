@@ -1,5 +1,4 @@
-﻿using DatPhongDiWeb.Models;
-using DatPhongDiWeb.Models.Status;
+﻿using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Hosting;
@@ -65,10 +64,15 @@ namespace DatPhongDiWeb.Controllers
         }
 
         [HttpGet]
-        [Route("/TypeOfRoom/DeleteImages/{imageId}")]
-        public JsonResult DeleteImages(int imageId)
+        [Route("/TypeOfRoom/DeleteImages/{imageId}/{imgpath}")]
+        public JsonResult DeleteImages(int imageId,string imgpath)
         {
             var result = ApiHelper<DeleteImageRes>.HttpPostAsync($"image/delete/{imageId}", "POST", new object { });
+            if (result.ImageId>0)
+            {
+                string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "images", imgpath);
+                System.IO.File.Delete(DelPath);
+            }
             return Json(new { data = result });
         }
 
