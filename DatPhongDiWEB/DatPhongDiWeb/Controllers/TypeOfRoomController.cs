@@ -65,10 +65,10 @@ namespace DatPhongDiWeb.Controllers
 
         [HttpGet]
         [Route("/TypeOfRoom/DeleteImages/{imageId}/{imgpath}")]
-        public JsonResult DeleteImages(int imageId,string imgpath)
+        public JsonResult DeleteImages(int imageId, string imgpath)
         {
             var result = ApiHelper<DeleteImageRes>.HttpPostAsync($"image/delete/{imageId}", "POST", new object { });
-            if (result.ImageId>0)
+            if (result.ImageId > 0)
             {
                 string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "images", imgpath);
                 System.IO.File.Delete(DelPath);
