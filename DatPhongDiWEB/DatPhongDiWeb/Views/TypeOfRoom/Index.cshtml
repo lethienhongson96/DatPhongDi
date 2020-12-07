@@ -1,7 +1,5 @@
 ﻿
-@{
-    Layout = "_LayoutAdmin";
-}
+@{ Layout = "_LayoutAdmin"; }
 
 <div class=" row">
     <a href="javascript:void(0);" class="btn btn-info" onclick="typeOfRoom.openModal()">Tạo mới</a>
@@ -11,6 +9,9 @@
             <tr>
                 <th>Mã loại phòng</th>
                 <th>Tên loại phòng</th>
+                <th>Người lớn</th>
+                <th>Trẻ em</th>
+                <th>Giá tiền</th>
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
@@ -44,6 +45,37 @@
                                    data-msg-required="Tên loại phòng phải được nhập">
                         </div>
                     </div>
+
+                    <div class="row form-group">
+                        <label for="AmountAdults" class="col-3">Người lớn</label>
+                        <div class="col-9">
+                            <input type="number" class="form-control" placeholder="Số lượng người lớn"
+                                   id="AmountAdults" name="AmountAdults"
+                                   data-rule-required="true"
+                                   data-msg-required="Số lượng người lớn phải được nhập">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="AmountChild" class="col-3">Trẻ em</label>
+                        <div class="col-9">
+                            <input type="number" class="form-control" placeholder="Số lượng Trẻ em"
+                                   id="AmountChild" name="AmountChild"
+                                   data-rule-required="true"
+                                   data-msg-required="Số lượng trẻ em phải được nhập">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label for="PricePerNight" class="col-3">Giá tiền</label>
+                        <div class="col-9">
+                            <input type="number" class="form-control" placeholder="Giá tiền"
+                                   id="PricePerNight" name="PricePerNight"
+                                   data-rule-required="true"
+                                   data-msg-required="Giá tiền phải được nhập">
+                        </div>
+                    </div>
+
                     <div class="row form-group" id="st">
                         <label for="Status" class="col-3">Trạng thái</label>
                         <div class="col-9">
@@ -51,6 +83,7 @@
                             </select>
                         </div>
                     </div>
+
                 </form>
             </div>
 
@@ -64,6 +97,48 @@
     </div>
 </div>
 
-@section Scripts{
-    <script src="~/js/typeOfRoom.js" asp-append-version="true"></script>
-}
+<div class="modal" id="ManagementImage" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="TitleManagementImage"></h4>
+                <input type="text" hidden name="name" value="" id="TypeofroomName"/>
+                <button type="button" class="close closeManagementImage" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form enctype="multipart/form-data" id="UploadFile">
+                    @Html.AntiForgeryToken()
+                    <input type="number" id="typeOfRoomId" hidden />
+                    <div class="form-group">
+                        <input type="file" multiple class="form-control selectImage" id="images"
+                               onchange="typeOfRoom.loadFile(event)" accept="image/*"/>
+                    </div>
+                    <div class="form-group">
+                        <h3>Ảnh vừa chọn:</h3>
+                        <div id="newImages">
+                            <!--show Images befor upload-->
+
+                        </div>
+
+                        <h3>Ảnh đã có:</h3>
+                        <div id="filelist">
+                            <!--show Images by TypeOfRoomId-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-success" onclick="typeOfRoom.UploadImages()">Upload ảnh</a>
+                <button type="button" class="btn btn-danger closeManagementImage" data-dismiss="modal">Đóng lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/typeOfRoom.js" asp-append-version="true"></script>

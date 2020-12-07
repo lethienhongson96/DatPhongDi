@@ -83,7 +83,7 @@ room.save = function () {
                     callback: function () {
                         room.showData();
                     }
-                }
+                })
             }
         });
     }

@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace DatPhongDiWeb.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public IActionResult Rooms()
+        public AdminController(IWebHostEnvironment hostEnvironment)
+        {
+            this._hostEnvironment = hostEnvironment;
+        }
+        public IActionResult Index()
         {
             return View();
         }
@@ -22,11 +22,8 @@ namespace DatPhongDiWeb.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("/Admin/TestUploadImages")]
-        public IActionResult TestUploadImages(List<IFormFile> files)
-        {
-            return View();
-        }
+        
+
+        
     }
 }
