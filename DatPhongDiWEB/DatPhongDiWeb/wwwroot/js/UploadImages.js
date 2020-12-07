@@ -10,18 +10,5 @@
             imageArr.push(document.getElementById('images').files[i])
         }
         console.log(imageArr);
-        
-        //$.ajax({
-        //    type: 'POST',
-        //    url: "/Admin/TestUploadImages",
-        //    data: form_data,
-        //    contentType: false,
-        //    dataType: 'json',
-        //    processData: false,
-        //    cache: false,
-        //    success: function (data) {
-        //        console.log(data);
-        //    }
-        //});
     });
 });

@@ -1,11 +1,8 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Response.Status;
-
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 using System.Threading.Tasks;
 

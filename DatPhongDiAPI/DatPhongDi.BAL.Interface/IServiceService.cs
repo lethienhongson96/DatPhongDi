@@ -1,8 +1,6 @@
-﻿    using DatPhongDi.Domain.Request.Service;
+﻿using DatPhongDi.Domain.Request.Service;
 using DatPhongDi.Domain.Response.Service;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.BAL.Interface

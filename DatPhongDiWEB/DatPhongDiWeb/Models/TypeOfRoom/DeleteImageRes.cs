@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace DatPhongDiWeb.Models.TypeOfRoom
 {
-    public class SaveTypeOfRoom
+    public class DeleteImageRes
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Status { get; set; }
+        public int ImageId { get; set; }
+        public string Message { get; set; }
     }
 }
