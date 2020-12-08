@@ -46,8 +46,6 @@ namespace DatPhongDi.DAL.Implement
             return result;
         }
 
-     
-
         public async Task<IEnumerable<ServiceView>> Gets()
         {
             return await SqlMapper.QueryAsync<ServiceView>(cnn: connection,

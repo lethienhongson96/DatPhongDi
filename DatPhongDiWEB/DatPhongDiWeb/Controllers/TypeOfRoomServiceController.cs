@@ -39,8 +39,6 @@ namespace DatPhongDiWeb.Controllers
             var modules = ApiHelper<List<ServiceView>>.HttpGetAsync("service/gets");
             return Json(new { data = modules });
         }
-
-        
         [HttpPost]
         [Route("/typeOfRoomService/save")]
         public JsonResult Save(int TypeOfRoomId,int[] ServiceId)

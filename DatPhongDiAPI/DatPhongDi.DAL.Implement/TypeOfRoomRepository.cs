@@ -2,6 +2,7 @@
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +31,28 @@ namespace DatPhongDi.DAL.Implement
             catch (Exception)
             {
                 return Result;
+            }
+        }
+
+        public async Task<IEnumerable<TypeOfRoomView>> CheckAvailable([FromBody] CheckAvailable req)
+        {
+            IEnumerable<TypeOfRoomView> result = new List<TypeOfRoomView>();
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@AmountAdults", req.AmountAdults);
+                parameters.Add("@AmountChild", req.AmountChild);
+                parameters.Add("@CheckIn", req.CheckIn.ToString());
+                parameters.Add("@CheckOut", req.CheckOut.ToString());
+                result = await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
+                                                                    sql: "sp_CheckAvailable",
+                                                                    param: parameters,
+                                                                    commandType: CommandType.StoredProcedure);
+                return result;
+            }
+            catch (Exception)
+            {
+                return result;
             }
         }
 
@@ -72,10 +95,6 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Name", saveTypeOfRoomReq.Name);
                 parameters.Add("@Id", saveTypeOfRoomReq.Id);
                 parameters.Add("@Status", saveTypeOfRoomReq.Status);
-                parameters.Add("@AmountAdults", saveTypeOfRoomReq.AmountAdults);
-                parameters.Add("@AmountChild", saveTypeOfRoomReq.AmountChild);
-                parameters.Add("@PricePerNight", saveTypeOfRoomReq.PricePerNight);
-
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveTypeOfRoom",

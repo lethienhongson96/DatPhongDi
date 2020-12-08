@@ -9,5 +9,7 @@
         public int AmountAdults { get; set; }
         public int AmountChild { get; set; }
         public int PricePerNight { get; set; }
+        public int Size { get; set; }
+        public string ImagePath { get; set; }
     }
 }
