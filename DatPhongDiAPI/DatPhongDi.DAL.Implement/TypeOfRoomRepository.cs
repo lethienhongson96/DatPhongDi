@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DatPhongDi.DAL.Implement
 {
-    public class TypeOfRoomRepository : BaseRepository,ITypeOfRoomRepository
+    public class TypeOfRoomRepository : BaseRepository, ITypeOfRoomRepository
     {
         public async Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq changeStatusTypeOfRoomReq)
         {
@@ -51,6 +51,17 @@ namespace DatPhongDi.DAL.Implement
                                                    commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Id", TypeOfRoomId);
+
+            return await SqlMapper.QueryAsync<ViewServiceByRoomTypeId>(cnn: connection,
+                                                   sql: "sp_GetServiceByTypeOfRoomId",
+                                                   param: parameters,
+                                                   commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)
         {
             SaveTypeOfRoomRes Result = new SaveTypeOfRoomRes();
@@ -61,9 +72,6 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Name", saveTypeOfRoomReq.Name);
                 parameters.Add("@Id", saveTypeOfRoomReq.Id);
                 parameters.Add("@Status", saveTypeOfRoomReq.Status);
-                parameters.Add("@AmountAdults", saveTypeOfRoomReq.AmountAdults);
-                parameters.Add("@AmountChild", saveTypeOfRoomReq.AmountChild);
-                parameters.Add("@PricePerNight", saveTypeOfRoomReq.PricePerNight);
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveTypeOfRoom",

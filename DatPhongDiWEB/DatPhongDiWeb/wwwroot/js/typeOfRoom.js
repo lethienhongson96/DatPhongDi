@@ -9,12 +9,19 @@ typeOfRoom.showData = function () {
             $('#tbTypeOfRoom>tbody').empty();
             $.each(response.data, function (i, v) {
                 $('#tbTypeOfRoom>tbody').append(
-                    `<tr>
+                    `<tr style="text-align:center">
                         <td>${v.id}</td>
                         <td>${v.name}</td>
                         <td>${v.amountAdults}</td>
                         <td>${v.amountChild}</td>
                         <td>${v.pricePerNight}</td>
+                        <td>${v.amountAdults}</td>
+                        <td>${v.amountChild}</td>
+                        <td>${v.pricePerNight}</td>
+                        <td><a href="javascript:void(0)" onclick="typeOfRoom.ManagementService(${v.id})"
+                                class="btn btn-danger"> Dịch vụ
+                            </a>
+                        </td>
                         <td>${v.statusName}</td>
                         <td align="center">
                             <a href="javascript:void(0)" class="btn btn-warning"
@@ -114,6 +121,79 @@ typeOfRoom.loadFile = function (event) {
         input.type = "text";
         input.value = document.getElementById('images').files[i].name;
         input.setAttribute("type", "hidden");
+        }
+    });
+}
+
+typeOfRoom.arr = [];
+
+typeOfRoom.initService = function () {
+    $.ajax({
+        url: '/typeOfRoomService/GetsService',
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            $('#ServiceId').empty();
+            $.each(response.data, function (i, v) {
+                $('#ServiceId').append(
+                    `<input id=${v.id} type="checkbox" value=${v.id}>
+                    <label>${v.name}</label><br>
+                    `
+                );
+                typeOfRoom.arr.push(document.getElementById(v.id));
+            });
+        }
+    });
+    console.log(typeOfRoom.arr);
+}
+
+// 1 khi click vào dịch vụ 
+typeOfRoom.ManagementService = function (id) {
+
+    // 2 xuất hiện 1 bảng check service
+    typeOfRoom.initService();
+    // Lấy tất cả dịch vụ của loại phòng
+    typeOfRoom.GetServiceByTypeOfRoomId(id);
+    // 3  show ra toàn bộ service
+    typeOfRoom.openModalManagementService();
+    $("#TypeOfRoomId").val(id);
+}
+
+typeOfRoom.openModalManagementService = function () {
+    $('#ManagementService').modal('show');
+}
+
+$('.closeButton').on('click', function () {
+    //Close Modal
+    $("#ManagementService").modal("hide");
+    //Reset Values
+    $("#frmManagementService").trigger("reset");
+    typeOfRoom.arr = [];
+});
+
+typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
+    $.ajax({
+        url: `/typeofroom/GetServiceByRoomtypeId/${id}`,
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            var ServiceArr = [];
+
+            $.each(response.data, function (i, v) {
+                ServiceArr.push(v.id);
+            });
+
+            for (var i = 0; i < typeOfRoom.arr.length; i++) {
+                for (var j = 0; j < ServiceArr.length; j++) {
+                    if (typeOfRoom.arr[i].value == ServiceArr[j]) {
+                        typeOfRoom.arr[i].checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    });
+}
 
         imgdiv.append(img);
         imgdiv.append(closebtn);
@@ -189,6 +269,56 @@ $('.closeManagementImage').on('click', function () {
     $("#filelist").empty();
     typeOfRoom.ImageArr = [];
 });
+
+typeOfRoom.deleteService = function (id) {    
+    $.ajax({
+        url: `/typeOfRoomService/delete/${id}`,
+        method: 'PATCH',
+        dataType: 'JSON',
+        contentType: 'application/json',
+        success : function (reponse) {
+            if (reponse.data > 0) {
+                console.log("thanh cong");
+            } 
+        }             
+    });
+    
+}
+
+
+typeOfRoom.saveService = function () {
+    if ($('#frmManagementService').valid()) {      
+        var formdata = new FormData();
+        formdata.append("TypeOfRoomId", parseInt($("#TypeOfRoomId").val()));
+
+        for (var i = 0; i < typeOfRoom.arr.length; i++) {
+            if (typeOfRoom.arr[i].checked == true) {
+                formdata.append("ServiceId", parseInt(typeOfRoom.arr[i].value));
+                
+            }
+        }
+        
+        typeOfRoom.deleteService($("#TypeOfRoomId").val());
+
+        $.ajax({
+            url: '/typeOfRoomService/save',
+            method: 'POST',
+            dataType: 'JSON',
+            contentType: false,
+            processData: false,
+            data: formdata,
+            success: function (response) {
+                bootbox.alert(response.data.message);
+                if (response.data.id > 0) {
+                    $('#ManagementService').modal('hide');
+                    $('#frmManagementService').trigger('reset');
+                    typeOfRoom.showData();
+                }
+            }
+        });
+
+    }
+}
 
 typeOfRoom.save = function () {
     if ($('#frmAddEditTypeOfRoom').valid()) {
