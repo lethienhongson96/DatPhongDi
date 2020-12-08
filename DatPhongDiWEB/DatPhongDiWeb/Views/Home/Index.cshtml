@@ -2,6 +2,10 @@
 @{
     Layout = "_LayoutThemesHotelBootraps";
 }
+
+<!-- Hero Section End -->
+<!-- About Us Section Begin -->
+<!-- banner -->
 <section class="hero-section">
     <div class="container">
         <div class="row">
@@ -16,37 +20,11 @@
                 </div>
             </div>
             <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                <div class="booking-form">
-                    <h3>Booking My Hotel</h3>
-                    <form asp-controller="TypeOfRoom" asp-action="CheckAvailable" method="post">
-                        <div class="check-date">
-                            <label for="date-in">Check In:</label>
-                            <input type="text" class="date-input" id="date-in" asp-for="@Model.CheckIn">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="check-date">
-                            <label for="date-out">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out" asp-for="@Model.CheckOut">
-                            <i class="icon_calendar"></i>
-                        </div>
-                        <div class="select-option">
-                            <label for="adults">Người lớn</label>
-                            <select id="adults" asp-for="@Model.AmountAdults">
-                                <option value="2">2 Người lớn</option>
-                                <option value="3">3 Người lớn</option>
-                                <option value="4">4 Người lớn</option>
-                            </select>
-                        </div>
-                        <div class="select-option">
-                            <label for="kids">Trẻ em</label>
-                            <select id="kids" asp-for="@Model.AmountChild">
-                                <option value="1">1 Trẻ em</option>
-                                <option value="2">2 Trẻ em</option>
-                            </select>
-                        </div>
-                        <button type="submit">Kiểm tra phòng trống</button>
-                    </form>
-                </div>
+                @await Html.PartialAsync("_FormCheckAvailable", new DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable()
+           {
+               CheckIn = DateTime.Today,
+               CheckOut = DateTime.Today.AddDays(1)
+           })
             </div>
         </div>
     </div>
@@ -56,8 +34,7 @@
         <div class="hs-item set-bg" data-setbg="/sona-master/img/banner3.jpg"></div>
     </div>
 </section>
-<!-- Hero Section End -->
-<!-- About Us Section Begin -->
+<!--end banner -->
 
 <section class="aboutus-section spad">
     <div class="container">

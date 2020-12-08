@@ -119,7 +119,9 @@ namespace DatPhongDiWeb.Controllers
         [HttpPost]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
-            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            ViewBag.CheckIn = req.CheckIn;
+            ViewBag.CheckOut = req.CheckOut;
+           var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
     }

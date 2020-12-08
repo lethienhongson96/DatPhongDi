@@ -1,0 +1,34 @@
+﻿
+@model DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable
+
+<div class="booking-form">
+    <h3>Booking My Hotel</h3>
+    <form asp-controller="TypeOfRoom" asp-action="CheckAvailable" method="post">
+        <div class="check-date">
+            <label for="date-in">Check In:</label>
+            <input type="text" class="date-input" id="date-in" asp-for="@Model.CheckIn">
+            <i class="icon_calendar"></i>
+        </div>
+        <div class="check-date">
+            <label for="date-out">Check Out:</label>
+            <input type="text" class="date-input" id="date-out" asp-for="@Model.CheckOut">
+            <i class="icon_calendar"></i>
+        </div>
+        <div class="select-option">
+            <label for="adults">Người lớn</label>
+            <select id="adults" asp-for="@Model.AmountAdults">
+                <option value="2">2 Người lớn</option>
+                <option value="3">3 Người lớn</option>
+                <option value="4">4 Người lớn</option>
+            </select>
+        </div>
+        <div class="select-option">
+            <label for="kids">Trẻ em</label>
+            <select id="kids" asp-for="@Model.AmountChild">
+                <option value="1">1 Trẻ em</option>
+                <option value="2">2 Trẻ em</option>
+            </select>
+        </div>
+        <button type="submit">Kiểm tra phòng trống</button>
+    </form>
+</div>
