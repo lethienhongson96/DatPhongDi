@@ -23,13 +23,13 @@ body {
 }
 
 .card-wrapper {
-    background-color: #6FB7E9;
+    background-color: #DFA974;
     width: 100%;
     display: flex;
 }
 
 .personal-information {
-    background-color: #3C8DC5;
+    background-color: #DFA974;
     color: #fff;
     padding: 1px 0;
     text-align: center;
@@ -65,7 +65,7 @@ input {
         height: 60px;
         width: 100%;
         border: none;
-        background-color: #3C8DC5;
+        background-color: #DFA974;
         color: #fff;
         margin-top: 2px;
         curson: pointer;

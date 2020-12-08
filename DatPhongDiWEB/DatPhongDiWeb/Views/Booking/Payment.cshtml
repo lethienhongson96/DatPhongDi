@@ -11,19 +11,19 @@
 </head>
 <body>
     <!-- partial:index.partial.html -->
-    <div class="body-text">Booking STVK Hotel</div>
+    <div class="body-text" style="color: #DFA974; font-size:xx-large">Booking STVK Hotel</div>
     <form>
         <div class="form-container">
             <div class="personal-information">
                 <h1>Customer Information</h1>
             </div> <!-- end of personal-information -->
-            <input id="column-left" type="text" name="first-name" placeholder="First Name" />
-            <input id="column-right" type="text" name="last-name" placeholder="Last Name" />
-            <input id="input-field" type="text" name="email" placeholder="Email" />
+            <input id="column-left" type="text" name="customername" placeholder="First Name" />
+            <input id="column-right" type="text" name="customerlastname" placeholder="Last Name" />
+            <input id="input-field" type="text" name="emailcustomer" placeholder="Email" />
             <input id="input-field" type="text" name="confirm-email" placeholder="Confirm Email" />
             <input id="column-left" type="text" name="phone" placeholder="Phone" />
             <input id="column-right" type="text" name="address" placeholder="Address" />
-            <input id="input-field" type="text" name="number" placeholder="City" />
+            <input id="input-field" type="text" name="citycustomer" placeholder="City" />
             <input id="input-field" type="text" name="country" placeholder="Country" />
 
 
@@ -52,6 +52,7 @@
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/121761/card.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/121761/jquery.card.js'></script>
     <script src="~/js/payment.js"></script>
+    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
 
 </body>
 </html>
