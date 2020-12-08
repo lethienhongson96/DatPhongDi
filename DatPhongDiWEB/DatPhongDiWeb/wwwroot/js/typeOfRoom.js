@@ -15,9 +15,6 @@ typeOfRoom.showData = function () {
                         <td>${v.amountAdults}</td>
                         <td>${v.amountChild}</td>
                         <td>${v.pricePerNight}</td>
-                        <td>${v.amountAdults}</td>
-                        <td>${v.amountChild}</td>
-                        <td>${v.pricePerNight}</td>
                         <td><a href="javascript:void(0)" onclick="typeOfRoom.ManagementService(${v.id})"
                                 class="btn btn-danger"> Dịch vụ
                             </a>
@@ -42,8 +39,7 @@ typeOfRoom.showData = function () {
     });
 }
 
-
-typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
+typeOfRoom.ModalManagementImage = function (typeOfRoomId, roomtypename) {
     $("#typeOfRoomId").val(typeOfRoomId);
     $("#TypeofroomName").val(roomtypename);
     document.getElementById("TitleManagementImage").innerHTML = "Quản lí ảnh cho loại " + roomtypename;
@@ -121,8 +117,18 @@ typeOfRoom.loadFile = function (event) {
         input.type = "text";
         input.value = document.getElementById('images').files[i].name;
         input.setAttribute("type", "hidden");
-        }
-    });
+
+        imgdiv.append(img);
+        imgdiv.append(closebtn);
+        imgdiv.append(input);
+        $("#newImages").append(imgdiv);
+
+        closebtn.addEventListener("click", function () {
+            typeOfRoom.removeImage(this.parentNode.id);
+            this.parentElement.remove();
+        });
+    }
+    $("#newImages").children("div").css("margin-right", "10px");
 }
 
 typeOfRoom.arr = [];
@@ -195,19 +201,6 @@ typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
     });
 }
 
-        imgdiv.append(img);
-        imgdiv.append(closebtn);
-        imgdiv.append(input);
-        $("#newImages").append(imgdiv);
-
-        closebtn.addEventListener("click", function () {
-            typeOfRoom.removeImage(this.parentNode.id);
-            this.parentElement.remove();
-        });
-    }
-    $("#newImages").children("div").css("margin-right", "10px");
-};
-
 typeOfRoom.removeImage = function (filename) {
     var delindex = -1;
     for (var i = 0; i < typeOfRoom.ImageArr.length; i++) {
@@ -270,34 +263,33 @@ $('.closeManagementImage').on('click', function () {
     typeOfRoom.ImageArr = [];
 });
 
-typeOfRoom.deleteService = function (id) {    
+typeOfRoom.deleteService = function (id) {
     $.ajax({
         url: `/typeOfRoomService/delete/${id}`,
         method: 'PATCH',
         dataType: 'JSON',
         contentType: 'application/json',
-        success : function (reponse) {
+        success: function (reponse) {
             if (reponse.data > 0) {
                 console.log("thanh cong");
-            } 
-        }             
+            }
+        }
     });
-    
+
 }
 
-
 typeOfRoom.saveService = function () {
-    if ($('#frmManagementService').valid()) {      
+    if ($('#frmManagementService').valid()) {
         var formdata = new FormData();
         formdata.append("TypeOfRoomId", parseInt($("#TypeOfRoomId").val()));
 
         for (var i = 0; i < typeOfRoom.arr.length; i++) {
             if (typeOfRoom.arr[i].checked == true) {
                 formdata.append("ServiceId", parseInt(typeOfRoom.arr[i].value));
-                
+
             }
         }
-        
+
         typeOfRoom.deleteService($("#TypeOfRoomId").val());
 
         $.ajax({
@@ -397,8 +389,6 @@ typeOfRoom.edit = function (id, name, amountAdults, amountChild, pricePerNight, 
     $("#Status").val(status);
     typeOfRoom.initStatus(status);
     typeOfRoom.openModal();
-    //document.getElementById('st').style.display = 'none';
-    //$("#st").hide();
 }
 
 typeOfRoom.initStatus = function (defaultStatus) {
