@@ -76,6 +76,7 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@AmountChild", saveTypeOfRoomReq.AmountChild);
                 parameters.Add("@PricePerNight", saveTypeOfRoomReq.PricePerNight);
 
+
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveTypeOfRoom",
                                                                     param: parameters,

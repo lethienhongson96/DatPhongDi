@@ -40,24 +40,25 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = modules });
         }
 
+        /*SaveTypeOfRoomObjectReq request*/
         [HttpPost]
         [Route("/typeOfRoomService/save")]
-        public JsonResult Save([FromBody] SaveTypeOfRoomObjectReq request)
+        public JsonResult Save(int TypeOfRoomId,int[] ServiceId)
         {
             var result = new ResResult();
-            for (int i = 0; i < request.ServiceId.Length; i++)
+            for (int i = 0; i < ServiceId.Length; i++)
             {
                 SaveTypeOfRoomServiceReq saveTypeOfRoomServiceReq = new SaveTypeOfRoomServiceReq()
                 {
-                    ServiceId = request.ServiceId[i],
-                    TypeOfRoomId = request.TypeOfRoomId,
-                    Id = 0  
+                    ServiceId = ServiceId[i],
+                    TypeOfRoomId = TypeOfRoomId,
+                    Id = 0
                 };
                 result = ApiHelper<ResResult>.HttpPostAsync($"typeOfRoomService/save", "POST", saveTypeOfRoomServiceReq);
-                if (result.Id<0)
+                if (result.Id < 0)
                     return Json(new { data = result });
             }
-            
+
             return Json(new { data = result });
         }
 

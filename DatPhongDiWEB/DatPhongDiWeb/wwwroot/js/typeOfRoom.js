@@ -9,7 +9,7 @@ typeOfRoom.showData = function () {
             $('#tbTypeOfRoom>tbody').empty();
             $.each(response.data, function (i, v) {
                 $('#tbTypeOfRoom>tbody').append(
-                    `<tr>
+                    `<tr style="text-align:center">
                         <td>${v.id}</td>
                         <td>${v.name}</td>
                         <td>${v.amountAdults}</td>
@@ -54,22 +54,32 @@ typeOfRoom.initService = function () {
             });
         }
     });
+    console.log(typeOfRoom.arr);
 }
-var idRoom = 0;
+
 // 1 khi click vào dịch vụ 
 typeOfRoom.ManagementService = function (id) {
-    idRoom = id;
+
     // 2 xuất hiện 1 bảng check service
     typeOfRoom.initService();
     // Lấy tất cả dịch vụ của loại phòng
     typeOfRoom.GetServiceByTypeOfRoomId(id);
     // 3  show ra toàn bộ service
     typeOfRoom.openModalManagementService();
+    $("#TypeOfRoomId").val(id);
 }
 
 typeOfRoom.openModalManagementService = function () {
     $('#ManagementService').modal('show');
 }
+
+$('.closeButton').on('click', function () {
+    //Close Modal
+    $("#ManagementService").modal("hide");
+    //Reset Values
+    $("#frmManagementService").trigger("reset");
+    typeOfRoom.arr = [];
+});
 
 typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
     $.ajax({
@@ -95,36 +105,53 @@ typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
     });
 }
 
-//Demo//
-typeOfRoom.saveService = function () {
-    if ($('#frmManagementService').valid()) {
+typeOfRoom.deleteService = function (id) {    
+    $.ajax({
+        url: `/typeOfRoomService/delete/${id}`,
+        method: 'PATCH',
+        dataType: 'JSON',
+        contentType: 'application/json',
+        success : function (reponse) {
+            if (reponse.data > 0) {
+                console.log("thanh cong");
+            } 
+        }             
+    });
+    
+}
 
-        var saveObj = {};
-        saveObj.TypeOfRoomId = idRoom;
-        //thêm phần tử vào mảng 
-        saveObj.ServiceId = [];
+
+typeOfRoom.saveService = function () {
+    if ($('#frmManagementService').valid()) {      
+        var formdata = new FormData();
+        formdata.append("TypeOfRoomId", parseInt($("#TypeOfRoomId").val()));
+
         for (var i = 0; i < typeOfRoom.arr.length; i++) {
             if (typeOfRoom.arr[i].checked == true) {
-                saveObj.ServiceId.push(parseInt(typeOfRoom.arr[i].value));
+                formdata.append("ServiceId", parseInt(typeOfRoom.arr[i].value));
+                
             }
         }
+        
+        typeOfRoom.deleteService($("#TypeOfRoomId").val());
+
         $.ajax({
             url: '/typeOfRoomService/save',
             method: 'POST',
             dataType: 'JSON',
-            contentType: 'application/json',
-            data: JSON.stringify(saveObj),
+            contentType: false,
+            processData: false,
+            data: formdata,
             success: function (response) {
                 bootbox.alert(response.data.message);
                 if (response.data.id > 0) {
-                    $('#addEditTypeOfRoomModal').modal('hide');
+                    $('#ManagementService').modal('hide');
                     $('#frmManagementService').trigger('reset');
-
                     typeOfRoom.showData();
                 }
             }
         });
-        console.log(saveObj.TypeOfRoomId);
+
     }
 }
 
@@ -196,8 +223,8 @@ typeOfRoom.delete = function (id) {
 }
 
 typeOfRoom.edit = function (id, name, amountAdults, amountChild, pricePerNight, status) {
-    $("#Id").val(id);              
-    $("#Name").val(name);                   
+    $("#Id").val(id);
+    $("#Name").val(name);
     $("#AmountAdults").val(amountAdults);
     $("#AmountChild").val(amountChild);
     $("#PricePerNight").val(pricePerNight);

@@ -34,7 +34,7 @@ namespace DatPhongDiWeb.Controllers
 
         [HttpPatch]
         [Route("/typeofroom/Save")]
-        public JsonResult Save([FromBody] SaveTypeOfRoom request)
+        public IActionResult Save([FromBody] SaveTypeOfRoom request)
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/Save", "PATCH", request);
             return Json(new { data = result });
