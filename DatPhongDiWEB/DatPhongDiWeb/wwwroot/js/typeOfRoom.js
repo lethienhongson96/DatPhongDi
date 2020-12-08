@@ -185,7 +185,8 @@ $('.closeManagementImage').on('click', function () {
     $("#ManagementImage").modal("hide");
     //Reset Values
     $("#UploadFile").trigger("reset");
-    $(".imgdiv").remove();
+    $("#newImages").empty();
+    $("#filelist").empty();
     typeOfRoom.ImageArr = [];
 });
 
