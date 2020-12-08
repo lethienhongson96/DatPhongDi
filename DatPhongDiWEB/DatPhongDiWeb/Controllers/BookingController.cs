@@ -44,5 +44,9 @@ namespace DatPhongDiWeb.Controllers
             var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Booking}");
             return Json(new { data = status });
         }
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
 }

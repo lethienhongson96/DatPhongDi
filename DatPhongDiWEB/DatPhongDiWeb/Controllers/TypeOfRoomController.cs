@@ -112,5 +112,17 @@ namespace DatPhongDiWeb.Controllers
             }
             return uniqueFileName;
         }
+        public IActionResult Detail()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CheckAvailable(CheckAvailable req)
+        {
+            ViewBag.CheckIn = req.CheckIn;
+            ViewBag.CheckOut = req.CheckOut;
+           var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            return View(data);
+        }
     }
 }

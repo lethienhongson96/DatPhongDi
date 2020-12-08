@@ -1,5 +1,6 @@
 ﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.TypeOfRoom;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -43,6 +44,13 @@ namespace DatPhongDi.API.Controllers
         public async Task<OkObjectResult> Gets()
         {
             var result = await typeOfRoomService.Gets();
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("api/TypeofRoom/CheckAvailable")]
+        public async Task<OkObjectResult> CheckAvailable([FromBody] CheckAvailable req)
+        {
+            var result = await typeOfRoomService.CheckAvailable(req);
             return Ok(result);
         }
     }
