@@ -78,5 +78,63 @@ namespace DatPhongDiWeb.Controllers
            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
+
+        [HttpGet]
+        [Route("/typeofroom/GetServiceByRoomtypeId/{id}")]
+        public JsonResult GetServiceByRoomtypeId(int id)
+        {
+            var result = ApiHelper<List<ViewServiceByRoomTypeId>>.HttpGetAsync($"TypeOfRoom/getservicebyroomtypeid/{id}");
+            return Json(new { data = result });
+        }
+
+        [HttpGet]
+        [Route("/TypeOfRoom/DeleteImages/{imageId}/{imgpath}")]
+        public JsonResult DeleteImages(int imageId, string imgpath)
+        {
+            var result = ApiHelper<DeleteImageRes>.HttpPostAsync($"image/delete/{imageId}", "POST", new object { });
+            if (result.ImageId > 0)
+            {
+                string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "images", imgpath);
+                System.IO.File.Delete(DelPath);
+            }
+            return Json(new { data = result });
+        }
+
+        [HttpPost]
+        [Route("/typeofroom/UploadImages")]
+        public JsonResult UploadImages(List<IFormFile> Files, int TypeOfRoomId)
+        {
+            int CountUploadSuccess = 0;
+            foreach (var item in Files)
+            {
+                string pathstr = UploadedFile(item);
+                ImageView imageView = new ImageView()
+                {
+                    ImageId = 0,
+                    ImagePath = pathstr,
+                    TypeOfRoomId = TypeOfRoomId
+                };
+                SaveImageRes result = ApiHelper<SaveImageRes>.HttpPostAsync($"image/save", "POST", imageView);
+
+                if (result.ImageId > 0)
+                    CountUploadSuccess++;
+            }
+            return Json(new { data = CountUploadSuccess });
+        }
+
+        private string UploadedFile(IFormFile iformfile_path)
+        {
+            string uniqueFileName = null;
+
+            if (iformfile_path != null)
+            {
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + iformfile_path.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                iformfile_path.CopyTo(fileStream);
+            }
+            return uniqueFileName;
+        }
     }
 }

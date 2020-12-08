@@ -40,7 +40,6 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = modules });
         }
 
-        /*SaveTypeOfRoomObjectReq request*/
         [HttpPost]
         [Route("/typeOfRoomService/save")]
         public JsonResult Save(int TypeOfRoomId,int[] ServiceId)

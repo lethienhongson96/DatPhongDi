@@ -1,5 +1,7 @@
 ﻿var typeOfRoom = {} || typeOfRoom;
 
+typeOfRoom.arr = [];
+
 typeOfRoom.showData = function () {
     $.ajax({
         url: '/TypeOfRoom/gets',
@@ -131,76 +133,6 @@ typeOfRoom.loadFile = function (event) {
     $("#newImages").children("div").css("margin-right", "10px");
 }
 
-typeOfRoom.arr = [];
-
-typeOfRoom.initService = function () {
-    $.ajax({
-        url: '/typeOfRoomService/GetsService',
-        method: 'GET',
-        dataType: 'JSON',
-        success: function (response) {
-            $('#ServiceId').empty();
-            $.each(response.data, function (i, v) {
-                $('#ServiceId').append(
-                    `<input id=${v.id} type="checkbox" value=${v.id}>
-                    <label>${v.name}</label><br>
-                    `
-                );
-                typeOfRoom.arr.push(document.getElementById(v.id));
-            });
-        }
-    });
-    console.log(typeOfRoom.arr);
-}
-
-// 1 khi click vào dịch vụ 
-typeOfRoom.ManagementService = function (id) {
-
-    // 2 xuất hiện 1 bảng check service
-    typeOfRoom.initService();
-    // Lấy tất cả dịch vụ của loại phòng
-    typeOfRoom.GetServiceByTypeOfRoomId(id);
-    // 3  show ra toàn bộ service
-    typeOfRoom.openModalManagementService();
-    $("#TypeOfRoomId").val(id);
-}
-
-typeOfRoom.openModalManagementService = function () {
-    $('#ManagementService').modal('show');
-}
-
-$('.closeButton').on('click', function () {
-    //Close Modal
-    $("#ManagementService").modal("hide");
-    //Reset Values
-    $("#frmManagementService").trigger("reset");
-    typeOfRoom.arr = [];
-});
-
-typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
-    $.ajax({
-        url: `/typeofroom/GetServiceByRoomtypeId/${id}`,
-        method: 'GET',
-        dataType: 'JSON',
-        success: function (response) {
-            var ServiceArr = [];
-
-            $.each(response.data, function (i, v) {
-                ServiceArr.push(v.id);
-            });
-
-            for (var i = 0; i < typeOfRoom.arr.length; i++) {
-                for (var j = 0; j < ServiceArr.length; j++) {
-                    if (typeOfRoom.arr[i].value == ServiceArr[j]) {
-                        typeOfRoom.arr[i].checked = true;
-                        break;
-                    }
-                }
-            }
-        }
-    });
-}
-
 typeOfRoom.removeImage = function (filename) {
     var delindex = -1;
     for (var i = 0; i < typeOfRoom.ImageArr.length; i++) {
@@ -251,16 +183,6 @@ $(".selectImage").change(function () {
         typeOfRoom.ImageArr.push(document.getElementById('images').files[i])
     }
     console.log(typeOfRoom.ImageArr);
-});
-
-$('.closeManagementImage').on('click', function () {
-    //Close Modal
-    $("#ManagementImage").modal("hide");
-    //Reset Values
-    $("#UploadFile").trigger("reset");
-    $("#newImages").empty();
-    $("#filelist").empty();
-    typeOfRoom.ImageArr = [];
 });
 
 typeOfRoom.deleteService = function (id) {
@@ -391,6 +313,39 @@ typeOfRoom.edit = function (id, name, amountAdults, amountChild, pricePerNight, 
     typeOfRoom.openModal();
 }
 
+// 1 khi click vào dịch vụ 
+typeOfRoom.ManagementService = function (id) {
+
+    typeOfRoom.GetServiceByTypeOfRoomId(id);
+    // 3  show ra toàn bộ service
+    typeOfRoom.openModalManagementService();
+    $("#TypeOfRoomId").val(id);
+}
+
+typeOfRoom.GetServiceByTypeOfRoomId = function (id) {
+    $.ajax({
+        url: `/typeofroom/GetServiceByRoomtypeId/${id}`,
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            var ServiceArr = [];
+
+            $.each(response.data, function (i, v) {
+                ServiceArr.push(v.id);
+            });
+
+            for (var i = 0; i < typeOfRoom.arr.length; i++) {
+                for (var j = 0; j < ServiceArr.length; j++) {
+                    if (typeOfRoom.arr[i].value == ServiceArr[j]) {
+                        typeOfRoom.arr[i].checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    });
+}
+
 typeOfRoom.initStatus = function (defaultStatus) {
     $.ajax({
         url: '/TypeOfRoom/status/gets',
@@ -408,6 +363,30 @@ typeOfRoom.initStatus = function (defaultStatus) {
     });
 }
 
+typeOfRoom.initService = function () {
+    $.ajax({
+        url: '/typeOfRoomService/GetsService',
+        method: 'GET',
+        dataType: 'JSON',
+        success: function (response) {
+            $('#ServiceId').empty();
+            $.each(response.data, function (i, v) {
+                $('#ServiceId').append(
+                    `<input id=${v.id} type="checkbox" value=${v.id}>
+                    <label>${v.name}</label><br>
+                    `
+                );
+                typeOfRoom.arr.push(document.getElementById(v.id));
+            });
+        }
+    });
+    console.log(typeOfRoom.arr);
+}
+
+typeOfRoom.openModalManagementService = function () {
+    $('#ManagementService').modal('show');
+}
+
 typeOfRoom.openModal = function () {
     $('#addEditTypeOfRoomModal').modal('show');
 }
@@ -416,17 +395,35 @@ typeOfRoom.openModalManagementImage = function () {
     $('#ManagementImage').modal('show');
 }
 
-$('#closeButton').on('click', function () {
+$('.closeAddEditTypeOfRoomModal').on('click', function () {
     //Close Modal
     $(".modal").modal("hide");
     //Reset Values
     $("#frmAddEditTypeOfRoom").trigger("reset");
 });
 
+$('.closeManagementImage').on('click', function () {
+    //Close Modal
+    $("#ManagementImage").modal("hide");
+    //Reset Values
+    $("#UploadFile").trigger("reset");
+    $("#newImages").empty();
+    $("#filelist").empty();
+    typeOfRoom.ImageArr = [];
+});
+
+$('.closeManagementService').on('click', function () {
+    //Close Modal
+    $("#ManagementService").modal("hide");
+    //Reset Values
+    $("#frmManagementService").trigger("reset");
+    //typeOfRoom.arr = [];
+});
 
 typeOfRoom.init = function () {
     typeOfRoom.showData();
     typeOfRoom.initStatus();
+    typeOfRoom.initService();
 }
 
 $(document).ready(function () {
