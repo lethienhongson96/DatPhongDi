@@ -10,5 +10,7 @@
         public int AmountChild { get; set; }
         public int PricePerNight { get; set; }
         public string Message { get; set; }
+        public int Size { get; set; }
+        public string ImagePath { get; set; }
     }
 }

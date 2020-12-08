@@ -117,17 +117,10 @@ namespace DatPhongDiWeb.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CheckAvailable([FromBody] CheckAvailable req)
+        public IActionResult CheckAvailable(CheckAvailable req)
         {
             var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
-        }
-        [HttpGet]
-        public IActionResult GetsWeb()
-        {
-            //var data = ApiHelper<List<TypeofRoomView>>.HttpGetAsync($"TypeOfRoom/gets");
-            //return View(data);
-            return View();
         }
     }
 }

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DatPhongDiWeb.Models.TypeOfRoom.TypeofRoomView>
+
+    @{
+        var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+        Layout = "_LayoutThemesHotelBootraps";
+    }
+
+    <section class="rooms-section spad">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="room-item">
+                            <img src="~/images/@item.ImagePath" alt="">
+                            <div class="ri-text">
+                                <h4>@item.Name</h4>
+                                <h3>@String.Format(info, "{0:#,##0 đ}", item.PricePerNight)<span>/đêm</span></h3>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Kích cỡ phòng:</td>
+                                            <td>@item.Size<a>m<sup>2</sup></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Số người lớn:</td>
+                                            <td>@item.AmountAdults</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Số trẻ em:</td>
+                                            <td>@item.AmountChild</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Services:</td>
+                                            <td>Wifi, Television, Bathroom,...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="#" class="primary-btn">More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-lg-12">
+                    <div class="room-pagination">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
