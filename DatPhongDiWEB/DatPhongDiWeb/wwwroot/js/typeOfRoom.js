@@ -47,6 +47,7 @@ typeOfRoom.ModalManagementImage = function (typeOfRoomId,roomtypename) {
         contentType: 'application/json',
         success: function (response) {
             console.log(response.data);
+            $("#filelist").empty();
             for (var i = 0; i < response.data.length; i++) {
                 var imgdiv = `<div class="imgdiv" style="display: inline-block;width:215;height:215" >`
                 imgdiv += `<img src=images/${response.data[i].imagePath} width=200 height=200 />`;
@@ -161,10 +162,10 @@ typeOfRoom.UploadImages = function () {
         success: function (response) {
             console.log(response.data);
             bootbox.alert('Đả upload ' + response.data + ' ảnh thành công!');
-            /*$("#ManagementImage").modal("hide");*/
             //Reset Values
             $("#UploadFile").trigger("reset");
             $("#newImages").empty();
+            typeOfRoom.ImageArr = [];
             typeOfRoom.ModalManagementImage(RoomTypeId, $("#TypeofroomName").val());
         }
     });
@@ -184,7 +185,8 @@ $('.closeManagementImage').on('click', function () {
     $("#ManagementImage").modal("hide");
     //Reset Values
     $("#UploadFile").trigger("reset");
-    $(".imgdiv").remove();
+    $("#newImages").empty();
+    $("#filelist").empty();
     typeOfRoom.ImageArr = [];
 });
 
