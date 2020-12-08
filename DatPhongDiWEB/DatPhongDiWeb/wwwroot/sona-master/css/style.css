@@ -2336,4 +2336,32 @@ ul, ol {
 	.blog-details-text .comment-option .single-comment-item .sc-text a {
 		margin-bottom: 10px;
 	}
+	.button-slide span{
+		color: white;
+		font-size: 60px;
+	}
+	span#btn-prev{
+		position: absolute;
+		top: 40%;
+		left: 0%;
+		z-index: 10;
+		cursor: pointer;
+	}
+	span#btn-next {
+		position: absolute;
+		top: 40%;
+		left: 0%;
+		z-index: 10;
+		cursor: pointer;
+	}
+	.all-slide{
+		position: relative;
+	}
+	.one-slide{
+		overflow:hidden;
+	}
+	.slide{
+		position: relative;
+		width: 200%
+	}
 }

@@ -148,7 +148,7 @@ room.Delete = function (id) {
         callback: function (result) {
             if (result) {
                 $.ajax({
-                    url: `/room/delete/${id}`,
+                    url: `/Room/delete/${id}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function (response) {
