@@ -42,8 +42,10 @@ namespace DatPhongDi.DAL.Implement
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@AmountAdults", req.AmountAdults);
                 parameters.Add("@AmountChild", req.AmountChild);
-                parameters.Add("@CheckIn", req.CheckIn.ToString());
-                parameters.Add("@CheckOut", req.CheckOut.ToString());
+                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+                parameters.Add("@CheckIn", CheckInStr);
+                parameters.Add("@CheckOut", CheckOutStr);
                 result = await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
                                                                     sql: "sp_CheckAvailable",
                                                                     param: parameters,
