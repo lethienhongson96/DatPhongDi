@@ -72,6 +72,7 @@ namespace DatPhongDiWeb.Controllers
         {
             CheckTypeOfRoomAvailable checkTypeOfRoomAvailable = new CheckTypeOfRoomAvailable() { Id = Id, CheckIn = CheckIn, CheckOut = CheckOut};
             var result = ApiHelper<RoomTypeDetailView>.HttpPostAsync($"TypeOfRoom/GetAvailableTypeOfRoom", "POST", checkTypeOfRoomAvailable);
+            result.Images= ApiHelper<List<ImageView>>.HttpGetAsync($"image/getImagesByTypeOfRoomId/{Id}");
             return View(result);
         }
 
