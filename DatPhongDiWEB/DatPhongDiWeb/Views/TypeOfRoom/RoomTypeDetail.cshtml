@@ -1,6 +1,7 @@
-﻿
+﻿@model DatPhongDiWeb.Models.TypeOfRoom.RoomTypeDetailView
 @{
     Layout = "_LayoutThemesHotelBootraps";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
 <div class="breadcrumb-section">
@@ -78,24 +79,24 @@
             <div class="col-lg-4">
                 <div class="room-details-item">
                     <div class="rd-text">
-                        <h2>159$<span>/Pernight</span></h2>
+                        <h2>@String.Format(info, "{0:#,##0 đ}", Model.PricePerNight)<span>/đêm</span></h2>
                         <table>
                             <tbody>
                                 <tr>
                                     <td class="r-o text-danger">Số phòng trống:</td>
-                                    <td class="text-danger">5</td>
+                                    <td class="text-danger">@Model.AmountAvailableRoom</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
+                                    <td class="r-o">Kích cỡ phòng:</td>
+                                    <td>@Model.Size</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 5</td>
+                                    <td class="r-o">Số người lớn:</td>
+                                    <td>@Model.AmountAdults</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
+                                    <td class="r-o">Số trẻ em:</td>
+                                    <td>@Model.AmountChild</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Services:</td>

@@ -4,6 +4,7 @@ using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Models.TypeOfRoomService;
 using DatPhongDiWeb.Ultilities;
+using DatPhongDiWeb.Views.TypeOfRoom;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -68,9 +69,11 @@ namespace DatPhongDiWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult RoomTypeDetail(int Id)
+        public IActionResult RoomTypeDetail(int Id, DateTime CheckIn, DateTime CheckOut)
         {
-            return View();
+            CheckTypeOfRoomAvailable checkTypeOfRoomAvailable = new CheckTypeOfRoomAvailable() { Id = Id, CheckIn = CheckIn, CheckOut = CheckOut};
+            var result = ApiHelper<RoomTypeDetailView>.HttpPostAsync($"TypeOfRoom/GetAvailableTypeOfRoom", "POST", checkTypeOfRoomAvailable);
+            return View(result);
         }
 
         [HttpPost]

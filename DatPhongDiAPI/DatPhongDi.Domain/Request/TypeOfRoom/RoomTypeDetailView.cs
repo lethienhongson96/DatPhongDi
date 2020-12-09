@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DatPhongDi.Domain.Response.Image;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace DatPhongDiWeb.Models.TypeOfRoom
+namespace DatPhongDi.Domain.Request.TypeOfRoom
 {
     public class RoomTypeDetailView
     {
@@ -13,6 +13,5 @@ namespace DatPhongDiWeb.Models.TypeOfRoom
         public int PricePerNight { get; set; }
         public int Size { get; set; }
         public int AmountAvailableRoom { get; set; }
-        public List<ImageView> Images { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DatPhongDiWeb.Models.TypeOfRoom
+﻿using System;
+
+namespace DatPhongDiWeb.Models.TypeOfRoom
 {
     public class TypeofRoomView 
     {
@@ -12,5 +14,7 @@
         public string Message { get; set; }
         public int Size { get; set; }
         public string ImagePath { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
     }
 }
