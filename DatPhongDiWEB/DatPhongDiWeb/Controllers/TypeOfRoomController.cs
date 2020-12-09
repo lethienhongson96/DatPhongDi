@@ -64,18 +64,21 @@ namespace DatPhongDiWeb.Controllers
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
             return Json(new { data = result });
-            
+
         }
-        public IActionResult Detail()
+
+        [HttpGet]
+        public IActionResult RoomTypeDetail(int Id)
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
             ViewBag.CheckIn = req.CheckIn;
             ViewBag.CheckOut = req.CheckOut;
-           var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
 
