@@ -69,6 +69,18 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<RoomTypeDetailView> GetAvailableTypeOfRoom([FromBody] CheckTypeOfRoomAvailableReq req)
+        {
+            DynamicParameters dynamic = new DynamicParameters();
+            dynamic.Add("@Id", req.Id);
+            dynamic.Add("@CheckIn", req.CheckIn);
+            dynamic.Add("@CheckOut", req.CheckOut);
+            return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
+                                                                                    sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
+                                                                                    dynamic,
+                                                                                    commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<IEnumerable<TypeOfRoomView>> Gets()
         {
             return await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
