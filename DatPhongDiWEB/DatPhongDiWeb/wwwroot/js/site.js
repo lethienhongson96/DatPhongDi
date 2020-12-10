@@ -146,14 +146,16 @@ $('.clear-cart').click(function () {
 
 //title for cart modal
 $(document).ready(function () {
-    debugger;
     var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
     if (bookingdatecopy == null) {
         checkin = $("#date-in").val();
         checkout = $("#date-out").val();
         bookingdate.savebookingdate(checkin, checkout);
+        $("#exampleModalLabel").html(bookingdate.title);
+    } else {
+        $("#exampleModalLabel").html(bookingdatecopy.title);
     }
-    $("#exampleModalLabel").html(bookingdate.title);
+    
 });
 
 $(".date-input").on("change", function () {
