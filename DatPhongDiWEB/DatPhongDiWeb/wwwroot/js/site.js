@@ -196,14 +196,9 @@ $(document).ready(function () {
     } else {
         $("#exampleModalLabel").html(bookingdatecopy.title);
     }
-    var currentroomtypecopy = JSON.parse(sessionStorage.getItem('currentroomtype'));
     var limitamountroom = $("#limitamountroom").data("limitamount");
-    var roomtypeidcurrent = $("#limitamountroom").data("roomtypeidcurrent");
-
-    if (currentroomtypecopy == null && limitamountroom != undefined) {
-        shoppingCart.savecurrentroomtype(limitamountroom, roomtypeidcurrent);
-    }
     if (limitamountroom != undefined) {
+        var roomtypeidcurrent = $("#limitamountroom").data("roomtypeidcurrent");
         shoppingCart.savecurrentroomtype(limitamountroom, roomtypeidcurrent);
     }
 });
