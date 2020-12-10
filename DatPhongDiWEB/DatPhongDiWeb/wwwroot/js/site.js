@@ -65,13 +65,18 @@ var shoppingCart = (function () {
         return cart.length;
     }
 
+    //format currency vnd style
+    obj.formatcurrency = function (money) {
+        return money.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+    }
+
     // Total cart
     obj.totalCart = function () {
         var totalCart = 0;
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].amountnight;
         }
-        return Number(totalCart.toFixed(2));
+        return this.formatcurrency(totalCart);
     }
 
     // List cart copy from cart and create properties total = item.price * item.count
@@ -83,7 +88,7 @@ var shoppingCart = (function () {
             for (p in item) {
                 itemCopy[p] = item[p];
             }
-            itemCopy.total = Number(item.price * item.amountnight).toFixed(2);
+            itemCopy.total = item.price * item.amountnight;
             cartCopy.push(itemCopy)
         }
         return cartCopy;
@@ -174,9 +179,9 @@ function displayCart() {
     for (var i in cartArray) {
         output += "<tr rowspan='2'>"
             + "<td >" + cartArray[i].name + "</td>"
-            + "<td>" + cartArray[i].price + "</td>"
+            + "<td>" + shoppingCart.formatcurrency(cartArray[i].price ) + "</td>"
             + "<td>" + cartArray[i].amountnight + "</td>"
-            + "<td>" + cartArray[i].total + "</td>"
+            + "<td>" + shoppingCart.formatcurrency(cartArray[i].total) + "</td>"
             + `<td><button class='delete-item btn btn-danger' data-roomtypeid=${cartArray[i].roomtypeid} >X</button></td>`
             + "</tr>";
     }
