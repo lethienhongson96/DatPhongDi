@@ -35,6 +35,8 @@ var shoppingCart = (function () {
     var obj = {};
 
     obj.bookingdate = "";
+    obj.checkindate = new Date();
+    obj.checkoutdate = new Date();
     // Add to cart
 
     obj.Savebookingdate = function (checkin, checkout) {
@@ -49,28 +51,6 @@ var shoppingCart = (function () {
         saveCart();
         console.log(cart);
     }
-    // Set count from item
-    //obj.setCountForItem = function (name, count) {
-    //    for (var i in cart) {
-    //        if (cart[i].name === name) {
-    //            cart[i].count = count;
-    //            break;
-    //        }
-    //    }
-    //};
-    // Remove item from cart
-    //obj.removeItemFromCart = function (name) {
-    //    for (var item in cart) {
-    //        if (cart[item].name === name) {
-    //            cart[item].count--;
-    //            if (cart[item].count === 0) {
-    //                cart.splice(item, 1);
-    //            }
-    //            break;
-    //        }
-    //    }
-    //    saveCart();
-    //}
 
     // Remove all items from cart
     obj.removeItemFromCartAll = function (roomtypeid) {
@@ -159,15 +139,27 @@ $(document).ready(function () {
     if (shoppingCart.bookingdate == null) {
         checkin = $("#date-in").val();
         checkout = $("#date-out").val();
+        shoppingCart.checkindate = new Date(checkin);
+        shoppingCart.checkoutdate = new Date(checkout);
+        var millisecondsPerDay = 1000 * 60 * 60 * 24;
+        var millisBetween = shoppingCart.checkoutdate.getTime() - shoppingCart.checkindate.getTime();
+        var days = millisBetween / millisecondsPerDay;
+        console.log(Math.floor(days));
         shoppingCart.Savebookingdate(checkin, checkout);
     }
     $("#exampleModalLabel").html(shoppingCart.bookingdate);
 });
 
 $(".date-input").on("change", function () {
-    var checkindate = $("#date-in").val();
-    var checkoutdate = $("#date-out").val();
-    shoppingCart.Savebookingdate(checkindate, checkoutdate);
+    var checkin = $("#date-in").val();
+    var checkout = $("#date-out").val();
+    shoppingCart.checkindate = new Date(checkin);
+    shoppingCart.checkoutdate = new Date(checkout);
+    shoppingCart.Savebookingdate(checkin, checkout);
+    var millisecondsPerDay = 1000 * 60 * 60 * 24;
+    var millisBetween = shoppingCart.checkoutdate.getTime() - shoppingCart.checkindate.getTime();
+    var days = millisBetween / millisecondsPerDay;
+    console.log(Math.floor(days));
     $("#exampleModalLabel").html(shoppingCart.bookingdate);
 });
 //end title for cart modal
