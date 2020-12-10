@@ -15,6 +15,12 @@ var shoppingCart = (function () {
         this.roomtypeid = roomtypeid;
     }
 
+    // Constructor current roomtype
+    function CurrentRoomtype(limitamountroom, roomtypeidcurrent) {
+        this.limitamountroom = limitamountroom;
+        this.roomtypeidcurrent = roomtypeidcurrent;
+    }
+
     // Save cart 
     function saveCart() {
         sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
@@ -40,7 +46,32 @@ var shoppingCart = (function () {
         var item = new Item(name, price, amountnight, roomtypeid);
         cart.push(item);
         saveCart();
-        console.log(cart);
+    }
+
+    //save currentroomtype
+    obj.savecurrentroomtype = function (limitamountroom, roomtypeidcurrent) {
+        var currentroomtype = new CurrentRoomtype(limitamountroom, roomtypeidcurrent);
+        sessionStorage.setItem('currentroomtype', JSON.stringify(currentroomtype));
+    }
+
+    //check over limit
+    obj.isoverlimit = function (roomtypeid) {
+        var currentroomtype = JSON.parse(sessionStorage.getItem("currentroomtype"));
+        if (currentroomtype == null) {
+            return true;
+        }
+        var countroomtype = 0;
+
+        for (var item in cart) {
+            if (cart[item].roomtypeid == roomtypeid) {
+                countroomtype++;
+            }
+        }
+        console.log(countroomtype);
+        if (countroomtype < currentroomtype.limitamountroom) {
+            return true;
+        }
+        return false;
     }
 
     // Remove all items from cart
@@ -135,12 +166,17 @@ bookingdate.savebookingdate = function (checkin, checkout) {
 // Add item
 $('.add-to-cart').click(function (event) {
     event.preventDefault();
+    debugger
     var name = $(this).data('name');
     var price = Number($(this).data('price'));
     var roomtypeid = Number($(this).data('roomtypeid'));
-    var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
-    shoppingCart.addItemToCart(name, price, bookingdatecopy.amountnight, roomtypeid);
-    displayCart();
+    if (shoppingCart.isoverlimit(roomtypeid) == true) {
+        var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
+        shoppingCart.addItemToCart(name, price, bookingdatecopy.amountnight, roomtypeid);
+        displayCart();
+    } else {
+        bootbox.alert("Đả hết phòng trống!");
+    }
 });
 
 // Clear items
@@ -160,7 +196,16 @@ $(document).ready(function () {
     } else {
         $("#exampleModalLabel").html(bookingdatecopy.title);
     }
-    
+    var currentroomtypecopy = JSON.parse(sessionStorage.getItem('currentroomtype'));
+    var limitamountroom = $("#limitamountroom").data("limitamount");
+    var roomtypeidcurrent = $("#limitamountroom").data("roomtypeidcurrent");
+
+    if (currentroomtypecopy == null && limitamountroom != undefined) {
+        shoppingCart.savecurrentroomtype(limitamountroom, roomtypeidcurrent);
+    }
+    if (limitamountroom != undefined) {
+        shoppingCart.savecurrentroomtype(limitamountroom, roomtypeidcurrent);
+    }
 });
 
 $(".date-input").on("change", function () {
@@ -170,6 +215,7 @@ $(".date-input").on("change", function () {
     $("#exampleModalLabel").html(bookingdate.title);
 });
 //end title for cart modal
+
 
 function displayCart() {
     var cartArray = shoppingCart.listCart();
@@ -210,5 +256,3 @@ $('.show-cart').on("change", ".item-count", function (event) {
     shoppingCart.setCountForItem(name, count);
     displayCart();
 });
-
-displayCart();

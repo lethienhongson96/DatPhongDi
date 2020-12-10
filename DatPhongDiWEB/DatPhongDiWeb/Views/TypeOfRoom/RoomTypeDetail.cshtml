@@ -98,7 +98,11 @@
                             <tbody>
                                 <tr>
                                     <td class="r-o text-danger">Số phòng trống:</td>
-                                    <td class="text-danger">@Model.AmountAvailableRoom</td>
+                                    <td class="text-danger" id="limitamountroom"
+                                        data-limitamount="@Model.AmountAvailableRoom"
+                                        data-roomtypeidcurrent="@ViewBag.RoomTypeId">
+                                        @Model.AmountAvailableRoom
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Kích cỡ phòng:</td>
