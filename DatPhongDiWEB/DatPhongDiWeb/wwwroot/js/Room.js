@@ -10,8 +10,7 @@ room.showData = function () {
             $('#tbRoom>tbody').empty();
             $.each(response.data, function (i, v) {
                 $('#tbRoom>tbody').append(
-                    `<tr>
-                        <td>${v.id}</td>
+                    `<tr>                       
                         <td>${v.name}</td>                     
                         <td>${v.statusName}</td>
                         <td>${v.typeOfRoomName}</td>

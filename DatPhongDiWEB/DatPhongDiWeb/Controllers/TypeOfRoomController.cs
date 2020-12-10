@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace DatPhongDiWeb.Controllers
@@ -64,7 +65,7 @@ namespace DatPhongDiWeb.Controllers
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
             return Json(new { data = result });
-            
+
         }
         public IActionResult Detail()
         {
@@ -73,9 +74,19 @@ namespace DatPhongDiWeb.Controllers
         [HttpPost]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
-            ViewBag.CheckIn = req.CheckIn;
+            /*CultureInfo culture = new CultureInfo("en-US");*/
+            /*var a = req.CheckIn.ToString();
+            req.CheckIn = DateTime.Parse(a, culture, DateTimeStyles.NoCurrentDateDefault);*/
+            /*var Day = req.CheckOut.Day;
+            var Month = req.CheckOut.Month;
+            var Year = req.CheckOut.Year;
+            var date =  Year + "-" + Month + "-" +Day;
+            req.CheckOut = DateTime.ParseExact(date, "yyyy-MM-dd", culture);*/
+            /*ViewBag.CheckIn = req.CheckIn;
             ViewBag.CheckOut = req.CheckOut;
-           var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            req.CheckIn = req.CheckIn.ToUniversalTime();
+            req.CheckOut = req.CheckOut.ToUniversalTime();*/
+            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
 
