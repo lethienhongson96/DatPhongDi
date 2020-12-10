@@ -14,5 +14,6 @@ namespace DatPhongDi.BAL.Interface
         Task<IEnumerable<TypeOfRoomView>> Gets();
         Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId);
         Task<IEnumerable<TypeOfRoomView>> CheckAvailable([FromBody] CheckAvailable req);
+        Task<IEnumerable<TypeOfRoomView>> GetsForView();
     }
 }

@@ -75,7 +75,7 @@ namespace DatPhongDiWeb.Controllers
         {
             ViewBag.CheckIn = req.CheckIn;
             ViewBag.CheckOut = req.CheckOut;
-           var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
+            var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
 

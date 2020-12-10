@@ -14,5 +14,6 @@ namespace DatPhongDi.DAL.Interface
         Task<IEnumerable<ViewServiceByRoomTypeId>> GetServiceByRoomTypeId(int TypeOfRoomId);
         Task<IEnumerable<TypeOfRoomView>> Gets();
         Task<IEnumerable<TypeOfRoomView>> CheckAvailable([FromBody] CheckAvailable req);
+        Task<IEnumerable<TypeOfRoomView>> GetsForView();
     }
 }

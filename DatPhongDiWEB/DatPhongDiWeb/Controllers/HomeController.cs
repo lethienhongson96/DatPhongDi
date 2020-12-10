@@ -1,6 +1,9 @@
 ﻿using DatPhongDiWeb.Models;
+using DatPhongDiWeb.Models.TypeOfRoom;
+using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DatPhongDiWeb.Controllers
@@ -26,7 +29,8 @@ namespace DatPhongDiWeb.Controllers
 
         public IActionResult ViewTypeOfRooms()
         {
-            return View();
+            var typeofRoom = ApiHelper<List<TypeofRoomView>>.HttpGetAsync("TypeOfRoom/GetsForView");
+            return View(typeofRoom);
         }
 
         public IActionResult Privacy()

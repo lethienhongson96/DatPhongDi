@@ -85,6 +85,13 @@ namespace DatPhongDi.DAL.Implement
                                                    commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<IEnumerable<TypeOfRoomView>> GetsForView()
+        {
+            return await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
+                                                    sql: "sp_GetTypeOfRoomAndImage",
+                                                    commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)
         {
             SaveTypeOfRoomRes Result = new SaveTypeOfRoomRes();
