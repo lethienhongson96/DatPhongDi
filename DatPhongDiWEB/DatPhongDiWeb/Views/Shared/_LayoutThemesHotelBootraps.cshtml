@@ -116,7 +116,7 @@
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                             <a href="#" class="bk-btn">Đặt phòng ngay</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart(<span class="total-count">0</span>)</button>
                             <div class="language-option">
                                 <img src="~/sona-master/img/covietnam.png" class="rounded-0"
                                      style="width: 30px; height: 20px; margin-bottom: 3px" alt="">
@@ -152,11 +152,11 @@
 
                             </tbody>
                         </table>
-                        <div>Total price: $<span class="total-cart"></span></div>
+                        <div>Tổng giá Booking: <span class="total-cart"></span></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Order now</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary">Xác nhận đặt phòng</button>
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Trang chủ</a></li>
+                                    <li class="active"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                                     <li><a asp-controller="Home" asp-action="ViewTypeOfRooms">Phòng</a></li>
                                     <li><a href="./about-us.html">Về chúng tôi</a></li>
                                     <li>

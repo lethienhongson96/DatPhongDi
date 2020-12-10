@@ -34,16 +34,7 @@ var shoppingCart = (function () {
     // =============================
     var obj = {};
 
-    obj.bookingdate = "";
-    obj.checkindate = new Date();
-    obj.checkoutdate = new Date();
     // Add to cart
-
-    obj.Savebookingdate = function (checkin, checkout) {
-        sessionStorage.setItem('bookingdate', checkin + " Đến ngày " + checkout);
-        obj.bookingdate = sessionStorage.getItem('bookingdate');
-    }
-
     obj.addItemToCart = function (name, price, amountnight, roomtypeid) {
        
         var item = new Item(name, price, amountnight, roomtypeid);
@@ -78,7 +69,7 @@ var shoppingCart = (function () {
     obj.totalCart = function () {
         var totalCart = 0;
         for (var item in cart) {
-            totalCart += cart[item].price * cart[item].count;
+            totalCart += cart[item].price * cart[item].amountnight;
         }
         return Number(totalCart.toFixed(2));
     }
@@ -112,6 +103,26 @@ var shoppingCart = (function () {
     return obj;
 })();
 
+var bookingdate = {};
+
+bookingdate.title = "";
+bookingdate.amountnight = 0;
+bookingdate.checkindate = new Date();
+bookingdate.checkoutdate = new Date();
+
+bookingdate.savebookingdate = function (checkin, checkout) {
+
+    bookingdate.title = checkin + " Đến ngày " + checkout;
+    bookingdate.checkindate = new Date(checkin);
+    bookingdate.checkoutdate = new Date(checkout);
+
+    var millisecondsPerDay = 1000 * 60 * 60 * 24;
+    var millisBetween = bookingdate.checkoutdate.getTime() - bookingdate.checkindate.getTime();
+    var days = millisBetween / millisecondsPerDay;
+    bookingdate.amountnight = Math.floor(days);
+    sessionStorage.setItem('bookingdate', JSON.stringify(bookingdate));
+}
+
 
 // *****************************************
 // Triggers / Events
@@ -122,7 +133,8 @@ $('.add-to-cart').click(function (event) {
     var name = $(this).data('name');
     var price = Number($(this).data('price'));
     var roomtypeid = Number($(this).data('roomtypeid'));
-    shoppingCart.addItemToCart(name, price, 1, roomtypeid);
+    var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
+    shoppingCart.addItemToCart(name, price, bookingdatecopy.amountnight, roomtypeid);
     displayCart();
 });
 
@@ -135,40 +147,28 @@ $('.clear-cart').click(function () {
 //title for cart modal
 $(document).ready(function () {
     debugger;
-    shoppingCart.bookingdate = sessionStorage.getItem('bookingdate');
-    if (shoppingCart.bookingdate == null) {
+    var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
+    if (bookingdatecopy == null) {
         checkin = $("#date-in").val();
         checkout = $("#date-out").val();
-        shoppingCart.checkindate = new Date(checkin);
-        shoppingCart.checkoutdate = new Date(checkout);
-        var millisecondsPerDay = 1000 * 60 * 60 * 24;
-        var millisBetween = shoppingCart.checkoutdate.getTime() - shoppingCart.checkindate.getTime();
-        var days = millisBetween / millisecondsPerDay;
-        console.log(Math.floor(days));
-        shoppingCart.Savebookingdate(checkin, checkout);
+        bookingdate.savebookingdate(checkin, checkout);
     }
-    $("#exampleModalLabel").html(shoppingCart.bookingdate);
+    $("#exampleModalLabel").html(bookingdate.title);
 });
 
 $(".date-input").on("change", function () {
     var checkin = $("#date-in").val();
     var checkout = $("#date-out").val();
-    shoppingCart.checkindate = new Date(checkin);
-    shoppingCart.checkoutdate = new Date(checkout);
-    shoppingCart.Savebookingdate(checkin, checkout);
-    var millisecondsPerDay = 1000 * 60 * 60 * 24;
-    var millisBetween = shoppingCart.checkoutdate.getTime() - shoppingCart.checkindate.getTime();
-    var days = millisBetween / millisecondsPerDay;
-    console.log(Math.floor(days));
-    $("#exampleModalLabel").html(shoppingCart.bookingdate);
+    bookingdate.savebookingdate(checkin, checkout);
+    $("#exampleModalLabel").html(bookingdate.title);
 });
 //end title for cart modal
 
 function displayCart() {
     var cartArray = shoppingCart.listCart();
-    console.log(shoppingCart.listCart());
+    var bookingdateinfo = JSON.parse(sessionStorage.getItem('bookingdate'));
     var output = "";
-    $("#exampleModalLabel").html(shoppingCart.bookingdate);
+    $("#exampleModalLabel").html(bookingdateinfo.title);
     for (var i in cartArray) {
         output += "<tr rowspan='2'>"
             + "<td >" + cartArray[i].name + "</td>"
