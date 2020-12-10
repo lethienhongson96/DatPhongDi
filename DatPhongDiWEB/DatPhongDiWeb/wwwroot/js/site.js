@@ -8,10 +8,10 @@ var shoppingCart = (function () {
     cart = [];
 
     // Constructor
-    function Item(name, price, count) {
+    function Item(name, price, amountnight) {
         this.name = name;
         this.price = price;
-        this.count = count;
+        this.amountnight = amountnight;
     }
 
     // Save cart 
@@ -33,41 +33,43 @@ var shoppingCart = (function () {
     // =============================
     var obj = {};
 
+    obj.bookingdate = "";
     // Add to cart
-    obj.addItemToCart = function (name, price, count) {
-        for (var item in cart) {
-            if (cart[item].name === name) {
-                cart[item].count++;
-                saveCart();
-                return;
-            }
-        }
-        var item = new Item(name, price, count);
+
+    obj.Savebookingdate = function (checkin, checkout) {
+        sessionStorage.setItem('bookingdate', checkin + " Đến ngày " + checkout);
+        obj.bookingdate = sessionStorage.getItem('bookingdate');
+    }
+
+    obj.addItemToCart = function (name, price, amountnight) {
+       
+        var item = new Item(name, price, amountnight);
         cart.push(item);
         saveCart();
+        console.log(cart);
     }
     // Set count from item
-    obj.setCountForItem = function (name, count) {
-        for (var i in cart) {
-            if (cart[i].name === name) {
-                cart[i].count = count;
-                break;
-            }
-        }
-    };
+    //obj.setCountForItem = function (name, count) {
+    //    for (var i in cart) {
+    //        if (cart[i].name === name) {
+    //            cart[i].count = count;
+    //            break;
+    //        }
+    //    }
+    //};
     // Remove item from cart
-    obj.removeItemFromCart = function (name) {
-        for (var item in cart) {
-            if (cart[item].name === name) {
-                cart[item].count--;
-                if (cart[item].count === 0) {
-                    cart.splice(item, 1);
-                }
-                break;
-            }
-        }
-        saveCart();
-    }
+    //obj.removeItemFromCart = function (name) {
+    //    for (var item in cart) {
+    //        if (cart[item].name === name) {
+    //            cart[item].count--;
+    //            if (cart[item].count === 0) {
+    //                cart.splice(item, 1);
+    //            }
+    //            break;
+    //        }
+    //    }
+    //    saveCart();
+    //}
 
     // Remove all items from cart
     obj.removeItemFromCartAll = function (name) {
@@ -104,7 +106,7 @@ var shoppingCart = (function () {
         return Number(totalCart.toFixed(2));
     }
 
-    // List cart
+    // List cart copy from cart and create properties total = item.price * item.count
     obj.listCart = function () {
         var cartCopy = [];
         for (i in cart) {
@@ -112,9 +114,8 @@ var shoppingCart = (function () {
             itemCopy = {};
             for (p in item) {
                 itemCopy[p] = item[p];
-
             }
-            itemCopy.total = Number(item.price * item.count).toFixed(2);
+            itemCopy.total = Number(item.price * item.amountnight).toFixed(2);
             cartCopy.push(itemCopy)
         }
         return cartCopy;
@@ -153,23 +154,41 @@ $('.clear-cart').click(function () {
     displayCart();
 });
 
+//title for cart modal
+$(document).ready(function () {
+    debugger;
+    shoppingCart.bookingdate = sessionStorage.getItem('bookingdate');
+    if (shoppingCart.bookingdate == null) {
+        checkin = $("#date-in").val();
+        checkout = $("#date-out").val();
+        shoppingCart.Savebookingdate(checkin, checkout);
+    }
+    $("#exampleModalLabel").html(shoppingCart.bookingdate);
+});
+
+$(".date-input").on("change", function () {
+    var checkindate = $("#date-in").val();
+    var checkoutdate = $("#date-out").val();
+    shoppingCart.Savebookingdate(checkindate, checkoutdate);
+    $("#exampleModalLabel").html(shoppingCart.bookingdate);
+});
+//end title for cart modal
 
 function displayCart() {
     var cartArray = shoppingCart.listCart();
+    console.log(shoppingCart.listCart());
     var output = "";
+    $("#exampleModalLabel").html(shoppingCart.bookingdate);
     for (var i in cartArray) {
-        output += "<tr>"
-            + "<td>" + cartArray[i].name + "</td>"
-            + "<td>(" + cartArray[i].price + ")</td>"
-            + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
-            + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-            + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
-            + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
-            + " = "
+        output += "<tr rowspan='2'>"
+            + "<td >" + cartArray[i].name + "</td>"
+            + "<td>" + cartArray[i].price + "</td>"
+            + "<td>" + cartArray[i].amountnight + "</td>"
             + "<td>" + cartArray[i].total + "</td>"
+            + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
             + "</tr>";
     }
-    $('.show-cart').html(output);
+    $('.show-cart>tbody').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
 }
