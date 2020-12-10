@@ -1,13 +1,11 @@
 ﻿
-@{
-    Layout = "_LayoutAdmin";
-}
+@{ Layout = "_LayoutAdmin"; }
 
 <div class=" row">
     <a href="javascript:void(0);" class="btn btn-info" onclick="typeOfRoom.openModal()">Tạo mới</a>
 
     <table id="tbTypeOfRoom" class="table table-bordered mt-2">
-        <thead class="thead-dark">
+        <thead class="thead-dark" style="text-align:center">
             <tr>
                 <th>Mã loại phòng</th>
                 <th>Tên loại phòng</th>
@@ -32,7 +30,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Loại phòng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close closeAddEditTypeOfRoomModal" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
@@ -93,9 +91,53 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:;" class="btn btn-success" onclick="typeOfRoom.save()">Lưu</a>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeButton">Đóng lại</button>
+                <button type="button" class="btn btn-danger closeAddEditTypeOfRoomModal" data-dismiss="modal">Đóng lại</button>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ManagementImage" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="TitleManagementImage"></h4>
+                <input type="text" hidden name="name" value="" id="TypeofroomName"/>
+                <button type="button" class="close closeManagementImage" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form enctype="multipart/form-data" id="UploadFile">
+                    @Html.AntiForgeryToken()
+                    <input type="number" id="typeOfRoomId" hidden />
+                    <div class="form-group">
+                        <input type="file" multiple class="form-control selectImage" id="images"
+                               onchange="typeOfRoom.loadFile(event)" accept="image/*"/>
+                    </div>
+                    <div class="form-group">
+                        <h3>Ảnh vừa chọn:</h3>
+                        <div id="newImages">
+                            <!--show Images befor upload-->
+
+                        </div>
+
+                        <h3>Ảnh đã có:</h3>
+                        <div id="filelist">
+                            <!--show Images by TypeOfRoomId-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-success" onclick="typeOfRoom.UploadImages()">Upload ảnh</a>
+                <button type="button" class="btn btn-danger closeManagementImage" data-dismiss="modal">Đóng lại</button>
+            </div>
         </div>
     </div>
 </div>
@@ -106,7 +148,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Thêm dịch vụ vào loại phòng</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close closeManagementService" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
@@ -125,13 +167,12 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <a href="javascript:;" class="btn btn-success" onclick="typeOfRoom.saveService()">Lưu</a>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeButton">Đóng lại</button>
+                <button type="button" class="btn btn-danger closeManagementService" data-dismiss="modal">Đóng lại</button>
             </div>
 
         </div>
     </div>
 </div>
 
-@section Scripts{
-    <script src="~/js/typeOfRoom.js" asp-append-version="true"></script>
-}
+<script src="~/js/typeOfRoom.js" asp-append-version="true"></script>
+

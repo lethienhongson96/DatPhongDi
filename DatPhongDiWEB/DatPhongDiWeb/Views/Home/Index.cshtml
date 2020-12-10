@@ -1,6 +1,40 @@
-﻿@{ 
+﻿@model DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable
+@{
     Layout = "_LayoutThemesHotelBootraps";
 }
+
+<!-- Hero Section End -->
+<!-- About Us Section Begin -->
+<!-- banner -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1 style="color: lawngreen">STVK Hotel</h1>
+                    <p style="color: black; font-size: 150%; line-height: 1">
+                        Đừng chần chờ gì nữa! Hãy đặt niềm tin của bạn cho chúng tôi. Bạn sẽ không phải thất vọng về chất lượng của khách sạn STVK đem lại.
+                        Booking ngay để nhận những ưu đãi chưa từng có!
+                    </p>
+                    <a href="#" class="primary-btn" style="color: black; font-size: 150%">Khám phá bây giờ</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                @await Html.PartialAsync("_FormCheckAvailable", new DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable()
+           {
+               CheckIn = DateTime.Today,
+               CheckOut = DateTime.Today.AddDays(1)
+           })
+            </div>
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="/sona-master/img/banner5.jpeg"></div>
+        <div class="hs-item set-bg" data-setbg="/sona-master/img/banner2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/sona-master/img/banner3.jpg"></div>
+    </div>
+</section>
+<!--end banner -->
 
 <section class="aboutus-section spad">
     <div class="container">

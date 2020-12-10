@@ -56,7 +56,6 @@ room.init = function () {
     room.initStatus();
     room.TypeOfRoom();
 }
-
 $(document).ready(function () {
     room.init();
 });
@@ -77,8 +76,8 @@ room.save = function () {
             contentType: 'application/json',
             data: JSON.stringify(saveObj),
             success: function (response) {
+                $('#frmAddEditRoom').trigger('reset');
                 $('#addEditRoomModal').modal('hide');
-                $('#frmAddEditRoom').trigger('reset');               
                 bootbox.alert({
                     message: response.data.message,
                     callback: function () {
@@ -89,11 +88,6 @@ room.save = function () {
         });
     }
 }
-
-$('#Close').on('click', function () {
-    $('#addEditRoomModal').modal('hide');
-    $('#frmAddEditRoom').trigger('reset');
-})
 
 room.TypeOfRoom = function (TypeOfRoomId) {
     $.ajax({
@@ -113,6 +107,11 @@ room.TypeOfRoom = function (TypeOfRoomId) {
         }
     });
 }
+
+$('#Close').on('click', function () {
+    $('#addEditRoomModal').modal('hide');
+    $('#frmAddEditRoom').trigger('reset');
+})
 
 room.initStatus = function (status) {
     $.ajax({
@@ -135,7 +134,7 @@ room.initStatus = function (status) {
 
 room.Delete = function (id) {
     bootbox.confirm({
-        message: "<span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
+        message: "Delete <span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
         buttons: {
             confirm: {
                 label: 'Yes',
@@ -149,7 +148,7 @@ room.Delete = function (id) {
         callback: function (result) {
             if (result) {
                 $.ajax({
-                    url: `/room/delete/${id}`,
+                    url: `/Room/delete/${id}`,
                     method: 'GET',
                     dataType: 'json',
                     success: function (response) {

@@ -79,6 +79,8 @@ namespace DatPhongDiWeb.Ultilities
             }
         }
 
+
+
         public static T HttpPostAsync(string apiName, string method, object model)
         {
             string result = string.Empty;

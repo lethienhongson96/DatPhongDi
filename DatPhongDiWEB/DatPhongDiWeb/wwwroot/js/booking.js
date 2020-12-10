@@ -1,6 +1,6 @@
 ﻿var booking = {} || booking;
 
-//show data vẽ lên table
+
 booking.showData = function () {
     $.ajax({
         url: '/booking/gets',
@@ -8,19 +8,20 @@ booking.showData = function () {
         dataType: 'JSON',
         success: function (response) {
             $('#tbBooking>tbody').empty();
+            console.log(response.data);
             $.each(response.data, function (i, v) {
                 $('#tbBooking>tbody').append(
                     `<tr>
                         <td>${v.roomName}</td>
-                        <td>${v.customerName}</td>
-                        <td>${v.amountNight}</td>
+                        <td>${v.customerName}</td>                        
                         <td>${v.checkInStr}</td>
                         <td>${v.checkOutStr}</td>
                         <td>${v.createDateStr}</td>
                         <td>${v.statusName}</td>
                         <td>
                             <button class="btn btn-info"
-                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.amountNight},${v.status},'${v.roomName}','${v.customerName}','${v.checkInStr}','${v.checkOutStr}')">
+                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.status},'${v.roomName}',
+                                                    '${v.customerName}','${v.checkInStr}','${v.checkOutStr}')">
                             Edit</button>
                             <a href="javascript:void(0)" onclick="booking.delete(${v.id})"
                                 class="btn btn-danger"> Delete
@@ -34,11 +35,10 @@ booking.showData = function () {
 }
 
 //khi bấm vào nút edit thì đưa dữ liệu vào các thẻ thành phần ở trong form edit
-booking.edit = function (id, roomId, customerId, amountNight, status, roomName, customerName, checkInStr, checkOutStr) {
+booking.edit = function (id, roomId, customerId, status, roomName, customerName, checkInStr, checkOutStr) {
     $("#id").val(id);
     $("#roomName").val(roomName);
-    $("#customerName").val(customerName);
-    $("#amountNight").val(amountNight);
+    $("#customerName").val(customerName);   
     $("#Status").val(status);
     $("#roomId").val(roomId);
     $("#customerId").val(customerId);
@@ -51,14 +51,13 @@ booking.edit = function (id, roomId, customerId, amountNight, status, roomName, 
     booking.openModal();
 }
 
-//lưu tất cả thay đổi ở trong form và gửi yêu cầu lên server để update dử liệu
+//lưu tất cả thay đổi ở trong form và gửi yêu cầu lên server để update dữ liệu
 booking.save = function () {
     if ($('#frmAddEditBooking').valid()) {
         var saveObj = {};
         saveObj.Id = parseInt($('#id').val());
         saveObj.RoomId = parseInt($('#room').val());
-        saveObj.CustomerId = parseInt($('#customerId').val());
-        saveObj.AmountNight = parseInt($('#amountNight').val());
+        saveObj.CustomerId = parseInt($('#customerId').val());       
         saveObj.Status = parseInt($('#Status').val());
         saveObj.CheckIn = $('#checkin').val();
         saveObj.CheckOut = $('#checkout').val();
@@ -123,10 +122,10 @@ booking.openModal = function () {
     $('#addEditBookingModal').modal('show');
 }
 
-//xóa booking là chuyển booking đó sang trạng thái đả hủy
+//xóa booking là chuyển booking đó sang trạng thái đã hủy
 booking.delete = function (id) {
     bootbox.confirm({
-        message: "Delete <span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
+        message: "<span class='text-danger'>" + "Bạn có chắc" + "</span> ?",
         buttons: {
             confirm: {
                 label: 'Yes',

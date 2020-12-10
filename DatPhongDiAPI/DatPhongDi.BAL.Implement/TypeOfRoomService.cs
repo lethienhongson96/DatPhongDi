@@ -2,6 +2,7 @@
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,6 +20,11 @@ namespace DatPhongDi.BAL.Implement
         public Task<ChangeStatusTypeOfRoomRes> ChangeStatus(ChangeStatusTypeOfRoomReq request)
         {
             return typeOfRoomRepository.ChangeStatus(request);
+        }
+
+        public Task<IEnumerable<TypeOfRoomView>> CheckAvailable([FromBody] CheckAvailable req)
+        {
+            return typeOfRoomRepository.CheckAvailable(req);
         }
 
         public Task<TypeOfRoomView> Get(int TypeOfRoomId)
