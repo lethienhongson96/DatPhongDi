@@ -39,11 +39,15 @@ namespace DatPhongDi.DAL.Implement
             IEnumerable<TypeOfRoomView> result = new List<TypeOfRoomView>();
             try
             {
+                //format datetime for 2 param CheckIn and CheckOut
+                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@AmountAdults", req.AmountAdults);
                 parameters.Add("@AmountChild", req.AmountChild);
-                parameters.Add("@CheckIn", req.CheckIn.ToString());
-                parameters.Add("@CheckOut", req.CheckOut.ToString());
+                parameters.Add("@CheckIn", CheckInStr);
+                parameters.Add("@CheckOut", CheckOutStr);
                 result = await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
                                                                     sql: "sp_CheckAvailable",
                                                                     param: parameters,
@@ -65,6 +69,22 @@ namespace DatPhongDi.DAL.Implement
                                                         sql: "sp_GetTypeOfRoomById",
                                                         dynamicParameters,
                                                         commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<RoomTypeDetailView> GetAvailableTypeOfRoom([FromBody] CheckTypeOfRoomAvailableReq req)
+        {
+            //format datetime for 2 param CheckIn and CheckOut
+            var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+            var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
+            DynamicParameters dynamic = new DynamicParameters();
+            dynamic.Add("@Id", req.Id);
+            dynamic.Add("@CheckIn", CheckInStr);
+            dynamic.Add("@CheckOut", CheckOutStr);
+            return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
+                                                                                    sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
+                                                                                    dynamic,
+                                                                                    commandType: CommandType.StoredProcedure);
         }
 
         public async Task<IEnumerable<TypeOfRoomView>> Gets()

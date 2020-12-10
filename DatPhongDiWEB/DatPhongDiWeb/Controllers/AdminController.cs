@@ -11,19 +11,10 @@ namespace DatPhongDiWeb.Controllers
         {
             this._hostEnvironment = hostEnvironment;
         }
+
         public IActionResult Index()
         {
             return View();
         }
-
-        [HttpGet]
-        public IActionResult TestUploadImages()
-        {
-            return View();
-        }
-
-        
-
-        
     }
 }

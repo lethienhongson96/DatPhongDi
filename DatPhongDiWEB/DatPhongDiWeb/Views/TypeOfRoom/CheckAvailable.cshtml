@@ -54,39 +54,41 @@
 <section class="rooms-section spad">
     <div class="container">
         <div class="row">
-            @*<input type="text" hidden value="@ViewBag.CheckIn" />
-                <input type="text" hidden value="@ViewBag.CheckOut" />*@
+            <input type="text" hidden value="@ViewBag.CheckIn" />
+                <input type="text" hidden value="@ViewBag.CheckOut" />
             @foreach (var item in Model)
             {
                 <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="~/images/@item.ImagePath" alt="" height="218">
-                        <div class="ri-text">
-                            <h4>@item.Name</h4>
-                            <h3>@String.Format(info, "{0:#,##0 đ}", item.PricePerNight)<span>/đêm</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Kích cỡ phòng:</td>
-                                        <td>@item.Size<a>m<sup>2</sup></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số người lớn:</td>
-                                        <td>@item.AmountAdults</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số trẻ em:</td>
-                                        <td>@item.AmountChild</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                    <a asp-controller="TypeOfRoom" asp-action="RoomTypeDetail" asp-route-Id="@item.Id" asp-route-CheckIn="@ViewBag.CheckIn" asp-route-CheckOut="@ViewBag.CheckOut">
+                        <div class="room-item">
+                            <img src="~/images/@item.ImagePath" alt="" height="218">
+                            <div class="ri-text">
+                                <h4>@item.Name</h4>
+                                <h3>@String.Format(info, "{0:#,##0 đ}", item.PricePerNight)<span>/đêm</span></h3>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Kích cỡ phòng:</td>
+                                            <td>@item.Size<span>m<sup>2</sup></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Số người lớn:</td>
+                                            <td>@item.AmountAdults</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Số trẻ em:</td>
+                                            <td>@item.AmountChild</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Services:</td>
+                                            <td>Wifi, Television, Bathroom,...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <span class="primary-btn">More Details</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
             <div class="col-lg-12">

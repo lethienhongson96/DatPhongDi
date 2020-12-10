@@ -460,6 +460,9 @@ ul, ol {
 	list-style: none;
 	display: block;
 }
+.menu-item .nav-menu .mainmenu ul li a {
+	text-decoration: none;
+}
 .menu-item .nav-menu .mainmenu li .dropdown li a {
 	font-size: 16px;
 	color: #19191a;
