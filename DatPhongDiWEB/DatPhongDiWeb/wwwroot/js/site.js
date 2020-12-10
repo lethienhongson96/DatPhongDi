@@ -8,10 +8,11 @@ var shoppingCart = (function () {
     cart = [];
 
     // Constructor
-    function Item(name, price, amountnight) {
+    function Item(name, price, amountnight, roomtypeid) {
         this.name = name;
         this.price = price;
         this.amountnight = amountnight;
+        this.roomtypeid = roomtypeid;
     }
 
     // Save cart 
@@ -41,9 +42,9 @@ var shoppingCart = (function () {
         obj.bookingdate = sessionStorage.getItem('bookingdate');
     }
 
-    obj.addItemToCart = function (name, price, amountnight) {
+    obj.addItemToCart = function (name, price, amountnight, roomtypeid) {
        
-        var item = new Item(name, price, amountnight);
+        var item = new Item(name, price, amountnight, roomtypeid);
         cart.push(item);
         saveCart();
         console.log(cart);
@@ -72,9 +73,9 @@ var shoppingCart = (function () {
     //}
 
     // Remove all items from cart
-    obj.removeItemFromCartAll = function (name) {
+    obj.removeItemFromCartAll = function (roomtypeid) {
         for (var item in cart) {
-            if (cart[item].name === name) {
+            if (cart[item].roomtypeid == roomtypeid) {
                 cart.splice(item, 1);
                 break;
             }
@@ -90,11 +91,7 @@ var shoppingCart = (function () {
 
     // Count cart 
     obj.totalCount = function () {
-        var totalCount = 0;
-        for (var item in cart) {
-            totalCount += cart[item].count;
-        }
-        return totalCount;
+        return cart.length;
     }
 
     // Total cart
@@ -144,7 +141,8 @@ $('.add-to-cart').click(function (event) {
     event.preventDefault();
     var name = $(this).data('name');
     var price = Number($(this).data('price'));
-    shoppingCart.addItemToCart(name, price, 1);
+    var roomtypeid = Number($(this).data('roomtypeid'));
+    shoppingCart.addItemToCart(name, price, 1, roomtypeid);
     displayCart();
 });
 
@@ -185,7 +183,7 @@ function displayCart() {
             + "<td>" + cartArray[i].price + "</td>"
             + "<td>" + cartArray[i].amountnight + "</td>"
             + "<td>" + cartArray[i].total + "</td>"
-            + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+            + `<td><button class='delete-item btn btn-danger' data-roomtypeid=${cartArray[i].roomtypeid} >X</button></td>`
             + "</tr>";
     }
     $('.show-cart>tbody').html(output);
@@ -196,22 +194,13 @@ function displayCart() {
 // Delete item button
 
 $('.show-cart').on("click", ".delete-item", function (event) {
-    var name = $(this).data('name')
-    shoppingCart.removeItemFromCartAll(name);
+    var roomtypeid = $(this).data("roomtypeid");
+    shoppingCart.removeItemFromCartAll(roomtypeid);
     displayCart();
 })
 
-
-// -1
-$('.show-cart').on("click", ".minus-item", function (event) {
-    var name = $(this).data('name')
-    shoppingCart.removeItemFromCart(name);
-    displayCart();
-})
-// +1
-$('.show-cart').on("click", ".plus-item", function (event) {
-    var name = $(this).data('name')
-    shoppingCart.addItemToCart(name);
+$("#clearcart").on("click", function () {
+    shoppingCart.clearCart();
     displayCart();
 })
 
