@@ -67,7 +67,6 @@ var shoppingCart = (function () {
                 countroomtype++;
             }
         }
-        console.log(countroomtype);
         if (countroomtype < currentroomtype.limitamountroom) {
             return true;
         }
@@ -107,7 +106,7 @@ var shoppingCart = (function () {
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].amountnight;
         }
-        return this.formatcurrency(totalCart);
+        return totalCart;
     }
 
     // List cart copy from cart and create properties total = item.price * item.count
@@ -166,11 +165,10 @@ bookingdate.savebookingdate = function (checkin, checkout) {
 // Add item
 $('.add-to-cart').click(function (event) {
     event.preventDefault();
-    debugger
-    var name = $(this).data('name');
-    var price = Number($(this).data('price'));
     var roomtypeid = Number($(this).data('roomtypeid'));
     if (shoppingCart.isoverlimit(roomtypeid) == true) {
+        var name = $(this).data('name');
+        var price = Number($(this).data('price'));
         var bookingdatecopy = JSON.parse(sessionStorage.getItem('bookingdate'));
         shoppingCart.addItemToCart(name, price, bookingdatecopy.amountnight, roomtypeid);
         displayCart();
@@ -227,7 +225,7 @@ function displayCart() {
             + "</tr>";
     }
     $('.show-cart>tbody').html(output);
-    $('.total-cart').html(shoppingCart.totalCart());
+    $('.total-cart').html(shoppingCart.formatcurrency(shoppingCart.totalCart()));
     $('.total-count').html(shoppingCart.totalCount());
 }
 
