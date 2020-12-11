@@ -15,12 +15,26 @@ namespace DatPhongDiWeb.Controllers
         public IActionResult Payment(SaveCustomerReq req)
         {
             var result = new SaveCustomerRes();
-            result = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
+            if (ModelState.IsValid)
+            {
+                result = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
+                if (result.Id != 0)
+                {
+                    TempData["success"] = result.Message;
+                }
+                else
+                {
+                    TempData["error"] = result.Message;
+                }
+            }
+            
             return View(req);
         }
         [HttpGet]
         public IActionResult Payment()
         {
+            TempData["success"] = null;
+            TempData["error"] = null;
             return View();
         }
     }
