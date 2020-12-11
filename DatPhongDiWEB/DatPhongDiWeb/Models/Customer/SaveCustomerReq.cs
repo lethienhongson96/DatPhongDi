@@ -1,6 +1,11 @@
-﻿namespace DatPhongDi.Domain.Response.Customer
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DatPhongDiWeb.Models.Customer
 {
-    public class CustomerView : ResResult
+    public class SaveCustomerReq
     {
         public int Id { get; set; }
         public string Name { get; set; }
