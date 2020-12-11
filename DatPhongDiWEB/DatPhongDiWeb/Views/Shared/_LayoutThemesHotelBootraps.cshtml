@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -52,14 +52,9 @@
             <div class="language-option">
                 <img src="~/sona-master/img/covietnam.png" class="rounded-0"
                      style="width: 30px; height: 20px; margin-bottom: 3px" alt="">
-                <span>VIE @*<i class="fa fa-angle-down"></i>*@</span>
-                @*<div class="flag-dropdown">*@
-                <!--<ul>
-                <li><a href="#">Zi</a></li>
-                <li><a href="#">Fr</a></li>
-                </ul>
-                 </div>-->
+                <span>VIE </span>
             </div>
+
             <a href="#" class="bk-btn">Booking Now</a>
         </div>
         <nav class="mainmenu mobile-menu">
@@ -121,6 +116,7 @@
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
                             <a href="#" class="bk-btn">Đặt phòng ngay</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart(<span class="total-count">0</span>)</button>
                             <div class="language-option">
                                 <img src="~/sona-master/img/covietnam.png" class="rounded-0"
                                      style="width: 30px; height: 20px; margin-bottom: 3px" alt="">
@@ -128,9 +124,43 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
+        <!-- Modal Cart-->
+        <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel"> </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="show-cart table">
+                            <thead>
+                                <tr>
+                                    <th>Tên Phòng</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số đêm</th>
+                                    <th>Tổng</th>
+                                    <th><a href="#" id="clearcart">Xóa tất cả</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div>Tổng giá Booking: <span class="total-cart"></span></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary">Xác nhận đặt phòng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial -->
         <hr />
         <div class="menu-item">
             <div class="container">
@@ -146,8 +176,9 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="home/index">Trang chủ</a></li>
-                                    <li><a asp-controller="Home" asp-action="ViewTypeOfRooms">Phòng</a></li>
+
+                                    <li class="active"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                                  <li><a asp-controller="Home" asp-action="ViewTypeOfRooms">Phòng</a></li>
                                     <li><a href="./about-us.html">Về chúng tôi</a></li>
                                     <li>
                                         <a href="./pages.html">Pages</a>
@@ -174,7 +205,6 @@
     <!-- Header End -->
     <!-- Hero Section Begin -->
     <!-- Hero Section End -->
-
     <!-- About Us Section Begin -->
 
     @RenderBody()
@@ -264,6 +294,7 @@
     </div>
     <!-- Search model end -->
     <!-- Js Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script src="~/sona-master/js/jquery-3.3.1.min.js"></script>
     <script src="~/sona-master/js/bootstrap.min.js"></script>
     <script src="~/sona-master/js/jquery.magnific-popup.min.js"></script>
@@ -272,5 +303,6 @@
     <script src="~/sona-master/js/jquery.slicknav.js"></script>
     <script src="~/sona-master/js/owl.carousel.min.js"></script>
     <script src="~/sona-master/js/main.js"></script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>

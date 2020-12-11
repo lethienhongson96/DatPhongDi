@@ -6,12 +6,12 @@
     <form asp-controller="TypeOfRoom" asp-action="CheckAvailable" method="post">
         <div class="check-date">
             <label for="date-in">Check In:</label>
-            <input type="text" class="date-input" id="date-in" asp-for="@Model.CheckIn">
+            <input type="text" class="date-input" id="date-in" asp-for="@Model.CheckIn" data-checkin="@Model.CheckIn">
             <i class="icon_calendar"></i>
         </div>
         <div class="check-date">
             <label for="date-out">Check Out:</label>
-            <input type="text" class="date-input" id="date-out" asp-for="@Model.CheckOut">
+            <input type="text" class="date-input" id="date-out" asp-for="@Model.CheckOut" data-checkout="@Model.CheckOut">
             <i class="icon_calendar"></i>
         </div>
         <div class="select-option">
