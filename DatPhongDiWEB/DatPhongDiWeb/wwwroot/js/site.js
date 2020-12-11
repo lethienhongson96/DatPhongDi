@@ -173,7 +173,7 @@ $('.add-to-cart').click(function (event) {
         shoppingCart.addItemToCart(name, price, bookingdatecopy.amountnight, roomtypeid);
         displayCart();
     } else {
-        bootbox.alert("Đả hết phòng trống!");
+        bootbox.alert("Đã hết phòng trống!");
     }
 });
 
