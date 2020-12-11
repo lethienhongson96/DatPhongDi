@@ -1,4 +1,5 @@
 ﻿using DatPhongDi.BAL.Interface;
+using DatPhongDi.Domain.Request.Customer;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -27,6 +28,12 @@ namespace DatPhongDi.API.Controllers
         public async Task<OkObjectResult> Get()
         {
             var result = await customerService.Gets();
+            return Ok(result);
+        }
+        [HttpPost("api/customer/save")]
+        public async Task<OkObjectResult> Save(SaveCustomerReq req)
+        {
+            var result = await customerService.Save(req);
             return Ok(result);
         }
     }
