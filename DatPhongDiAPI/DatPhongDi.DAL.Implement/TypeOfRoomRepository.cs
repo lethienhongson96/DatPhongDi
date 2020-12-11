@@ -39,6 +39,10 @@ namespace DatPhongDi.DAL.Implement
             IEnumerable<TypeOfRoomView> result = new List<TypeOfRoomView>();
             try
             {
+                //format datetime for 2 param CheckIn and CheckOut
+                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
                 DynamicParameters parameters = new DynamicParameters();
                 var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
                 var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
@@ -69,6 +73,22 @@ namespace DatPhongDi.DAL.Implement
                                                         commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<RoomTypeDetailView> GetAvailableTypeOfRoom([FromBody] CheckTypeOfRoomAvailableReq req)
+        {
+            //format datetime for 2 param CheckIn and CheckOut
+            var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+            var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
+            DynamicParameters dynamic = new DynamicParameters();
+            dynamic.Add("@Id", req.Id);
+            dynamic.Add("@CheckIn", CheckInStr);
+            dynamic.Add("@CheckOut", CheckOutStr);
+            return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
+                                                                                    sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
+                                                                                    dynamic,
+                                                                                    commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<IEnumerable<TypeOfRoomView>> Gets()
         {
             return await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
@@ -97,6 +117,9 @@ namespace DatPhongDi.DAL.Implement
                 parameters.Add("@Name", saveTypeOfRoomReq.Name);
                 parameters.Add("@Id", saveTypeOfRoomReq.Id);
                 parameters.Add("@Status", saveTypeOfRoomReq.Status);
+                parameters.Add("@AmountAdults", saveTypeOfRoomReq.AmountAdults);
+                parameters.Add("@AmountChild", saveTypeOfRoomReq.AmountChild);
+                parameters.Add("@PricePerNight", saveTypeOfRoomReq.PricePerNight);
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveTypeOfRoomRes>(cnn: connection,
                                                                     sql: "sp_SaveTypeOfRoom",

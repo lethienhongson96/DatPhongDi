@@ -237,12 +237,12 @@ typeOfRoom.saveService = function () {
 typeOfRoom.save = function () {
     if ($('#frmAddEditTypeOfRoom').valid()) {
         var saveObj = {};
-        saveObj.id = parseInt($('#Id').val());
-        saveObj.name = $('#Name').val();
-        saveObj.amountAdults = parseInt($('#AmountAdults').val());
-        saveObj.amountChild = parseInt($('#AmountChild').val());
-        saveObj.pricePerNight = parseInt($('#PricePerNight').val());
-        saveObj.status = parseInt($('#Status').val());
+        saveObj.Id = parseInt($('#Id').val());
+        saveObj.Name = $('#Name').val();
+        saveObj.AmountAdults = parseInt($('#AmountAdults').val());
+        saveObj.AmountChild = parseInt($('#AmountChild').val());
+        saveObj.PricePerNight = parseInt($('#PricePerNight').val());
+        saveObj.Status = parseInt($('#Status').val());
         console.log(saveObj.status);
         $.ajax({
             url: '/typeofroom/Save',

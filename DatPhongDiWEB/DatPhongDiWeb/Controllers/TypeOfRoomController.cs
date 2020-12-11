@@ -4,12 +4,12 @@ using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
 using DatPhongDiWeb.Models.TypeOfRoomService;
 using DatPhongDiWeb.Ultilities;
+using DatPhongDiWeb.Views.TypeOfRoom;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 
 namespace DatPhongDiWeb.Controllers
@@ -65,27 +65,23 @@ namespace DatPhongDiWeb.Controllers
         {
             var result = ApiHelper<SaveTypeOfRoomRes>.HttpPostAsync($"typeofroom/ChangeStatus", "POST", req);
             return Json(new { data = result });
+        }
 
-        }
-        public IActionResult Detail()
+        [HttpGet]
+        public IActionResult RoomTypeDetail(int Id, DateTime CheckIn, DateTime CheckOut)
         {
-            return View();
+            ViewBag.RoomTypeId = Id;
+            CheckTypeOfRoomAvailable checkTypeOfRoomAvailable = new CheckTypeOfRoomAvailable() { Id = Id, CheckIn = CheckIn, CheckOut = CheckOut};
+            var result = ApiHelper<RoomTypeDetailView>.HttpPostAsync($"TypeOfRoom/GetAvailableTypeOfRoom", "POST", checkTypeOfRoomAvailable);
+            result.Images= ApiHelper<List<ImageView>>.HttpGetAsync($"image/getImagesByTypeOfRoomId/{Id}");
+            return View(result);
         }
+
         [HttpPost]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
-            /*CultureInfo culture = new CultureInfo("en-US");*/
-            /*var a = req.CheckIn.ToString();
-            req.CheckIn = DateTime.Parse(a, culture, DateTimeStyles.NoCurrentDateDefault);*/
-            /*var Day = req.CheckOut.Day;
-            var Month = req.CheckOut.Month;
-            var Year = req.CheckOut.Year;
-            var date =  Year + "-" + Month + "-" +Day;
-            req.CheckOut = DateTime.ParseExact(date, "yyyy-MM-dd", culture);*/
-            /*ViewBag.CheckIn = req.CheckIn;
+            ViewBag.CheckIn = req.CheckIn;
             ViewBag.CheckOut = req.CheckOut;
-            req.CheckIn = req.CheckIn.ToUniversalTime();
-            req.CheckOut = req.CheckOut.ToUniversalTime();*/
             var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }

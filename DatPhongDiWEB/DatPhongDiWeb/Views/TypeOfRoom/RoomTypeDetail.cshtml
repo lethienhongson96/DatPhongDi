@@ -1,14 +1,15 @@
-﻿
+﻿@model DatPhongDiWeb.Models.TypeOfRoom.RoomTypeDetailView
 @{
     Layout = "_LayoutThemesHotelBootraps";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
-<div class="breadcrumb-section" style="margin-top: 10px" >
+<div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Loại phòng còn trống</h2>
+                    <h2>Our Rooms</h2>
                     <div class="bt-option">
                         <a href="./home.html">Home</a>
                         <span>Rooms</span>
@@ -28,24 +29,36 @@
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+                                }
+                                else
+                                {
+                                    <li data-target="#myCarousel" data-slide-to="@i"></li>
+                                }
+                            }
                         </ol>
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="width: 690px; height: 400px;">
-                            <div class="item active">
-                                <img src="~/sona-master/img/room/room-1.jpg" alt="" style="width: 690px; height: 400px;">
-                            </div>
-
-                            <div class="item">
-                                <img src="~/sona-master/img/room/room-2.jpg" alt="" style="width: 690px; height: 400px;">
-                            </div>
-
-                            <div class="item">
-                                <img src="~/sona-master/img/room/room-3.jpg" alt="" style="width: 690px; height: 400px;">
-                            </div>
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="item active">
+                                        <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="item">
+                                        <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
+                                    </div>
+                                }
+                            }
                         </div>
 
                         <!-- Left and right controls -->
@@ -60,7 +73,7 @@
                     </div>
                     <div class="rd-text">
                         <div class="rd-title">
-                            <h3>Premium King Room</h3>
+                            <h3>@Model.Name</h3>
                             <div class="rdt-right">
                                 <div class="rating">
                                     <i class="icon_star"></i>
@@ -69,7 +82,9 @@
                                     <i class="icon_star"></i>
                                     <i class="icon_star-half_alt"></i>
                                 </div>
-                                <a href="#" style="margin-right: 60px;">Đặt phòng ngay</a>
+                                <a href="#" class="add-to-cart"
+                                   data-name="@Model.Name" data-price="@Model.PricePerNight"
+                                   data-roomtypeid="@ViewBag.RoomTypeId" style="margin-right: 60px;">Booking Now</a>
                             </div>
                         </div>
                     </div>
@@ -78,24 +93,28 @@
             <div class="col-lg-4">
                 <div class="room-details-item">
                     <div class="rd-text">
-                        <h2>159$<span>/Đêm</span></h2>
+                        <h2>@String.Format(info, "{0:#,##0 đ}", Model.PricePerNight)<span>/đêm</span></h2>
                         <table>
                             <tbody>
                                 <tr>
                                     <td class="r-o text-danger">Số phòng trống:</td>
-                                    <td class="text-danger">5</td>
+                                    <td class="text-danger" id="limitamountroom"
+                                        data-limitamount="@Model.AmountAvailableRoom"
+                                        data-roomtypeidcurrent="@ViewBag.RoomTypeId">
+                                        @Model.AmountAvailableRoom
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
+                                    <td class="r-o">Kích cỡ phòng:</td>
+                                    <td>@Model.Size</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 5</td>
+                                    <td class="r-o">Số người lớn:</td>
+                                    <td>@Model.AmountAdults</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
+                                    <td class="r-o">Số trẻ em:</td>
+                                    <td>@Model.AmountChild</td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Services:</td>
@@ -107,7 +126,11 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
+
 <!-- Room Details Section End -->
+
+
+
