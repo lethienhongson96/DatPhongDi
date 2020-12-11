@@ -70,6 +70,7 @@ namespace DatPhongDiWeb.Controllers
         [HttpGet]
         public IActionResult RoomTypeDetail(int Id, DateTime CheckIn, DateTime CheckOut)
         {
+            ViewBag.RoomTypeId = Id;
             CheckTypeOfRoomAvailable checkTypeOfRoomAvailable = new CheckTypeOfRoomAvailable() { Id = Id, CheckIn = CheckIn, CheckOut = CheckOut};
             var result = ApiHelper<RoomTypeDetailView>.HttpPostAsync($"TypeOfRoom/GetAvailableTypeOfRoom", "POST", checkTypeOfRoomAvailable);
             result.Images= ApiHelper<List<ImageView>>.HttpGetAsync($"image/getImagesByTypeOfRoomId/{Id}");

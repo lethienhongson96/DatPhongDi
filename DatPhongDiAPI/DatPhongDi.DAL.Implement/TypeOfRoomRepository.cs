@@ -39,11 +39,13 @@ namespace DatPhongDi.DAL.Implement
             IEnumerable<TypeOfRoomView> result = new List<TypeOfRoomView>();
             try
             {
+                //format datetime for 2 param CheckIn and CheckOut
+                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@AmountAdults", req.AmountAdults);
                 parameters.Add("@AmountChild", req.AmountChild);
-                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
-                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
                 parameters.Add("@CheckIn", CheckInStr);
                 parameters.Add("@CheckOut", CheckOutStr);
                 result = await SqlMapper.QueryAsync<TypeOfRoomView>(cnn: connection,
@@ -71,10 +73,14 @@ namespace DatPhongDi.DAL.Implement
 
         public async Task<RoomTypeDetailView> GetAvailableTypeOfRoom([FromBody] CheckTypeOfRoomAvailableReq req)
         {
+            //format datetime for 2 param CheckIn and CheckOut
+            var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
+            var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
+
             DynamicParameters dynamic = new DynamicParameters();
             dynamic.Add("@Id", req.Id);
-            dynamic.Add("@CheckIn", req.CheckIn);
-            dynamic.Add("@CheckOut", req.CheckOut);
+            dynamic.Add("@CheckIn", CheckInStr);
+            dynamic.Add("@CheckOut", CheckOutStr);
             return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
                                                                                     sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
                                                                                     dynamic,
