@@ -54,6 +54,7 @@ namespace DatPhongDi.API.Controllers
             var result = await typeOfRoomService.GetServiceByRoomTypeId(TypeOfRoomId);
             return Ok(result);
         }
+
         [HttpPost]
         [Route("api/TypeofRoom/CheckAvailable")]
         public async Task<OkObjectResult> CheckAvailable([FromBody] CheckAvailable req)
@@ -61,6 +62,7 @@ namespace DatPhongDi.API.Controllers
             var result = await typeOfRoomService.CheckAvailable(req);
             return Ok(result);
         }
+
         [HttpPost]
         [Route("api/TypeOfRoom/GetAvailableTypeOfRoom")]
         public async Task<OkObjectResult> RoomTypeDetail([FromBody] CheckTypeOfRoomAvailableReq req)
