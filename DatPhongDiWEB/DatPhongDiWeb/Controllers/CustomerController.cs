@@ -17,5 +17,10 @@ namespace DatPhongDiWeb.Controllers
             var status = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
             return View(status);
         }
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
 }
