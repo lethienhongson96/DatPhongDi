@@ -40,9 +40,7 @@ namespace DatPhongDi.DAL.Implement
             try
             {
                 //format datetime for 2 param CheckIn and CheckOut
-                var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
-                var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
-
+            
                 DynamicParameters parameters = new DynamicParameters();
                 var CheckInStr = req.CheckIn.ToString("yyyy-MM-dd");
                 var CheckOutStr = req.CheckOut.ToString("yyyy-MM-dd");
