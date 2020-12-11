@@ -30,6 +30,7 @@ namespace DatPhongDiWeb.Controllers
             
             return View(req);
         }
+
         [HttpGet]
         public IActionResult Payment()
         {
