@@ -11,17 +11,17 @@
 <body>
     <!-- partial:index.partial.html -->
     <div class="body-text" style="color: #DFA974; font-size:xx-large">Booking STVK Hotel</div>
-    <form asp-controller="Customer" asp-action="Save">
+    <form asp-controller="Customer" asp-action="Payment">
         <div class="form-container">
             <div class="personal-information">
                 <h1>Customer Information</h1>
             </div> <!-- end of personal-information -->
-            <input id="input-field" type="text" name="namecustomer" placeholder="Name" asp-for="@Model.Name"/>
-            <input id="input-field" type="text" name="emailcustomer" placeholder="Email" asp-for="@Model.Email"/>
-            <input id="column-left" type="text" name="phone" placeholder="Phone" asp-for="@Model.PhoneNum"/>
-            <input id="column-right" type="text" name="address" placeholder="Address" asp-for="@Model.Address"/>
-            <input id="input-field" type="text" name="country" placeholder="Country" asp-for="@Model.Country"/>
-            <input id="input-field" type="text" name="passport" placeholder="Passport" asp-for="@Model.Passport"/>
+            <input id="input-field" type="text" required="required" placeholder="Name" asp-for="@Model.Name"/>
+            <input id="input-field" type="email" required="required" placeholder="Email" asp-for="@Model.Email"/>
+            <input id="column-left" type="text" required="required" placeholder="Phone" asp-for="@Model.PhoneNum"/>
+            <input id="column-right" type="text" required="required" placeholder="Address" asp-for="@Model.Address"/>
+            <input id="input-field" type="text" required="required" placeholder="Country" asp-for="@Model.Country"/>
+            <input id="input-field" type="text" required="required" placeholder="Passport" asp-for="@Model.Passport"/>
 
 
             <!--<div class="personal-information">

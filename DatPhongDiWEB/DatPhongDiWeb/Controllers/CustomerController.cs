@@ -14,8 +14,9 @@ namespace DatPhongDiWeb.Controllers
         [Route("customer/payment")]
         public IActionResult Payment(SaveCustomerReq req)
         {
-            var status = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
-            return View(status);
+            var result = new SaveCustomerRes();
+            result = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
+            return View(req);
         }
         [HttpGet]
         public IActionResult Payment()
