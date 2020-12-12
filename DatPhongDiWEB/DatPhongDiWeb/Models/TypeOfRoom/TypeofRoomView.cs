@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DatPhongDiWeb.Models.Service;
+using DatPhongDiWeb.Models.TypeOfRoomService;
+using System;
+using System.Collections.Generic;
 
 namespace DatPhongDiWeb.Models.TypeOfRoom
 {
@@ -16,5 +19,7 @@ namespace DatPhongDiWeb.Models.TypeOfRoom
         public string ImagePath { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        public List<ServiceView> ServiceViews { get; set; } 
+        public List<TypeOfRoomServiceView> TypeOfRoomServiceViews { get; set; }
     }
 }
