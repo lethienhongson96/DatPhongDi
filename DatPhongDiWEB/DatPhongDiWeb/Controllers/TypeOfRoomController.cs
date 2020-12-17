@@ -82,11 +82,11 @@ namespace DatPhongDiWeb.Controllers
         {
             ViewBag.CheckIn = req.CheckIn;
             ViewBag.CheckOut = req.CheckOut;
-            TypeofRoomView result = new TypeofRoomView()
-            {
-                ServiceViews = ApiHelper<List<ServiceView>>.HttpGetAsync($"service/gets"),
-                TypeOfRoomServiceViews = ApiHelper<List<TypeOfRoomServiceView>>.HttpGetAsync($"TypeOfRoomService/gets")
-            };
+            //TypeofRoomView result = new TypeofRoomView()
+            //{
+            //    ServiceViews = ApiHelper<List<ServiceView>>.HttpGetAsync($"service/gets"),
+            //    TypeOfRoomServiceViews = ApiHelper<List<TypeOfRoomServiceView>>.HttpGetAsync($"TypeOfRoomService/gets")
+            //};
             var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             return View(data);
         }
