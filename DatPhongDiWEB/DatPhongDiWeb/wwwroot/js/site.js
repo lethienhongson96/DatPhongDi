@@ -199,6 +199,7 @@ $(document).ready(function () {
         var roomtypeidcurrent = $("#limitamountroom").data("roomtypeidcurrent");
         shoppingCart.savecurrentroomtype(limitamountroom, roomtypeidcurrent);
     }
+    displayCart();
 });
 
 $(".date-input").on("change", function () {
