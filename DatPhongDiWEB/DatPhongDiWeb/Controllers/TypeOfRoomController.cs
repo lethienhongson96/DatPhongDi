@@ -1,8 +1,6 @@
-﻿using DatPhongDiWeb.Models;
-using DatPhongDiWeb.Models.Service;
+﻿using DatPhongDiWeb.Models.Service;
 using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Models.TypeOfRoom;
-using DatPhongDiWeb.Models.TypeOfRoomService;
 using DatPhongDiWeb.Ultilities;
 using DatPhongDiWeb.Views.TypeOfRoom;
 using Microsoft.AspNetCore.Hosting;

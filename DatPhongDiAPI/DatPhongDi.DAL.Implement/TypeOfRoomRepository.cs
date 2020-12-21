@@ -82,9 +82,9 @@ namespace DatPhongDi.DAL.Implement
             dynamic.Add("@CheckIn", CheckInStr);
             dynamic.Add("@CheckOut", CheckOutStr);
             return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
-                                                                                    sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
-                                                                                    dynamic,
-                                                                                    commandType: CommandType.StoredProcedure);
+                                                                                sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
+                                                                                dynamic,
+                                                                                commandType: CommandType.StoredProcedure);
         }
 
         public async Task<IEnumerable<TypeOfRoomView>> Gets()
