@@ -1,5 +1,6 @@
 ﻿using DatPhongDiWeb.Models;
 using DatPhongDiWeb.Models.Booking;
+using DatPhongDiWeb.Models.Customer;
 using DatPhongDiWeb.Models.Status;
 using DatPhongDiWeb.Ultilities;
 using Microsoft.AspNetCore.Mvc;
@@ -44,10 +45,6 @@ namespace DatPhongDiWeb.Controllers
         {
             var status = ApiHelper<List<StatusView>>.HttpGetAsync($"Status/statusView/{(int)Common.Table.Booking}");
             return Json(new { data = status });
-        }
-        public IActionResult Payment()
-        {
-            return View();
         }
     }
 }

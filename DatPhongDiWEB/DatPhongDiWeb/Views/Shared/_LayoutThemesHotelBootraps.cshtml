@@ -155,7 +155,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary">Xác nhận đặt phòng</button>
+                        <a class="btn btn-primary" asp-action="Payment" asp-controller="Customer">Xác nhận đặt phòng</a>
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="./index.html">
+                            <a href="home/index">
                                 <img src="~/sona-master/img/logohotel.png" alt="" style="margin-bottom: -21px; margin-top: -28px; }">
                             </a>
                         </div>
@@ -176,8 +176,9 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
+
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-                                    <li><a asp-controller="Home" asp-action="ViewTypeOfRooms">Phòng</a></li>
+                                  <li><a asp-controller="Home" asp-action="ViewTypeOfRooms">Phòng</a></li>
                                     <li><a href="./about-us.html">Về chúng tôi</a></li>
                                     <li>
                                         <a href="./pages.html">Pages</a>

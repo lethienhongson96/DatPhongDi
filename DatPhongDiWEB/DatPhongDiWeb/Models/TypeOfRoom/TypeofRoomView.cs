@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DatPhongDiWeb.Models.Service;
+using DatPhongDiWeb.Models.TypeOfRoomService;
+using System;
+using System.Collections.Generic;
 
 namespace DatPhongDiWeb.Models.TypeOfRoom
 {

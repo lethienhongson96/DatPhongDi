@@ -10,7 +10,7 @@
     <title>Admin Page</title>
     <!-- Template CSS -->
     <link href="~/collective-admin-panel-starter/starter/assets/css/style-starter.css" rel="stylesheet" />
-    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <!-- google fonts -->
     <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
     <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -255,10 +255,10 @@
                 </nav>
                 <div class="welcome-msg pt-3 pb-4">
                     <h1>Hi <span class="text-primary">STVK Hotel</span>, Welcome back</h1>
-                </div>            
+                </div>
                 <div class="data-tables">
                     @RenderBody()
-                </div>             
+                </div>
             </div>
             <!-- //content -->
         </div>
@@ -302,12 +302,8 @@
     <script src="~/collective-admin-panel-starter/starter/assets/js/jquery-1.10.2.min.js"></script>
 
     <!-- chart js -->
-    <script src="~/collective-admin-panel-starter/starter/assets/js/Chart.min.js"></script>
-    <script src="~/collective-admin-panel-starter/starter/assets/js/utils.js"></script>
     <!-- //chart js -->
     <!-- Different scripts of charts.  Ex.Barchart, Linechart -->
-    <script src="~/collective-admin-panel-starter/starter/assets/js/bar.js"></script>
-    <script src="~/collective-admin-panel-starter/starter/assets/js/linechart.js"></script>
     <!-- //Different scripts of charts.  Ex.Barchart, Linechart -->
 
     <script src="~/collective-admin-panel-starter/starter/assets/js/jquery.nicescroll.js"></script>
@@ -344,12 +340,12 @@
     </script>
     <!--// loading-gif Js -->
     <!-- Bootstrap Core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script src="~/collective-admin-panel-starter/starter/assets/js/bootstrap.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>   
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/bootbox.js/bootbox.min.js"></script>
-    
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
