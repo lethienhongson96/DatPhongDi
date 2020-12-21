@@ -65,7 +65,7 @@ namespace DatPhongDiWeb.Controllers
             return Json(new { data = result });
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult RoomTypeDetail(int Id, DateTime CheckIn, DateTime CheckOut)
         {
             ViewBag.RoomTypeId = Id;
@@ -75,7 +75,7 @@ namespace DatPhongDiWeb.Controllers
             return View(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
             ViewBag.CheckIn = req.CheckIn;
