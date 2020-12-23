@@ -5,7 +5,6 @@ namespace DatPhongDi.Domain.Request.Booking
     public class SaveBookingReq
     {
         public int Id { get; set; }
-        public int RoomId { get; set; }
         public int CustomerId { get; set; }
         public int AmountNight { get; set; }
         public DateTime Checkin { get; set; }

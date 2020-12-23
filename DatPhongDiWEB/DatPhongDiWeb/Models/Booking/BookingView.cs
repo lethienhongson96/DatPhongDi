@@ -5,7 +5,6 @@ namespace DatPhongDiWeb.Models.Booking
     public class BookingView
     {
         public int Id { get; set; }
-        public int RoomId { get; set; }
         public int CustomerId { get; set; }
         public int AmountNight { get; set; }
         public DateTime CheckIn { get; set; }
@@ -20,6 +19,5 @@ namespace DatPhongDiWeb.Models.Booking
         public int Status { get; set; }
         public string StatusName { get; set; }
         public string CustomerName { get; set; }
-        public string RoomName { get; set; }
     }
 }

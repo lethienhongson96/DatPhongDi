@@ -46,39 +46,39 @@ input {
     font-size: 14px;
 }
 
-    input[type="text"] {
-        display: block;
-        height: 50px;
-        width: 97%;
-        border: none;
-    }
+input[type="text"] {
+    display: block;
+    height: 50px;
+    width: 97%;
+    border: none;
+}
 
-    input[type="email"] {
-        display: block;
-        height: 50px;
-        width: 97%;
-        border: none;
-    }
+input[type="email"] {
+    display: block;
+    height: 50px;
+    width: 97%;
+    border: none;
+}
 
-    input[type="submit"] {
-        display: block;
-        height: 60px;
-        width: 100%;
-        border: none;
-        background-color: #DFA974;
-        color: #fff;
-        margin-top: 2px;
-        cursor: pointer;
-        font-size: 0.9em;
-        text-transform: uppercase;
-        font-weight: bold;
-        cursor: pointer;
-    }
+input[type="submit"] {
+    display: block;
+    height: 60px;
+    width: 100%;
+    border: none;
+    background-color: #DFA974;
+    color: #fff;
+    margin-top: 2px;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        input[type="submit"]:hover {
-            background-color: #6FB7E9;
-            transition: 0.3s ease;
-        }
+input[type="submit"]:hover {
+    background-color: #6FB7E9;
+    transition: 0.3s ease;
+}
 
 #column-left {
     width: 46.5%;
@@ -121,9 +121,9 @@ input {
         margin: 2px 0;
     }
 
-        input[type="submit"] {
-            height: 50px;
-        }
+    input[type="submit"] {
+        height: 50px;
+    }
 
     #column-left {
         width: 96.5%;

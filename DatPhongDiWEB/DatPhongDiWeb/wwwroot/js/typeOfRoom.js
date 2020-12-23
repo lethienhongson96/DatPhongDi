@@ -429,3 +429,4 @@ typeOfRoom.init = function () {
 $(document).ready(function () {
     typeOfRoom.init();
 });
+
