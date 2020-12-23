@@ -29,34 +29,22 @@
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
+                            @{ string action = ""; }
                             @for (int i = 0; i < Model.Images.Count; i++)
                             {
-                                if (i == 0)
-                                {
-                                    <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
-                                }
-                                else
-                                {
-                                    <li data-target="#myCarousel" data-slide-to="@i"></li>
-                                }
+                                action += i == 0 ? $"<li data-target='#myCarousel' data-slide-to='{i}' class='active'></li>"
+                                                 : $"<li data-target='#myCarousel' data-slide-to='{i}'></li>";
                             }
+                            @Html.Raw(action)
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="width: 690px; height: 400px;">
                             @for (int i = 0; i < Model.Images.Count; i++)
                             {
-                                if (i == 0)
-                                {
-                                    <div class="item active">
-                                        <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="item">
-                                        <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
-                                    </div>
-                                }
+                                string classname = i == 0 ? "item active" : "item";
+                                <div class="@classname">
+                                    <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
+                                </div>
                             }
                         </div>
 
@@ -124,7 +112,7 @@
                                             {
                                                 servicestr.Add(service.Name);
                                             }
-                                            @String.Join(", ",servicestr);
+                                            @String.Join(", ", servicestr);
                                         }
                                     </td>
                                 </tr>
@@ -138,6 +126,3 @@
 </section>
 
 <!-- Room Details Section End -->
-
-
-
