@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatPhongDiWeb.Models.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace DatPhongDiWeb.Models.TypeOfRoom
         public int Size { get; set; }
         public int AmountAvailableRoom { get; set; }
         public List<ImageView> Images { get; set; }
+        public List<ServiceView> ServiceViews { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 @{
     Layout = "_LayoutThemesHotelBootraps";
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    var service = "";
 }
 
 <div class="breadcrumb-section">
@@ -115,8 +116,19 @@
                                     <td>@Model.AmountChild</td>
                                 </tr>
                                 <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
+                                    <td class="r-o text-break" style="width: 500px;">
+                                        Services:
+                                        @for(var i = 0; i < Model.ServiceViews.Count; i++)
+                                        {
+                                            if(i == 0)
+                                            {
+                                                service += Model.ServiceViews[0].Name;
+                                                continue;
+                                            }
+                                            service += ", " + Model.ServiceViews[i].Name;
+                                        }
+                                        @service
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

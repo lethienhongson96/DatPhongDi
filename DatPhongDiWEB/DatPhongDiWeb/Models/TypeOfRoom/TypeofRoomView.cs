@@ -19,5 +19,6 @@ namespace DatPhongDiWeb.Models.TypeOfRoom
         public string ImagePath { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        public List<ServiceView> ServiceViews { get; set; }
     }
 }
