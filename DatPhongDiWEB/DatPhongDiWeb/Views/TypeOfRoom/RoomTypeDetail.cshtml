@@ -29,13 +29,11 @@
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            @{ string action = ""; }
                             @for (int i = 0; i < Model.Images.Count; i++)
                             {
-                                action += i == 0 ? $"<li data-target='#myCarousel' data-slide-to='{i}' class='active'></li>"
-                                                 : $"<li data-target='#myCarousel' data-slide-to='{i}'></li>";
+                                string action = i == 0 ? "active" : "";
+                                <li data-target ="#myCarousel" data-slide-to="@i" class="@action"></li>
                             }
-                            @Html.Raw(action)
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="width: 690px; height: 400px;">
