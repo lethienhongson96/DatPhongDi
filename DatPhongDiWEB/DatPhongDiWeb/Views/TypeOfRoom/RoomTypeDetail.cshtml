@@ -2,7 +2,6 @@
 @{
     Layout = "_LayoutThemesHotelBootraps";
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-    var service = "";
 }
 
 <div class="breadcrumb-section">
@@ -118,16 +117,15 @@
                                 <tr>
                                     <td class="r-o text-break" style="width: 500px;">
                                         Services:
-                                        @for(var i = 0; i < Model.ServiceViews.Count; i++)
+                                        @{List<string> servicestr = new List<string>();}
+                                        @if (Model.ServiceViews.Count > 0)
                                         {
-                                            if(i == 0)
+                                            @foreach (var service in Model.ServiceViews)
                                             {
-                                                service += Model.ServiceViews[0].Name;
-                                                continue;
+                                                servicestr.Add(service.Name);
                                             }
-                                            service += ", " + Model.ServiceViews[i].Name;
+                                            @String.Join(", ",servicestr);
                                         }
-                                        @service
                                     </td>
                                 </tr>
                             </tbody>

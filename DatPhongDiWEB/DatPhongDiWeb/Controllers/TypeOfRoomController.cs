@@ -83,9 +83,8 @@ namespace DatPhongDiWeb.Controllers
             ViewBag.CheckOut = req.CheckOut;
             var data = ApiHelper<List<TypeofRoomView>>.HttpPostAsync($"TypeofRoom/CheckAvailable", "POST", req);
             foreach(var item in data)
-            {
                 item.ServiceViews = ApiHelper<List<ServiceView>>.HttpGetAsync($"TypeOfRoom/getservicebyroomtypeid/{item.Id}");
-            }
+
             return View(data);
         }
 
