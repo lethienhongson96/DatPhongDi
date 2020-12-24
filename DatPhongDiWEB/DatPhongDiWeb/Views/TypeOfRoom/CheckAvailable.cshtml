@@ -55,9 +55,10 @@
     <div class="container">
         <div class="row">
             <input type="text" hidden value="@ViewBag.CheckIn" />
-                <input type="text" hidden value="@ViewBag.CheckOut" />
+            <input type="text" hidden value="@ViewBag.CheckOut" />
             @foreach (var item in Model)
             {
+                List<string> servicestr = new List<string>();
                 <div class="col-lg-4 col-md-6">
                     <a asp-controller="TypeOfRoom" asp-action="RoomTypeDetail" asp-route-Id="@item.Id" asp-route-CheckIn="@ViewBag.CheckIn" asp-route-CheckOut="@ViewBag.CheckOut">
                         <div class="room-item">
@@ -80,8 +81,19 @@
                                             <td>@item.AmountChild</td>
                                         </tr>
                                         <tr>
-                                            <td class="r-o">Dịch vụ:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
+                                            <td class="r-o">
+                                                Dịch vụ:
+                                            </td>
+                                            <td>
+                                                @if (item.ServiceViews.Count > 0)
+                                                {
+                                                    foreach (var service in item.ServiceViews.Take(3))
+                                                    {
+                                                        servicestr.Add(service.Name);
+                                                    }
+                                                }
+                                                @String.Join(", ", servicestr)
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

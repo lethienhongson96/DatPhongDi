@@ -50,7 +50,7 @@ namespace DatPhongDi.API.Controllers
         {
             var result = await typeOfRoomService.Gets();
             return Ok(result);
-        }
+        } 
 
         [HttpGet("api/TypeOfRoom/getservicebyroomtypeid/{TypeOfRoomId}")]
         public async Task<OkObjectResult> GetServiceByRoomtypeId(int TypeOfRoomId)
