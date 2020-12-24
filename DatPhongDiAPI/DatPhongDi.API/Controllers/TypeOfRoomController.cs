@@ -8,12 +8,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using T = NPOI.SS.Formula.Functions.T;
 
 namespace DatPhongDi.API.Controllers
 {
     [ApiController]
     public class TypeOfRoomController : ControllerBase
     {
+       
         private readonly ITypeOfRoomService typeOfRoomService;
 
         public TypeOfRoomController(ITypeOfRoomService typeOfRoomService)
@@ -50,7 +52,7 @@ namespace DatPhongDi.API.Controllers
         {
             var result = await typeOfRoomService.Gets();
             return Ok(result);
-        } 
+        }
 
         [HttpGet("api/TypeOfRoom/getservicebyroomtypeid/{TypeOfRoomId}")]
         public async Task<OkObjectResult> GetServiceByRoomtypeId(int TypeOfRoomId)
@@ -64,7 +66,7 @@ namespace DatPhongDi.API.Controllers
         {
             var result = await typeOfRoomService.CheckAvailable(req);
             return Ok(result);
-            List<T> list = new ArrayList();
+           
         }
         [HttpPost]
         [Route("api/TypeOfRoom/GetAvailableTypeOfRoom")]
