@@ -12,15 +12,15 @@ booking.showData = function () {
             $.each(response.data, function (i, v) {
                 $('#tbBooking>tbody').append(
                     `<tr>
-                        <td>${v.roomName}</td>
-                        <td>${v.customerName}</td>                        
+                        <td>${v.customerId}</td>                        
                         <td>${v.checkInStr}</td>
                         <td>${v.checkOutStr}</td>
                         <td>${v.createDateStr}</td>
                         <td>${v.statusName}</td>
+                        <td>${v.totalPrice}</td>
                         <td>
                             <button class="btn btn-info"
-                            onclick="booking.edit(${v.id},${v.roomId},${v.customerId},${v.status},'${v.roomName}',
+                            onclick="booking.edit(${v.id},${v.customerId},${v.status},'${v.totalPrice}',
                                                     '${v.customerName}','${v.checkInStr}','${v.checkOutStr}')">
                             Edit</button>
                             <a href="javascript:void(0)" onclick="booking.delete(${v.id})"
@@ -35,19 +35,17 @@ booking.showData = function () {
 }
 
 //khi bấm vào nút edit thì đưa dữ liệu vào các thẻ thành phần ở trong form edit
-booking.edit = function (id, roomId, customerId, status, roomName, customerName, checkInStr, checkOutStr) {
+booking.edit = function (id,  customerId, status, totalPrice, customerName, checkInStr, checkOutStr) {
     $("#id").val(id);
-    $("#roomName").val(roomName);
+    $("#totalPrice").val(totalPrice);
     $("#customerName").val(customerName);   
     $("#Status").val(status);
-    $("#roomId").val(roomId);
     $("#customerId").val(customerId);
 
     document.getElementById("checkin").defaultValue = checkInStr;
     document.getElementById("checkout").defaultValue = checkOutStr;
 
     booking.initStatus(status);
-    booking.initroom(roomId);
     booking.openModal();
 }
 

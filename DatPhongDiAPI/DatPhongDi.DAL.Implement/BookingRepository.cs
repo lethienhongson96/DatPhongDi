@@ -18,13 +18,13 @@ namespace DatPhongDi.DAL.Implement
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Id", saveBookingReq.Id);
-                parameters.Add("@RoomId", saveBookingReq.RoomId);
+                parameters.Add("@Id", saveBookingReq.Id);              
                 parameters.Add("@CustomerId", saveBookingReq.CustomerId);
                 parameters.Add("@AmountNight", saveBookingReq.AmountNight);
                 parameters.Add("@CheckIn", saveBookingReq.Checkin);
                 parameters.Add("@CheckOut", saveBookingReq.CheckOut);
                 parameters.Add("@Status", saveBookingReq.Status);
+                parameters.Add("@TotalPrice", saveBookingReq.TotalPrice);
 
                 Result = await SqlMapper.QueryFirstOrDefaultAsync<SaveBookingRes>(cnn: connection,
                                                                     sql: "sp_SaveBooking",

@@ -75,7 +75,7 @@ namespace DatPhongDiWeb.Controllers
             return View(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult CheckAvailable(CheckAvailable req)
         {
             ViewBag.CheckIn = req.CheckIn;
