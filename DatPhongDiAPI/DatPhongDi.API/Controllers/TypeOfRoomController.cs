@@ -2,7 +2,11 @@
 using DatPhongDi.Domain.Request.TypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using Microsoft.AspNetCore.Mvc;
+using NPOI.SS.Formula.Functions;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
@@ -60,6 +64,7 @@ namespace DatPhongDi.API.Controllers
         {
             var result = await typeOfRoomService.CheckAvailable(req);
             return Ok(result);
+            List<T> list = new ArrayList();
         }
         [HttpPost]
         [Route("api/TypeOfRoom/GetAvailableTypeOfRoom")]
