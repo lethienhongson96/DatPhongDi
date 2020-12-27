@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DatPhongDiWeb.Models.TypeOfRoom.TypeofRoomView>
+@{ 
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
+{
+    List<string> servicestr = new List<string>();
+    <div class="col-lg-3 col-md-6">
+        <div class="hp-room-item set-bg" data-setbg="/sona-master/img/room/room-b4.jpg">
+            <div class="hr-text">
+                <h3 style="font-family: Palatino, serif; color: #66FF33">@item.Name</h3>
+                <h2>@String.Format(info, "{0:#,##0 đ}", item.PricePerNight)<span>/đêm</span></h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="r-o">Kích cỡ phòng</td>
+                            <td>@item.Size</td>
+                        </tr>
+                        <tr>
+                            <td class="r-o">Người lớn</td>
+                            <td>Tối đa @item.AmountAdults</td>
+                        </tr>
+                        <tr>
+                            <td class="r-o">Trẻ em</td>
+                            <td>Tối đa @item.AmountChild</td>
+                        </tr>
+                        <tr>
+                            <td class="r-o">Dịch vụ:</td>
+                            <td>
+                                @if (item.ServiceViews.Count > 0)
+                                {
+                                    foreach (var service in item.ServiceViews.Take(3))
+                                    {
+                                        servicestr.Add(service.Name);
+                                    }
+                                }
+                                @String.Join(", ", servicestr)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" class="primary-btn">Chi tiết</a>
+            </div>
+        </div>
+    </div>
+}

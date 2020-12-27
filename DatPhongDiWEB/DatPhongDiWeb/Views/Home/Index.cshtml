@@ -1,6 +1,13 @@
-﻿@model DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable
+﻿@*@model DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable*@
+@model IEnumerable<TypeofRoomView>;
+
 @{
     Layout = "_LayoutThemesHotelBootraps";
+    var a = DatPhongDiWeb.Ultilities.ApiHelper<List<TypeofRoomView>>.HttpGetAsync("TypeOfRoom/gets");
+    foreach(var ite in a)
+    {
+        ite.ServiceViews = DatPhongDiWeb.Ultilities.ApiHelper<List<DatPhongDiWeb.Models.Service.ServiceView>>.HttpGetAsync($"TypeOfRoom/getservicebyroomtypeid/{ite.Id}");
+    }
 }
 
 <!-- Hero Section End -->
@@ -140,122 +147,7 @@
     <div class="container-fluid">
         <div class="hp-room-items">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="/sona-master/img/room/room-b1.jpg">
-                        <div class="hr-text">
-                            <h3 style="font-family: Palatino, serif; color: #66FF33">Phòng Đơn</h3>
-                            <h2>800.000đ<span>/Đêm</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Kích cỡ phòng</td>
-                                        <td>25m2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số lượng</td>
-                                        <td>Tối đa 2 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường ngủ:</td>
-                                        <td>Normal Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Tivi, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="/sona-master/img/room/room-b2.jpg">
-                        <div class="hr-text">
-                            <h3 style="font-family: Palatino, serif; color: #66FF33">Phòng Đôi</h3>
-                            <h2>1.000.000đ<span>/Đêm</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Kích cỡ phòng</td>
-                                        <td>30m2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số lượng</td>
-                                        <td>Tối đa 4 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường ngủ:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Tivi, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="/sona-master/img/room/room-b3.jpg">
-                        <div class="hr-text">
-                            <h3 style="font-family: Palatino, serif; color: #66FF33">Phòng Gia Đình</h3>
-                            <h2>1.500.000đ<span>/Đêm</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Kích cỡ phòng</td>
-                                        <td>40m2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số lượng</td>
-                                        <td>Tối đa 6 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường ngủ:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Tivi, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="/sona-master/img/room/room-b4.jpg">
-                        <div class="hr-text">
-                            <h3 style="font-family: Palatino, serif; color: #66FF33">Phòng VIP</h3>
-                            <h2>2.000.000đ<span>/Đêm</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Kích cỡ phòng</td>
-                                        <td>50m2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Số lượng</td>
-                                        <td>Tối đa 5 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường ngủ:</td>
-                                        <td>VIP Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Tivi, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
+                @await Html.PartialAsync("_Gets", a.Take(4))
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ using DatPhongDi.Domain.Request.TypeOfRoom;
 using DatPhongDi.Domain.Response.TypeOfRoom;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
