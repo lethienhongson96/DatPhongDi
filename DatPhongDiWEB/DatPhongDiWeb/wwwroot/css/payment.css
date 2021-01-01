@@ -67,7 +67,7 @@ input[type="email"] {
         border: none;
     }
 
-button[type="submit"] {
+button {
     display: block;
     height: 60px;
     width: 100%;
@@ -82,7 +82,7 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-    button[type="submit"]:hover {
+    button:hover {
         background-color: #6FB7E9;
         transition: 0.3s ease;
     }
@@ -128,7 +128,7 @@ button[type="submit"] {
         margin: 2px 0;
     }
 
-    button[type="submit"] {
+    button {
         height: 50px;
     }
 

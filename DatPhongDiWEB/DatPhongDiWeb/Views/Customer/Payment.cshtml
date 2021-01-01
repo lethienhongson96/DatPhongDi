@@ -1,38 +1,33 @@
 ﻿@{ Layout = null; }
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Customer Infomation</title>
-    <link rel="stylesheet" href="~/css/payment.css">
-</head>
-<body>
-    <div>
-    </div>
-    <!-- partial:index.partial.html -->
-    <div class="body-text" style="color: #DFA974; font-size:xx-large">Booking STVK Hotel</div>
-    <form style="text-align: center">
-        <div class="form-container">
-            <div class="personal-information">
-                <h1>Customer Information</h1>
-            </div> <!-- end of personal-information -->
-            <input type="text" required="required" placeholder="Name" id="Name"/>
-            <input type="email" required="required" placeholder="Email" id="Email"/>
-            <input type="number" required="required" placeholder="Phone" id="Phone"/>
-            <input type="text" required="required" placeholder="Address" id="Address"/>
-            <input type="text" required="required" placeholder="Country" id="Country"/>
-            <input type="text" required="required" placeholder="Passport" id="Passport"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Customer Infomation</title>
+        <link rel="stylesheet" href="~/css/payment.css">
+    </head>
+    <body>
+        <!-- partial:index.partial.html -->
+        <div class="body-text" style="color: #DFA974; font-size:xx-large">Booking STVK Hotel</div>
+        <form style="text-align: center">
+            <div class="form-container">
+                <div class="personal-information">
+                    <h1>Customer Information</h1>
+                </div> <!-- end of personal-information -->
+                <input type="text" required="required" placeholder="Name" id="Name" />
+                <input type="email" required="required" placeholder="Email" id="Email" />
+                <input type="number" required="required" placeholder="Phone" id="PhoneNum" />
+                <input type="text" required="required" placeholder="Address" id="Address" />
+                <input type="text" required="required" placeholder="Country" id="Country" />
+                <input type="text" required="required" placeholder="Passport" id="Passport" />
 
-            <button id="input-button" type="submit" value="Submit">Xác Nhận</button>
-        </div>
-    </form>
-    <!-- partial -->
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script>
-        $('#input-button').on("click", function () {
-            console.log(JSON.parse(sessionStorage.getItem('bookingdate')));
-        })
-    </script>
-</body>
+                <button id="btn-submit">Xác Nhận</button>
+            </div>
+        </form>
+        <!-- partial -->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/customerBooking.js"></script>
+    </body>
 </html>
 

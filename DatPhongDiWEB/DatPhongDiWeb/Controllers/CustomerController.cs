@@ -8,23 +8,15 @@ namespace DatPhongDiWeb.Controllers
     {
         [HttpPost]
         [Route("customer/payment")]
-        public IActionResult Payment(SaveCustomerReq req)
+        public JsonResult Payment([FromBody] SaveCustomerReq req)
         {
             var result = new SaveCustomerRes();
             if (ModelState.IsValid)
             {
                 result = ApiHelper<SaveCustomerRes>.HttpPostAsync($"customer/save", "POST", req);
-                if (result.Id != 0)
-                {
-                    TempData["success"] = result.Message;
-                }
-                else
-                {
-                    TempData["error"] = result.Message;
-                }
+                return Json(new { data = result });
             }
-            
-            return View(req);
+            return Json(0);
         }
 
         [HttpGet]
