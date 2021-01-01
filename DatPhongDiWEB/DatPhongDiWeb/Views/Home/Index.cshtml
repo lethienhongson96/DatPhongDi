@@ -21,10 +21,10 @@
             </div>
             <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                 @await Html.PartialAsync("_FormCheckAvailable", new DatPhongDiWeb.Models.TypeOfRoom.CheckAvailable()
-           {
-               CheckIn = DateTime.Today,
-               CheckOut = DateTime.Today.AddDays(1)
-           })
+                {
+                    CheckIn = DateTime.Today,
+                    CheckOut = DateTime.Today.AddDays(1)
+                })
             </div>
         </div>
     </div>

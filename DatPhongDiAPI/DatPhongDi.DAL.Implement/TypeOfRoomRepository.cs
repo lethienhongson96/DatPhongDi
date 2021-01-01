@@ -82,6 +82,10 @@ namespace DatPhongDi.DAL.Implement
             dynamic.Add("@CheckIn", CheckInStr);
             dynamic.Add("@CheckOut", CheckOutStr);
             return await SqlMapper.QueryFirstOrDefaultAsync<RoomTypeDetailView>(cnn: connection,
+
+
+
+
                                                                                 sql: "sp_GetTypeOfRoomByIdAfterCheckAvailable",
                                                                                 dynamic,
                                                                                 commandType: CommandType.StoredProcedure);
@@ -108,7 +112,6 @@ namespace DatPhongDi.DAL.Implement
         public async Task<SaveTypeOfRoomRes> Save(SaveTypeOfRoomReq saveTypeOfRoomReq)
         {
             SaveTypeOfRoomRes Result = new SaveTypeOfRoomRes();
-
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
