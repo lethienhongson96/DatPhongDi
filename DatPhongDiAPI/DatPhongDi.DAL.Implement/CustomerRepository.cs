@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using DatPhongDi.DAL.Interface;
-using DatPhongDi.Domain.Response.Customer;
 using DatPhongDi.Domain.Request.Customer;
+using DatPhongDi.Domain.Response.Customer;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;

@@ -57,6 +57,10 @@ namespace DatPhongDi.API
             //add scope for TypeOfRoomService
             services.AddScoped<ITypeOfRoomServiceRepository, TypeOfRoomServiceRepository>();
             services.AddScoped<ITypeOfRoomServiceService, TypeOfRoomServiceService>();
+
+            //add scope for bookingdetail
+            services.AddScoped<IBookingDetailRepository, BookingDetailRepository>();
+            services.AddScoped<IBookingDetailService, BookingDetailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
