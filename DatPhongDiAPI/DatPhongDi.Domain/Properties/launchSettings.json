@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DatPhongDi.Domain": {
+      "commandName": "Project",
+      "workingDirectory": "F:\\proz\\DatPhongDiAPI",
+      "environmentVariables": {
+        "Key": "Value"
+      }
+    }
+  }
+}

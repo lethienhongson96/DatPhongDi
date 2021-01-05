@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.Domain", "DatPhongDi.Domain\DatPhongDi.Domain.csproj", "{ED987509-FB10-4E4E-8F88-177DEEED21EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Interface", "DatPhongDi.DAL.Interface\DatPhongDi.DAL.Interface.csproj", "{B0E82600-5BF1-41CB-92D6-296D2D68D6A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ED987509-FB10-4E4E-8F88-177DEEED21EA} = {ED987509-FB10-4E4E-8F88-177DEEED21EA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatPhongDi.DAL.Implement", "DatPhongDi.DAL.Implement\DatPhongDi.DAL.Implement.csproj", "{D0F27A23-7E83-4AAB-A822-3FB805F02923}"
 EndProject

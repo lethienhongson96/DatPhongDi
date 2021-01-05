@@ -1,6 +1,8 @@
 ﻿using DatPhongDi.BAL.Interface;
 using DatPhongDi.Domain.Request.TypeOfRoom;
+using DatPhongDi.Domain.Response.TypeOfRoom;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.API.Controllers
@@ -23,7 +25,7 @@ namespace DatPhongDi.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch]
+        [HttpPatch,HttpPost]
         [Route("api/typeofroom/ChangeStatus")]
         public async Task<OkObjectResult> ChangeStatus(ChangeStatusTypeOfRoomReq request)
         {
@@ -42,8 +44,29 @@ namespace DatPhongDi.API.Controllers
         [HttpGet("api/TypeOfRoom/gets")]
         public async Task<OkObjectResult> Gets()
         {
-            var courses = await typeOfRoomService.Gets();
-            return Ok(courses);
+            var result = await typeOfRoomService.Gets();
+            return Ok(result);
+        } 
+
+        [HttpGet("api/TypeOfRoom/getservicebyroomtypeid/{TypeOfRoomId}")]
+        public async Task<OkObjectResult> GetServiceByRoomtypeId(int TypeOfRoomId)
+        {
+            var result = await typeOfRoomService.GetServiceByRoomTypeId(TypeOfRoomId);
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("api/TypeofRoom/CheckAvailable")]
+        public async Task<OkObjectResult> CheckAvailable([FromBody] CheckAvailable req)
+        {
+            var result = await typeOfRoomService.CheckAvailable(req);
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("api/TypeOfRoom/GetAvailableTypeOfRoom")]
+        public async Task<OkObjectResult> RoomTypeDetail([FromBody] CheckTypeOfRoomAvailableReq req)
+        {
+            var result = await typeOfRoomService.GetAvailableTypeOfRoom(req);
+            return Ok(result);
         }
     }
 }

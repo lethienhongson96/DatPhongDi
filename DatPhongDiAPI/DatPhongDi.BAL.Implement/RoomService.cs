@@ -2,9 +2,7 @@
 using DatPhongDi.DAL.Interface;
 using DatPhongDi.Domain.Request.Room;
 using DatPhongDi.Domain.Response.Room;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatPhongDi.BAL.Implement
@@ -27,5 +25,16 @@ namespace DatPhongDi.BAL.Implement
         {
             return roomRepository.Save(request);
         }
+
+        public async Task<IEnumerable<RoomView>> Gets()
+        {
+            return await roomRepository.Gets();
+        }
+
+        public async Task<SaveRoomRes> ChangeStatus(int id, int status)
+        {
+            return await roomRepository.ChangeStatus(id, status);
+        }
     }
 }
+

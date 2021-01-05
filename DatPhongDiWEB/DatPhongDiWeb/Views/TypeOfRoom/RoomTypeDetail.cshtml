@@ -1,0 +1,126 @@
+﻿@model DatPhongDiWeb.Models.TypeOfRoom.RoomTypeDetailView
+@{
+    Layout = "_LayoutThemesHotelBootraps";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our Rooms</h2>
+                    <div class="bt-option">
+                        <a href="./home.html">Home</a>
+                        <span>Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Room Details Section Begin -->
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                string action = i == 0 ? "active" : "";
+                                <li data-target ="#myCarousel" data-slide-to="@i" class="@action"></li>
+                            }
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="width: 690px; height: 400px;">
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                string classname = i == 0 ? "item active" : "item";
+                                <div class="@classname">
+                                    <img src="~/images/@Model.Images[i].ImagePath" alt="" style="width: 690px; height: 400px;">
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next" style="margin-right: 60px;">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.Name</h3>
+                            <div class="rdt-right">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <a href="#" class="add-to-cart"
+                                   data-name="@Model.Name" data-price="@Model.PricePerNight"
+                                   data-roomtypeid="@ViewBag.RoomTypeId" style="margin-right: 60px;">Booking Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="room-details-item">
+                    <div class="rd-text">
+                        <h2>@String.Format(info, "{0:#,##0 đ}", Model.PricePerNight)<span>/đêm</span></h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o text-danger">Số phòng trống:</td>
+                                    <td class="text-danger" id="limitamountroom" data-limitamount="@Model.AmountAvailableRoom"
+                                        data-roomtypeidcurrent="@ViewBag.RoomTypeId">
+                                        @Model.AmountAvailableRoom
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Kích cỡ phòng:</td>
+                                    <td>@Model.Size</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Số người lớn:</td>
+                                    <td>@Model.AmountAdults</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Số trẻ em:</td>
+                                    <td>@Model.AmountChild</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o text-break" style="width: 500px;">
+                                        Services:
+                                        @{List<string> servicestr = new List<string>();}
+                                        @if (Model.ServiceViews.Count > 0)
+                                        {
+                                            @foreach (var service in Model.ServiceViews)
+                                            {
+                                                servicestr.Add(service.Name);
+                                            }
+                                            @String.Join(", ", servicestr);
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Room Details Section End -->

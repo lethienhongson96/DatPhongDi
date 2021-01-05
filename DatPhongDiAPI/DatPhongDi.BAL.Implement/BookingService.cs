@@ -21,5 +21,20 @@ namespace DatPhongDi.BAL.Implement
         {
             return bookingRepository.Save(request);
         }
+
+        public async Task<BookingView> Get(int Id)
+        {
+            return await bookingRepository.Get(Id);
+        }
+
+        public async Task<IEnumerable<BookingView>> Gets()
+        {
+            return await bookingRepository.Gets();
+        }
+
+        public async Task<SaveBookingRes> ChangeStatusBooking(int Id, int Status)
+        {
+            return await bookingRepository.ChangeStatusBooking(Id, Status);
+        }
     }
 }

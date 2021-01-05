@@ -37,6 +37,30 @@ namespace DatPhongDi.API
             //add scope for Booking
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IBookingRepository, BookingRepository>();
+
+            //add scope for Customer
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            //add scope for Service
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<IServiceService, ServiceService>();
+
+            //add scope for Status
+            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IStatusService, StatusService>();
+
+            //add scope for Image
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IImageService, ImageService>();
+
+            //add scope for TypeOfRoomService
+            services.AddScoped<ITypeOfRoomServiceRepository, TypeOfRoomServiceRepository>();
+            services.AddScoped<ITypeOfRoomServiceService, TypeOfRoomServiceService>();
+
+            //add scope for bookingdetail
+            services.AddScoped<IBookingDetailRepository, BookingDetailRepository>();
+            services.AddScoped<IBookingDetailService, BookingDetailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

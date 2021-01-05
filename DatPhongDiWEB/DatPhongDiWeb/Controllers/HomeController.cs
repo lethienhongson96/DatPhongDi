@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DatPhongDiWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using DatPhongDiWeb.Models;
+using System.Diagnostics;
 
 namespace DatPhongDiWeb.Controllers
 {
@@ -19,6 +15,16 @@ namespace DatPhongDiWeb.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult ViewRoomByRoomTypeId()
+        {
+            return View();
+        }
+
+        public IActionResult ViewTypeOfRooms()
         {
             return View();
         }
