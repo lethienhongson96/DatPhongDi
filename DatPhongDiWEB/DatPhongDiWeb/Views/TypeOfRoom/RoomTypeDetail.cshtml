@@ -82,7 +82,9 @@
                                     <i class="icon_star"></i>
                                     <i class="icon_star-half_alt"></i>
                                 </div>
-                                <a href="#" style="margin-right: 60px;">Booking Now</a>
+                                <a href="#" class="add-to-cart"
+                                   data-name="@Model.Name" data-price="@Model.PricePerNight"
+                                   data-roomtypeid="@ViewBag.RoomTypeId" style="margin-right: 60px;">Booking Now</a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +98,11 @@
                             <tbody>
                                 <tr>
                                     <td class="r-o text-danger">Số phòng trống:</td>
-                                    <td class="text-danger">@Model.AmountAvailableRoom</td>
+                                    <td class="text-danger" id="limitamountroom"
+                                        data-limitamount="@Model.AmountAvailableRoom"
+                                        data-roomtypeidcurrent="@ViewBag.RoomTypeId">
+                                        @Model.AmountAvailableRoom
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="r-o">Kích cỡ phòng:</td>
@@ -120,7 +126,11 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
+
 <!-- Room Details Section End -->
+
+
+
